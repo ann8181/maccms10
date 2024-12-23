@@ -1,0 +1,67 @@
+<header class="{$maccms.cache_flag} stui-header__top clearfix" id="header-top">
+  <div class="{$maccms.cache_flag} container">
+    <div class="{$maccms.cache_flag} row">
+      <div class="{$maccms.cache_flag} stui-header_bd clearfix">
+        <!-- <div class="{$maccms.cache_flag} stui-header__logo">
+              <a class="{$maccms.cache_flag} logo" href="http://{$maccms.site_url}"></a>
+            </div> -->
+        <div class="{$maccms.cache_flag} stui-header__side">
+          <ul class="{$maccms.cache_flag} stui-header__user">
+            <li class="{$maccms.cache_flag} visible-xs">
+              <a class="{$maccms.cache_flag} open-popup" href="javascript:;">
+                <i class="{$maccms.cache_flag} icon iconfont icon-viewgallery"></i>
+              </a>
+            </li>
+          </ul>
+          <div class="{$maccms.cache_flag} stui-header__search">
+            <form name="search" id="search" action="{:mac_url('vod/search')}" autocomplete="off">
+              <input class="{$maccms.cache_flag} form-control mac_wd" id="wd" placeholder="100万部影片任你搜" name="wd"
+                type="text" required="">
+              <input type="submit" id="searchbutton" value="" class="{$maccms.cache_flag} hide">
+              <button class="{$maccms.cache_flag} submit" id="submit" onClick="$('#formsearch').submit();">
+                <i class="{$maccms.cache_flag} icon iconfont icon-search"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+        <ul class="{$maccms.cache_flag} stui-header__menu type-slide">
+          <li {if condition="$maccms.aid eq 1" } class="{$maccms.cache_flag} active" {/if}>
+            <a href="{$maccms.path}">首页</a></li>
+          {maccms:type ids="1,2,3,4,5" order="asc" by="sort"}
+          <li {if condition="$obj.type_id eq $vo.type_id" } class="{$maccms.cache_flag} active" {/if}>
+            <a href="{:mac_url_type($vo)}">{$vo.type_name|nochaoscode}</a>
+          </li>
+          {/maccms:type}
+          <li {if condition="$maccms.aid eq 7" } class="{$maccms.cache_flag} active" {/if}>
+            <a href="{:mac_url_topic_index()}">专题</a>
+          </li>
+
+          <script type="text/javascript">
+            try {
+              if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+
+              } else {
+                document.write('<li><a href="javascript:;" class="{$maccms.cache_flag} mac_history">播放记录</a></li>');
+              }
+            } catch (e) { }
+          </script>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="{$maccms.cache_flag} popup clearfix">
+  <div class="{$maccms.cache_flag} popup-head bottom-line">
+    <h5 class="{$maccms.cache_flag} title pull-right">全部分类</h5>
+    <a href="javascript:;" class="{$maccms.cache_flag} close-popup">
+      <i class="{$maccms.cache_flag} icon iconfont icon-back"></i>
+    </a>
+  </div>
+  <div class="{$maccms.cache_flag} popup-body col-pd">
+    <ul class="{$maccms.cache_flag} tag tag-type">
+      {maccms:type ids="parent" order="asc" by="sort"}
+      <li class="{$maccms.cache_flag} col-xs-4"><a href="{:mac_url_type($vo)}">{$vo.type_name|nochaoscode}</a></li>
+      {/maccms:type}
+    </ul>
+  </div>
+</div>

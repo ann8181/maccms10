@@ -1,0 +1,10 @@
+<a class="videopic lazy" href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" data-original="{$vo.vod_pic|mac_url_img}" style="background: url({$vo.vod_pic|mac_url_img}) no-repeat; background-position:50% 50%; background-size: cover;" >								
+		<span class="play hidden-xs"></span>										
+		<span class="score">{$vo.vod_remarks}</span> 						
+</a>
+<div class="title">
+	<h5 class="text-overflow"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}">{$vo.vod_name|nochaoscode}</a></h5>
+</div>
+<div class="subtitle text-muted text-muted text-overflow hidden-xs">
+	主演：{$vo.vod_actor}
+</div>

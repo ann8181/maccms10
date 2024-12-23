@@ -117,4 +117,56 @@ class Domain extends Base
             return $this->error($file->getError());
         }
     }
+    // add start by ann 2024-12-24
+    public function add(){
+        $param = input();
+        // print_r($param);
+        $config = config('domain');
+        if (Request()->isPost()) {
+        	$param = input();
+        	$param['domain']['site_url'] = trim($param['domain']['site_url']);
+            $tmp[$param['domain']['site_url']] = $param['domain'];
+            $domain = array_merge($config,$tmp);
+            $res = mac_arr2file(APP_PATH . 'extra/domain.php', $domain);
+            if ($res === false) {
+                return $this->error('保存失败，请重试!');
+            }
+            return $this->success('保存成功!');            
+        }
+        if(!empty($param['id'])){
+        	$info = $config[$param['id']];
+        	$this->assign('info', $info);
+        }
+        $templates = glob('./template' . '/*', GLOB_ONLYDIR);
+        foreach ($templates as $k => &$v) {
+            $v = str_replace('./template/', '', $v);
+        }
+        $this->assign('templates', $templates);
+        return $this->fetch('admin@domain/add');
+    }
+    public function configurl(){
+        $param = input();
+        $config = config('domain');
+        if (Request()->isPost()) {
+        	$domain = $param['domain'];
+            $config[$domain]['view'] = $param['view'];
+            $config[$domain]['path'] = $param['path'];
+            $config[$domain]['rewrite'] = $param['rewrite'];
+            $res = mac_arr2file(APP_PATH . 'extra/domain.php', $config);
+            if ($res === false) {
+                return $this->error('保存失败，请重试!');
+            }
+            return $this->success('保存成功!');            
+        }
+        $domain = $config[$param['id']];
+        if(empty($domain['view'])){
+        	$cnf = config('maccms');
+            $domain['view'] = $cnf['view'];
+            $domain['path'] = $cnf['path'];
+            $domain['rewrite'] = $cnf['rewrite'];
+        }    
+        $this->assign('config', $domain);
+        return $this->fetch('admin@domain/configurl');
+    }    
+    // add end    
 }

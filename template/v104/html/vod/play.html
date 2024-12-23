@@ -1,0 +1,214 @@
+﻿<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
+  <meta name="renderer" content="webkit|ie-comp|ie-stand">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>在线播放{$obj.vod_name|nochaoscode} {$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']} - 高清资源 -
+    {$maccms.site_name|nochaoscode}</title>
+  <meta name="keywords"
+    content="{$obj.vod_name|nochaoscode}{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}免费在线观看,{$obj.vod_name|nochaoscode}剧情介绍" />
+  <meta name="description"
+    content="{$obj.vod_name|nochaoscode}{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}免费在线观看,{$obj.vod_name|nochaoscode}剧情介绍" />
+  {include file="public/include"}
+  <link rel="stylesheet" href="{$maccms.path_tpl}css/stui_block.css" type="text/css" />
+  <style type="text/css">
+    .xy {
+      float: left;
+      margin-top: 15px;
+    }
+  </style>
+  <script>var maccms = { "path": "__ROOT__", "mid": "{$maccms['mid']}", "url": "{$maccms['site_url']}", "wapurl": "{$maccms['site_wapurl']}", "mob_status": "{$maccms['mob_status']}" };</script>
+</head>
+
+<body>
+  <header class="{$maccms.cache_flag} header">
+    <div class="{$maccms.cache_flag} container">
+      <h1 class="{$maccms.cache_flag} logo"><a href="/"
+          title="{$maccms.site_name|nochaoscode}"><span>{$maccms.site_name|nochaoscode}</span></a></h1>
+      <div class="{$maccms.cache_flag} sitenav">
+        <ul>
+          <li id="menu-item-18" class="{$maccms.cache_flag} menu-item"><a {if condition="($maccms.aid==1) " }
+              class="{$maccms.cache_flag} menu-itema-two" {else /}{/if} href="/">首页</a> </li>
+          {maccms:type ids="parent" order="asc" by="sort"}
+          <li id="menu-item-{$vo.type_id}" class="{$maccms.cache_flag} menu-item"><a {if
+              condition="($obj.type_name==$vo.type_name) " } class="{$maccms.cache_flag} menu-itema-two" {else /}{/if}
+              href="{:mac_url_type($vo)}">{$vo.type_name|nochaoscode}</a></li>
+          {/maccms:type}
+        </ul>
+      </div>
+      <span class="{$maccms.cache_flag} sitenav-on xy"><i class="{$maccms.cache_flag} icon-list"></i></span> <span
+        class="{$maccms.cache_flag} sitenav-mask"></span>
+      <div class="{$maccms.cache_flag} accounts">  </div>
+      <span class="{$maccms.cache_flag} searchstart-on xy"><i class="{$maccms.cache_flag} icon-search"></i></span> <span
+        class="{$maccms.cache_flag} searchstart-off"><i class="{$maccms.cache_flag} icon-search"></i></span>
+      <form class="{$maccms.cache_flag} searchform" name="search" method="POST" action="{:mac_url('vod/search')}"
+        method="post" id="search">
+        <button tabindex="3" class="{$maccms.cache_flag} sbtn" type="submit"><i
+            class="{$maccms.cache_flag} fa"></i></button>
+        <input tabindex="2" class="{$maccms.cache_flag} sinput" name="wd" type="text" placeholder="输入关键字" value="">
+      </form>
+    </div>
+  </header>
+  <div class="{$maccms.cache_flag} header_end"></div>
+  <div id="homeso">
+    <form method="post" id="soform" style="text-align: center;float: none" name="search"
+      action="{:mac_url('vod/search')}">
+      <!-- <img id="imgsrc" style="margin:10px" src="{$maccms.path_tpl}images/sologo.png"><br> -->
+      <br>
+      <input tabindex="2" class="{$maccms.cache_flag} homesoin" id="sos" name="wd" type="text" placeholder="输入你要观看的视频"
+        value="">
+      <button id="button" tabindex="3" class="{$maccms.cache_flag} homesobtn" type="submit"><i
+          class="{$maccms.cache_flag} fa">搜索</i></button>
+    </form>
+  </div>
+  <div class="{$maccms.cache_flag} container">
+    <div align="center">
+      <script type=text/javascript src="http://api.xiaoshipintv.com/news2.js"></script>
+    </div>
+    <div class="{$maccms.cache_flag} row">
+      <div class="{$maccms.cache_flag} stui-pannel stui-pannel-bg clearfix">
+        <div class="{$maccms.cache_flag} stui-pannel-box">
+          <div class="{$maccms.cache_flag} stui-pannel-bd">
+            <div class="{$maccms.cache_flag} stui-player col-pd">
+              <div class="{$maccms.cache_flag} stui-player__video embed-responsive embed-responsive-16by9 clearfix">
+                <div class="{$maccms.cache_flag} bofang_box">
+                  {$player_data}
+                  {$player_js}
+                </div>
+              </div>
+              <script type="text/javascript">
+                try {
+                  if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+                    document.write('<style>.bofang_box{width:100%;height:280px;}</style>');
+                  } else {
+                    document.write('<style>.bofang_box{width:100%;height:620px;}</style>');
+                  }
+                } catch (e) { }
+              </script>
+              <div class="{$maccms.cache_flag} stui-player__detail detail">
+                <span class="{$maccms.cache_flag} bdsharebuttonbox hidden-md hidden-sm hidden-xs pull-right">
+                  <span class="{$maccms.cache_flag} bds_shere"></span>
+                  <a class="{$maccms.cache_flag} bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                  <a class="{$maccms.cache_flag} bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                  <a class="{$maccms.cache_flag} bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                  <a class="{$maccms.cache_flag} bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                  <a class="{$maccms.cache_flag} bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+                  <a class="{$maccms.cache_flag} bds_bdhome" data-cmd="bdhome" title="分享到百度新首页"></a>
+                  <a class="{$maccms.cache_flag} bds_tqf" data-cmd="tqf" title="分享到腾讯朋友"></a>
+                  <a class="{$maccms.cache_flag} bds_youdao" data-cmd="youdao" title="分享到有道云笔记"></a>
+                  <a class="{$maccms.cache_flag} bds_more" data-cmd="more" title="更多"></a>
+                </span>
+                <h4 class="{$maccms.cache_flag} title">
+                  <a href="{:mac_url_vod_detail($obj)}">{$obj.vod_name|nochaoscode}</a></h4>
+                <p class="{$maccms.cache_flag} data margin-0">
+                  <span class="{$maccms.cache_flag} text-muted">类型：</span>
+                  {$obj.vod_class|mac_url_create='class'}
+                  <span class="{$maccms.cache_flag} split-line"></span>
+                  <span class="{$maccms.cache_flag} text-muted hidden-xs">地区：</span>
+                  {$obj.vod_area|mac_url_create='area'}&nbsp;
+                  <span class="{$maccms.cache_flag} split-line"></span>
+                  <span class="{$maccms.cache_flag} text-muted hidden-xs">年份：</span>
+                  {$obj.vod_year|mac_url_create='year'}
+                  <span class="{$maccms.cache_flag} split-line"></span>
+                  <a class="{$maccms.cache_flag} detail-more" href="javascript:;">详情
+                    <i class="{$maccms.cache_flag} icon iconfont icon-moreunfold"></i></a>
+                </p>
+                <div class="{$maccms.cache_flag} detail-content" style="display: none;">
+                  <p class="{$maccms.cache_flag} data">
+                    <span class="{$maccms.cache_flag} text-muted">主演：</span>
+                    {$obj.vod_actor|mac_url_create='actor'}&nbsp;
+                  </p>
+                  <p class="{$maccms.cache_flag} desc margin-0">
+                    <span class="{$maccms.cache_flag} left text-muted">简介：</span>{$obj.vod_blurb}…
+                    {maccms:foreach name="comment" id="vo"}
+                    {$vo}
+                    {/maccms:foreach}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 播放器-->
+      {maccms:foreach name="obj.vod_play_list" id="vo"}
+      <div class="{$maccms.cache_flag} stui-pannel stui-pannel-bg clearfix">
+        <div class="{$maccms.cache_flag} stui-pannel-box">
+          <div class="{$maccms.cache_flag} stui-pannel_hd">
+            <div class="{$maccms.cache_flag} stui-pannel__head bottom-line active clearfix">
+              <span class="{$maccms.cache_flag} more text-muted pull-right">{$vo.player_info.tip}</span>
+              <h3 class="{$maccms.cache_flag} title">{$vo.player_info.show}</h3>
+            </div>
+          </div>
+          <div class="{$maccms.cache_flag} stui-pannel_bd col-pd clearfix">
+            <ul class="{$maccms.cache_flag} stui-content__playlist column10 clearfix">
+              {maccms:foreach name="vo.urls" id="vo2" key="key2"}
+              <li><a title='{$vo2.name}' href='{:mac_url_vod_play($obj,[' sid'=>$vo.sid,'nid'=>$vo2.nid])}' {if
+                  condition="$param.sid eq $vo.sid && $param.nid eq $vo2.nid"}class="{$maccms.cache_flag} cur" {/if}
+                  target="_self">{$vo2.name}</a></li>
+              {/maccms:foreach}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {/maccms:foreach}
+      <!-- 播放列表-->
+      <div align="center">
+        <script type=text/javascript src="http://api.xiaoshipintv.com/news3.js"></script>
+      </div>
+      <div class="{$maccms.cache_flag} stui-pannel stui-pannel-bg clearfix">
+        <div class="{$maccms.cache_flag} stui-pannel-box">
+          <div class="{$maccms.cache_flag} stui-pannel_hd">
+            <div class="{$maccms.cache_flag} stui-pannel__head clearfix">
+              <h3 class="{$maccms.cache_flag} title">
+                <img src="{$maccms.path_tpl}images/icon_6.png" />猜你喜欢</h3>
+            </div>
+          </div>
+          <div class="{$maccms.cache_flag} stui-pannel_bd">
+            <ul class="{$maccms.cache_flag} stui-vodlist__bd clearfix">
+              {maccms:vod num="12" type="current" order="desc" by="time"}
+              <li class="{$maccms.cache_flag} col-md-6 col-sm-4 col-xs-3">
+                <div class="{$maccms.cache_flag} stui-vodlist__box">
+                  <a class="{$maccms.cache_flag} stui-vodlist__thumb img-shadow" href="{:mac_url_vod_play($vo)}"
+                    title="{$vo.vod_name|nochaoscode}">
+                    <img src="{$vo.vod_pic|mac_url_img}" alt="{$vo.vod_name|nochaoscode}">
+                    <span class="{$maccms.cache_flag} play hidden-xs"></span>
+                    <span class="{$maccms.cache_flag} pic-text text-right">{if condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集/共{$vo.vod_total}集{else/}{$vo.vod_remarks}{/if}</span></a>
+                  <div class="{$maccms.cache_flag} stui-vodlist__detail">
+                    <h4 class="{$maccms.cache_flag} title text-overflow">
+                      <a href="{:mac_url_vod_play($vo)}"
+                        title="{$vo.vod_name|nochaoscode}">{$vo.vod_name|nochaoscode}</a></h4>
+                    <p class="{$maccms.cache_flag} text text-overflow text-muted hidden-xs">{$vo.vod_actor}</p>
+                  </div>
+                </div>
+              </li>
+              {/maccms:vod}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="{$maccms.cache_flag} link">
+        {maccms:vod num="10" order="desc" by="rnd" id="vo"}
+        <a class="{$maccms.cache_flag} alink"
+          href="http://{:mac_get_rnddomain()}{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a>
+        {/maccms:vod}
+        {maccms:foreach name="selist" id="vo" key="key"}
+        <a class="{$maccms.cache_flag} alink" href="/s-{$key}.html" target="_blank"> {$vo|nochaoscode}</a>
+        {/maccms:foreach}        
+      </div>
+      <!-- 猜你喜欢-->
+      <span style="display:none" class="{$maccms.cache_flag} mac_ulog_set" alt="设置内容页浏览记录" data-type="1"
+        data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-sid="{$param.sid}" data-nid="{$param.nid}"></span>
+      <span style="display:none" class="{$maccms.cache_flag} mac_history_set" alt="设置History历史记录"
+        data-name="[{$obj.type.type_name|nochaoscode}]{$obj.vod_name|nochaoscode}"
+        data-pic="{$obj.vod_pic|mac_url_img}"></span>
+    </div>
+  </div>
+  {include file="public/foot"}
+</body>
+
+</html>

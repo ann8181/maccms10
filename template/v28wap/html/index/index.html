@@ -1,0 +1,319 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="applicable-device" content="mobile">
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<meta http-equiv="Cache-Control" content="no-transform" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	<script>
+		if (navigator.userAgent.toLocaleLowerCase().indexOf("ksdfsdfsdsdfsdfsdfsd") == -1) {
+			document.title = "免费视频在线观看"
+		}
+	</script>
+	<title>{$maccms.site_name|nochaoscode}</title>
+	<meta name="keywords" content="{$maccms.site_keywords|nochaoscode}" />
+	<meta name="description" content="{$maccms.site_description|nochaoscode}" />
+	{include file="public/include"}
+	<script type="text/javascript">
+		//var jq=jQuery.noConflict();
+	</script>
+</head>
+
+<body>
+	{include file="public/head"}
+
+	<!--幻灯片-->
+
+	<section class="mod">
+		<section class="row">
+			<div class="swiper-container focus_banner  js-swiper-container" id="js-swiper-focus-banner">
+				<div class="swiper-wrapper focus_banner_list">
+					{maccms:vod order="desc" by="time" num="10" paging="false" ids="all" type="all" level="9"}
+					<div class="swiper-slide focus_banner_item">
+						<a href="{:mac_url_vod_detail($vo)}" class="v_pic">
+							<img src="{$vo.vod_pic_slide|mac_url_img}" alt="" title="{$vo.vod_name|nochaoscode}"
+								class="swiper-lazy">
+							<span class="s_tit"><em>{$vo.vod_name|nochaoscode}</em></span>
+						</a>
+					</div>
+					{/maccms:vod}
+
+				</div>
+
+				<div class="swiper-pagination focus_banner_point"></div>
+			</div>
+		</section>
+	</section>
+	<!-- banner 开始 -->
+	<script type="text/javascript">
+		$(function() {
+			$('.js-swiper-container').each(function() {
+				if ($(this).find('.swiper-slide').length > 1 && !$(this).attr('development')) {
+					new Swiper('#' + $(this).attr('id'), {
+						slidesPerView: 1,
+						spaceBetween: 0,
+						loop: true,
+						autoplay: {
+							delay: 5000,
+							disableOnInteraction: false,
+						},
+						pagination: {
+							el: '.swiper-pagination',
+							clickable: true,
+						},
+						lazy: {
+							loadPrevNext: true,
+						}
+					});
+				}
+			})
+		})
+	</script>
+
+	<!-- 图标导航 -->
+	<section class="mod aui-margin-t-0">
+		<div class="mod-head aui-clearfix">
+			<div class="mod-head-title">
+				{maccms:type ids="5" order="asc" by="sort"}
+				<span class="mod-head-name"><a href="{:mac_url_type($vo)}" class="change">最新资讯</a>{/maccms:type}</span>
+			</div>
+			<span class="change">今日更新<em>【{:mac_data_count($obj.type_id,'today','vod')}】</em>
+				<!--部, 共有<em>【{:mac_data_count($obj.type_id,'all','vod')}】</em>-->部影片</span>
+		</div>
+		<div class="mod-main clearfix">
+			<div class="mod-row">
+				<ul class="m-list aui-clearfix" m-list-skin="small">
+					{maccms:art num="4" paging="yes" type="current" order="desc" by="time"}
+					<li class="m-item">
+						<a class="thumb" href="{:mac_url_art_detail($vo)}" title="{$vo.art_name|nochaoscode}">
+							<img class="ff-img" data-original="{$vo.art_pic|mac_url_img}"
+								src="{$vo.art_pic|mac_url_img}" style="display: inline;">
+							<i class="mask"></i>
+							<div class="icon-br"><span class="label">{$vo.type.type_name|nochaoscode}</span></div>
+						</a>
+						<div class="text">
+							<h3 class="stitle ellipsis-2"><a href="{:mac_url_art_detail($vo)}"
+									title="{$vo.art_name|nochaoscode}">{$vo.art_name|nochaoscode}</a></h3>
+						</div>
+					</li>
+
+					{/maccms:art}
+
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<!--为你推荐-->
+	<div align="center"><script type=text/javascript src="http://api.xiaoshipintv.com/news2.js"></script></div>
+	<section class="mod aui-margin-t-0">
+		<div class="mod-head clearfix">
+			<div class="mod-head-title">
+				<span class="mod-head-name">为你推荐</span>
+			</div>
+		</div>
+		<div class="mod-main clearfix">
+			<div class="mod-row">
+				<ul class="m-list clearfix" m-list-skin="film">
+					{maccms:vod num="6" type="1,2,3,4" level="8" order="desc" by="time"}
+					<li class="m-item">
+						<a class="thumb" href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}">
+							<img class="ff-img" data-original="{$vo.vod_pic|mac_url_img}"
+								src="{$vo.vod_pic|mac_url_img}">
+							<i class="mask"></i>
+							<div class="icon-br"><span class="label">{$vo.vod_remarks}</span></div>
+						</a>
+						<div class="text">
+							<h3 class="stitle aui-ellipsis-1"><a href="{:mac_url_vod_detail($vo)}"
+									title="{$vo.vod_name|nochaoscode}">{$vo.vod_name|nochaoscode}</a></h3>
+							<p class="des">主演:{$vo.vod_actor} </p>
+						</div>
+					</li>
+					{/maccms:vod}
+				</ul>
+			</div>
+		</div>
+	</section>
+	<!-- 最新电影资源 -->
+	<section class="mod aui-margin-t-0">
+		<div class="mod-head clearfix">
+			<div class="mod-head-title">
+				<span class="mod-head-name">电影</span>
+			</div>
+			{maccms:type ids="1" order="asc" by="sort"}
+			<a href="{:mac_url_type($vo)}" class="change">更多</a>
+			{/maccms:type}
+		</div>
+		<div class="mod-main clearfix">
+			<div class="mod-row">
+				<ul class="m-list clearfix" m-list-skin="film">
+
+					{maccms:vod num="6" type="1" order="desc" by="time"}
+					<li class="m-item">
+						<a class="thumb" href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}">
+							<img class="ff-img" data-original="{$vo.vod_pic|mac_url_img}"
+								src="{$vo.vod_pic|mac_url_img}">
+							<i class="mask"></i>
+							<div class="icon-br"><span class="label">{$vo.vod_remarks}</span></div>
+						</a>
+						<div class="text">
+							<h3 class="stitle aui-ellipsis-1"><a href="{:mac_url_vod_detail($vo)}"
+									title="{$vo.vod_name|nochaoscode}">{$vo.vod_name|nochaoscode}</a></h3>
+							<p class="des">主演:{$vo.vod_actor}</p>
+						</div>
+					</li>
+					{/maccms:vod}
+				</ul>
+			</div>
+		</div>
+	</section>
+	<!--最新电视剧资源-->
+	<section class="mod aui-margin-t-0">
+		<div class="mod-head clearfix">
+			<div class="mod-head-title">
+				<span class="mod-head-name">电视剧</span>
+			</div>
+			{maccms:type ids="2" order="asc" by="sort"}
+			<a href="{:mac_url_type($vo)}" class="change">更多</a>
+			{/maccms:type}
+		</div>
+		<div class="mod-main clearfix">
+			<div class="mod-row">
+				<ul class="m-list clearfix" m-list-skin="film">
+
+					{maccms:vod num="6" type="2" order="desc" by="time"}
+					<li class="m-item">
+						<a class="thumb" href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}">
+							<img class="ff-img" data-original="{$vo.vod_pic|mac_url_img}"
+								src="{$vo.vod_pic|mac_url_img}">
+							<i class="mask"></i>
+							<div class="icon-br"><span class="label">{$vo.vod_remarks}</span></div>
+						</a>
+						<div class="text">
+							<h3 class="stitle aui-ellipsis-1"><a href="{:mac_url_vod_detail($vo)}"
+									title="{$vo.vod_name|nochaoscode}">{$vo.vod_name|nochaoscode}</a></h3>
+							<p class="des">主演:{$vo.vod_actor}</p>
+						</div>
+					</li>
+					{/maccms:vod}
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<!--最新综艺节目资源-->
+	<section class="mod aui-margin-t-0">
+		<div class="mod-head clearfix">
+			<div class="mod-head-title">
+				<span class="mod-head-name">综艺</span>
+			</div>
+			{maccms:type ids="3" order="asc" by="sort"}
+			<a href="{:mac_url_type($vo)}" class="change">更多</a>
+			{/maccms:type}
+		</div>
+		<div class="mod-main clearfix">
+			<div class="mod-row">
+				<ul class="m-list clearfix" m-list-skin="film">
+
+					{maccms:vod num="6" type="3" order="desc" by="time"}
+					<li class="m-item">
+						<a class="thumb" href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}">
+							<img class="ff-img" data-original="{$vo.vod_pic|mac_url_img}"
+								src="{$vo.vod_pic|mac_url_img}">
+							<i class="mask"></i>
+							<div class="icon-br"><span class="label">{$vo.vod_remarks}</span></div>
+						</a>
+						<div class="text">
+							<h3 class="stitle aui-ellipsis-1"><a href="{:mac_url_vod_detail($vo)}"
+									title="{$vo.vod_name|nochaoscode}">{$vo.vod_name|nochaoscode}</a></h3>
+							<p class="des">主演:{$vo.vod_actor}</p>
+						</div>
+					</li>
+					{/maccms:vod}
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<!--最新动画片资源-->
+	<section class="mod aui-margin-t-0">
+		<div class="mod-head clearfix">
+			<div class="mod-head-title">
+				<span class="mod-head-name">动画片</span>
+			</div>
+			{maccms:type ids="4" order="asc" by="sort"}
+			<a href="{:mac_url_type($vo)}" class="change">更多</a>
+			{/maccms:type}
+		</div>
+		<div class="mod-main clearfix">
+			<div class="mod-row">
+				<ul class="m-list clearfix" m-list-skin="film">
+
+					{maccms:vod num="6" type="4" order="desc" by="time"}
+					<li class="m-item">
+						<a class="thumb" href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}">
+							<img class="ff-img" data-original="{$vo.vod_pic|mac_url_img}"
+								src="{$vo.vod_pic|mac_url_img}">
+							<i class="mask"></i>
+							<div class="icon-br"><span class="label">{$vo.vod_remarks}</span></div>
+						</a>
+						<div class="text">
+							<h3 class="stitle aui-ellipsis-1"><a href="{:mac_url_vod_detail($vo)}"
+									title="{$vo.vod_name|nochaoscode}">{$vo.vod_name|nochaoscode}</a></h3>
+							<p class="des">主演:{$vo.vod_actor}</p>
+						</div>
+					</li>
+					{/maccms:vod}
+				</ul>
+			</div>
+		</div>
+	</section>
+	</volist>
+	<script type="text/javascript">
+		$(function() {
+			$('.js-swiper-container').each(function() {
+				if ($(this).find('.swiper-slide').length > 1 && !$(this).attr('development')) {
+					new Swiper('#' + $(this).attr('id'), {
+						slidesPerView: 1,
+						spaceBetween: 0,
+						loop: true,
+						autoplay: {
+							delay: 5000,
+							disableOnInteraction: false,
+						},
+						pagination: {
+							el: '.swiper-pagination',
+							clickable: true,
+						},
+						lazy: {
+							loadPrevNext: true,
+						}
+					});
+				}
+			})
+		})
+	</script>
+	<div align="center"><script type=text/javascript src="http://api.xiaoshipintv.com/news3.js"></script></div>
+	<div class="link">
+		{maccms:vod num="10" order="desc" by="rnd" id="vo"}
+		   <a class="alink" href="http://{:mac_get_rnddomain()}{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a>
+		{/maccms:vod}
+	</div>
+	<!-- 友情链接 -->
+	<link type="text/css" rel="stylesheet" href="{$maccms.path_tpl}youku_m/css/sdcv.css" />
+	<div id="link" class="block">
+		<div id="title">友情链接</div>
+		<ul>
+			{maccms:link num="10" order="desc" by="id"}
+			<li><a href="{$vo.link_url}" target="_blank">{$vo.link_name|nochaoscode}</a></li>
+			{/maccms:link}
+
+		</ul>
+	</div>
+	{include file="public/foot"}
+</body>
+
+</html>

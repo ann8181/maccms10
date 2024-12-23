@@ -1,0 +1,35 @@
+
+<header>
+	<div class="topbar mbnone">
+		<div class="tb-container">
+			<span class="tb-help">欢迎来到{$maccms.site_name|nochaoscode}，我们因为小视频爱好而相聚。记住我们网址:{$maccms.site_url}</span>
+			<div class="tb-tools">
+				<a class="tools-one" href="javascript:alert('快捷键Ctrl+D可以快速添加到收藏夹。');">Ctrl+D 加入收藏夹</a>
+				<a class="tools-two" href="javascript:;" onclick="MAC.Desktop('{$obj.vod_name|nochaoscode}')">保存网址到桌面</a>
+				<a href="javascript:void(0);" style="cursor:hand" onclick="MAC.Fav(location.href,document.name);">保存网址到浏览器</a>
+			</div>
+		</div>
+	</div>
+	<div class="head">
+		<div class="logo"><a href="/">{$maccms.site_name|nochaoscode}</a></div>
+		<div class="search-box">
+			<form name="formsearch" id="formsearch" action="{:mac_url('vod/search')}"  target="_blank" autocomplete="off">
+				<input type="text" id="wd" name="wd" class="search-input" value="{$param.wd}" placeholder="请在此处输入影片名或演员名称" />
+				<input type="submit" id="searchbutton" class="search-button" value="搜索">
+			</form>
+		</div>
+	</div>
+	<nav class="navbar">
+		<div class="nav-container">
+			<ul class="menu">
+				<li {if condition="$obj.type_id eq $vo.type_id"}  class="current"{/if}><a href="/">首页</a></li>
+				{maccms:type ids="parent" order="asc" by="sort"}
+				<li{if condition="$obj.type_id eq $vo.type_id"} class="current"{/if}><a href="{:mac_url_type($vo)}">{$vo.type_name|nochaoscode}</a></li>
+				{/maccms:type}
+			</ul>
+			<ul class="member mbnone">
+				  <li class="#"><a class="nav-link" href="#">▼客服QQ30078</a></li>
+			</ul>
+		</div>
+	</nav>
+</header>

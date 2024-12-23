@@ -1,0 +1,214 @@
+<div class="slider">
+<div class="bd">
+	<div class="tempWrap" style="overflow:hidden; position:relative; width:2940px">
+		<ul style="width: 7840px; position: relative; overflow: hidden; padding: 0px; margin: 0px; left: -3920px;">{maccms:vod num="6" paging="no" type="current" level="8,9" order="desc" by="sort"}
+			<li style="float: left; width: 980px;" class="clone"><a target="_blank" href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}"><img src="{$vo.vod_pic_slide|mac_url_img}">{$vo.vod_name|nochaoscode}</a></li>{/maccms:vod}
+		</ul>
+	</div>
+	<div class="slide-item">{maccms:vod num="6" paging="no" type="current" level="8,9" order="desc" by="sort"}
+		<div class="slide-detail">
+			<a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" target="_blank" class="img"><img src="{$vo.vod_pic|mac_url_img}" alt="{$vo.vod_name|nochaoscode}"></a>
+			<div class="slide-cont">
+				<p>更新至</p>
+				<p class="fn-clear">
+					<span>{$vo.vod_serial}</span><em>集</em>
+				</p>
+			</div>
+			<div class="slide-txt">
+				<h2 style="text-align:left"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}">{$vo.vod_name|nochaoscode}</a></h2>
+				<p>{$vo.vod_content|mac_filter_html}</p>
+			</div>
+		</div>{/maccms:vod}
+	</div>
+</div>
+<div class="hd">
+	<ul>
+	</ul>
+</div>
+<div class="pnBtn prev">
+	<span class="blackBg"></span><a style="display: none;" class="arrow" href="javascript:void(0)"></a>
+</div>
+<div class="pnBtn next">
+	<span class="blackBg"></span><a style="display: none;" class="arrow" href="javascript:void(0)"></a>
+</div>
+</div>
+<script type="text/javascript">	jQuery(".slider .bd li").first().before( jQuery(".slider .bd li").last() );
+jQuery(".slider").hover(function(){ jQuery(this).find(".arrow").stop(true,true).fadeIn(300) },function(){ jQuery(this).find(".arrow").fadeOut(300) });jQuery(".slider").slide({ titCell:".hd ul", mainCell:".bd ul", targetCell:".slide-item .slide-detail", effect:"leftLoop",  autoPlay:true, vis:3, autoPage:true, trigger:"click"});</script>
+<div class="list-mcid">
+<div class="box">
+	<div class="list-micd-type rs">
+		<span>类型</span>
+		<ul>
+			<p class="fn-clear">{maccms:foreach name=":explode(',',$obj.type_extend.class)" id="vo2" key="key2"}{if condition="$key2 lt 12"}{in name="$key2" value="6"}
+			</p><p class="fn-clear">{/in}
+				<a href="{:mac_url_type($obj,['class'=>$vo2],'show')}" title="{$vo2}" target="_blank">{$vo2}</a>{/if}{/maccms:foreach}
+			</p>
+		</ul>
+	</div>
+	<div class="list-micd-type as">
+		<span>地区</span>
+		<ul>
+			<p class="fn-clear">{maccms:foreach name=":explode(',',$obj.type_extend.area)" id="vo2" key="key2"}{if condition="$key2 lt 10"}{in name="$key2" value="5"}
+			</p><p class="fn-clear">{/in}
+				<a href="{:mac_url_type($obj,['area'=>$vo2],'show')}" title="{$vo2}" target="_blank">{$vo2}</a>{/if}{/maccms:foreach}
+			</p>
+		</ul>
+	</div>
+	<div class="list-micd-type as">
+		<span>年代</span>
+		<ul>
+			<p class="fn-clear">{maccms:foreach name=":explode(',',$obj.type_extend.year)" id="vo2" key="key2"}{if condition="$key2 lt 8"}{in name="$key2" value="4"}
+			</p><p class="fn-clear">{/in}
+				<a href="{:mac_url_type($obj,['year'=>$vo2],'show')}" target="_blank">{$vo2}</a>{/if}{/maccms:foreach}
+			</p>
+		</ul>
+	</div>
+	<div class="list-micd-type ls">
+		<span class="so">热搜词</span>
+		<ul>
+			<p class="fn-clear">{maccms:vod num="6" type="current" order="desc" by="hits"}{in name="$key" value="4"}
+			</p><p class="fn-clear">{/in}
+				<a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" target="_blank">{$vo.vod_name|mac_substring=4}</a>{/maccms:vod}
+			</p>
+		</ul>
+	</div>
+</div>
+</div>
+<!--menunav--end-->
+<div class="boxt">
+<div class="w920 fn-left">
+	<div class="title ont t10 mb10">
+		<h2>最近更新</h2>
+		<a href="{:mac_url_type($obj,[],'show')}" target="_blank" title="最近更新" class="more">更多<i class="iconfont">&#xe61f;</i></a>
+	</div>
+	<div class="back-tabs" id="new">
+		<ul class="tab-qh">
+		</ul>
+		<a href="javascript:;" class="switchBtn left disabled prev"></a><a href="javascript:;" class="switchBtn right disabled next"></a>
+		<div class="pb20">
+			<ul class="tlist4 list-img" id="xj">{maccms:vod num="8" type="current" order="desc" by="time"}
+				<li><a href="{:mac_url_vod_detail($vo)}" target="_self" class="pic"><img class="loading" src="{$maccms.path_tpl}images/pic.png" data-original="{$vo.vod_pic|mac_url_img}" alt="{$vo.vod_name|nochaoscode}" title="{$vo.vod_name|nochaoscode}">
+				<div class="info">
+					<h3>{$vo.vod_name|nochaoscode}</h3>
+					<p><em>主演：</em>{$vo.vod_actor|mac_default='未知'}</p>
+					<p><em>类型：</em>{$vo.vod_class}</p>
+					<p><em>地区：</em>{$vo.vod_area}</p>
+					<p><em>更新：</em>{$vo.vod_time|date='Y-m-d',###}</p>
+				</div>
+				<label class="mask"></label><label class="text">{include file="public/serial1"}</label></a>
+				<div class="content back">
+					<h3><a href="{:mac_url_vod_detail($vo)}" target="_self">{$vo.vod_name|nochaoscode}</a></h3>
+					<p>{$vo.vod_class}</p>
+				</div>
+				</li>{/maccms:vod}
+			</ul>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">jQuery("#new").slide({titCell:".tab-qh",mainCell:".pb20 ul",autoPage:true,effect:"left",autoPlay:false,scroll:4,vis:4,trigger:"click"});</script>
+<div class="w260 fn-right" style="overflow:hidden">
+	<div class="title ont t10 mb10">
+		<h2><a href="{:mac_url_type($obj)}">周期更新</a></h2>
+	</div>
+{php} $rq=date("w");
+    if($rq==0){
+    $rq=7;
+    }
+    $rqarray=array(1,2,3,4,5,6,7);
+{/php}
+	<div class="week-tab back-tab pb12">
+		<div class="week-title">
+{if condition="$rq eq 1"}<a onmouseover="setTab('dm',1,7);" id="dm1" class="current">今</a>{else /}<a onmouseover="setTab('dm',1,7);" id="dm1">一</a>{/if}
+{if condition="$rq eq 2"}<a onmouseover="setTab('dm',2,7);" id="dm2" class="current">今</a>{else /}<a onmouseover="setTab('dm',2,7);" id="dm2">二</a>{/if}
+{if condition="$rq eq 3"}<a onmouseover="setTab('dm',3,7);" id="dm3" class="current">今</a>{else /}<a onmouseover="setTab('dm',3,7);" id="dm3">三</a>{/if}
+{if condition="$rq eq 4"}<a onmouseover="setTab('dm',4,7);" id="dm4" class="current">今</a>{else /}<a onmouseover="setTab('dm',4,7);" id="dm4">四</a>{/if}
+{if condition="$rq eq 5"}<a onmouseover="setTab('dm',5,7);" id="dm5" class="current">今</a>{else /}<a onmouseover="setTab('dm',5,7);" id="dm5">五</a>{/if}
+{if condition="$rq eq 6"}<a onmouseover="setTab('dm',6,7);" id="dm6" class="current">今</a>{else /}<a onmouseover="setTab('dm',6,7);" id="dm6">六</a>{/if}
+{if condition="$rq eq 7"}<a onmouseover="setTab('dm',7,7);" id="dm7" class="current">今</a>{else /}<a onmouseover="setTab('dm',7,7);" id="dm7">日</a>{/if}
+		</div>{volist name="rqarray" id="week" key="iii"}
+		<ul class="star-r-m-list mb10" {if condition="$rq eq $iii"}style="display:block"{/if} id="con_dm_{$iii}">
+{maccms:vod num="2" type="current" weekday="'.$iii.'" order="desc" by="time" id="vo2" key="key2"}
+			<li class="imglist"><a href="{:mac_url_vod_detail($vo2)}" target="_self"><img class="lazy" src="{$vo2.vod_pic|mac_url_img}" alt="{$vo2.vod_name|nochaoscode}" title="{$vo2.vod_name|nochaoscode}">
+			<h3 class="mh3">{$vo2.vod_name|nochaoscode}</h3>
+			</a></li>{/maccms:vod}
+{maccms:vod num="5" type="current" weekday="'.$iii.'" start="3" order="desc" by="time" id="vo2" key="key2"}
+			<li class="txt"><a href="{:mac_url_vod_detail($vo2)}" target="_self">{$vo2.vod_name|mac_substring=8}<span>{include file="public/serial"}</span></a></li>{/maccms:vod}
+		</ul>{/volist}
+	</div>
+</div>
+</div>
+
+
+{maccms:foreach name=":explode(',',$obj.type_extend.area)" id="vo2" key="key2"}{if condition="$key2 lt 2"}
+<div class="box">
+<div class="title ont t10 mb10">
+	<h2>{$vo2}动漫</h2>
+	<a href="{:mac_url_type($obj,['area'=>$vo2],'show')}" target="_blank" title="{$vo2}" class="more">更多<i class="iconfont">&#xe61f;</i></a>
+</div>
+</div>
+<div class="back-tabs boxn" id="tab{$key2+1}">
+<ul class="tab-qh">
+</ul>
+<a href="javascript:;" class="switchBtn left disabled prev"></a><a href="javascript:;" class="switchBtn right disabled next"></a>
+<div class="pb20">
+	<ul class="up-list list-img">{maccms:vod num="10" type="current" area="'.$vo2.'" order="desc" by="time"}
+		<li><a href="{:mac_url_vod_detail($vo)}" target="_self" class="pic"><img class="loading" src="{$maccms.path_tpl}images/pic.png" data-original="{$vo.vod_pic|mac_url_img}" alt="{$vo.vod_name|nochaoscode}" title="{$vo.vod_name|nochaoscode}">
+		<div class="info">
+			<i class="iconfont">&#xe622;</i>
+		</div>
+		<label class="mask"></label><label class="text">{include file="public/serial1"}</label></a>
+		<div class="content back">
+			<h3><a href="{:mac_url_vod_detail($vo)}" target="_self">{$vo.vod_name|nochaoscode}</a></h3>
+			<p>{$vo.vod_class}</p>
+		</div>
+		</li>{/maccms:vod}
+	</ul>
+</div>
+</div>{if condition="$key2 eq 0"}
+<script type="text/javascript">jQuery("#tab1").slide({titCell:".tab-qh",mainCell:".pb20 .up-list",autoPage:true,effect:"left",autoPlay:false,scroll:5,vis:5,trigger:"click"});</script>{else /}<script type="text/javascript">jQuery("#tab2").slide({titCell:".tab-qh",mainCell:".pb20 .up-list",autoPage:true,effect:"left",autoPlay:false,scroll:5,vis:5,trigger:"click"});</script>{/if}
+{/if}
+{/maccms:foreach}
+{maccms:foreach name=":explode(',',$obj.type_extend.class)" id="vo2" key="key2"}{if condition="$key2 lt 3"}
+<div class="box">
+<div class="w920 fn-left">
+	<div class="title ont t10 mb10">
+		<h2>{$vo2}</h2>
+		<a href="{:mac_url_type($obj,['class'=>$vo2],'show')}" target="_blank" title="{$vo2}" class="more">更多<i class="iconfont">&#xe61f;</i></a>
+	</div>
+	<div class="back-tab">
+		<ul class="list5 list-img dmbox">{maccms:vod num="10" type="current" class="'.$vo2.'" order="desc" by="time"}
+			<li><a href="{:mac_url_vod_detail($vo)}" target="_self" class="pic"><img class="loading" src="{$maccms.path_tpl}images/pic.png" data-original="{$vo.vod_pic|mac_url_img}" alt="{$vo.vod_name|nochaoscode}" title="{$vo.vod_name|nochaoscode}">
+			<div class="info">
+				<i class="iconfont">&#xe622;</i>
+			</div>
+			<label class="mask"></label><label class="text">{include file="public/serial1"}</label></a>
+			<div class="content back">
+				<h3><a href="{:mac_url_vod_detail($vo)}" target="_self">{$vo.vod_name|nochaoscode}</a></h3>
+			</div>
+			</li>{/maccms:vod}
+		</ul>
+	</div>
+</div>
+<div class="w260 fn-right">
+	<div class="title ont t10 mb10">
+		<h2><a href="{:mac_url_type($obj,['class'=>$vo2],'show')}" target="_blank">排行榜</a></h2>
+	</div>
+	<ul class="hot-list back-tab movlist">{maccms:vod num="1" type="current" class="'.$vo2.'" order="desc" by="hits_week"}
+		<li class="hot1">
+		<div class="hot1-img">
+			<a href="{:mac_url_vod_detail($vo)}" target="_self"><img class="loading" src="{$maccms.path_tpl}images/pic.png" data-original="{$vo.vod_pic|mac_url_img}" alt="{$vo.vod_name|nochaoscode}" title="{$vo.vod_name|nochaoscode}"></a><span>{$key}</span>
+		</div>
+		<div class="hot-txt">
+			<h3><a href="{:mac_url_vod_detail($vo)}" target="_self">{$vo.vod_name|nochaoscode}</a></h3>
+			<p><i>导演：</i>{$vo.vod_director|mac_default='未知'}</p>
+			<p><i>主演：</i>{$vo.vod_actor|mac_default='未知'}</p>
+			<p><i>类型：</i>{$vo.vod_class}</p>
+			<p><i>状态：</i>{include file="public/serial1"}</p>
+		</div>
+		</li>{/maccms:vod}
+{maccms:vod num="13" type="current" class="'.$vo2.'" start="2" order="desc" by="hits_week"}
+		<li><span {in name="$key" value="1,2"}class="cut"{/in}>{$key+1}</span><a href="{:mac_url_vod_detail($vo)}" target="_self" title="{$vo.vod_name|nochaoscode}">{$vo.vod_name|nochaoscode}</a><em class="cut">{$vo.vod_score}</em></li>{/maccms:vod}
+	</ul>
+</div>
+</div>{/if}
+{/maccms:foreach}

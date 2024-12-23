@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		{include file="public/include"}	
+  <title>{$obj.vod_name|nochaoscode}详情介绍-{$obj.vod_name|nochaoscode}在线观看-{$obj.vod_name|nochaoscode}迅雷下载 - {$maccms.site_name|nochaoscode}</title>
+    <meta name="keywords" content="{$obj.vod_name|nochaoscode}在线收看,{$obj.vod_name|nochaoscode}迅雷下载" />
+    <meta name="description" content="{$obj.vod_name|nochaoscode}剧情:{$obj.vod_blurb}" /> 
+	<script type="text/javascript" src="{$maccms.path_tpl}js/down.js"></script>	
+	<link href="{$maccms.path_tpl}css/common.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		{include file="public/head"}
+		<!--main-->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-9 col-sm-12 hy-main-content">
+					<div class="hy-video-details clearfix">						
+						<div class="item clearfix">
+							<dl class="content">
+								<dt>								
+									<a class="videopic" href="{:mac_url_vod_play($obj,['sid'=>1,'nid'=>1])}" title="{$obj.vod_name|nochaoscode}" style="background: url(/{$obj.vod_pic|mac_url_img})  no-repeat; background-position:50% 50%; background-size: cover;">
+										<span class="play hidden-xs"></span>
+										<span class="note textbg">{$obj.vod_version|mac_default='未知'}</span>
+									</a>																												
+								</dt>
+								<dd class="clearfix">
+								    <div class="head">
+								    	<span class="hide hit text-color pull-right">人气：{$obj.vod_hits}</span>
+								    	<h3>{$obj.vod_name|nochaoscode}</h3>
+								    </div>
+								    <div class="score">	
+								    	<!--{playpage:mark len=5 style=star}-->
+										<div class="star"><span class="star-cur" id="score"></span></div>
+										<span class="branch">{$obj.vod_score}</span>
+										<script type="text/javascript">
+											var str = "{playpage:douban}%" 
+											document.getElementById("score").style.width = (str.replace(".", ""))
+									   </script>									    
+									</div>									
+								    <ul>
+								    	<li><span class="text-muted">主演：</span>{$obj.vod_actor|mac_url_create='actor'}</li>
+								    	<li><span class="text-muted">导演：</span>{$obj.vod_director|mac_url_create='director'}</li>
+								    	<li class="col-md-6 col-sm-6 hidden-xs padding-0"><span class="text-muted">地区：</span>{$obj.vod_area|mac_url_create='area'}</li>
+								    	<li class="col-md-6 col-sm-6 hidden-xs padding-0"><span class="text-muted">类型：</span>{$obj.vod_class|mac_url_create='class'}</li>
+								    	<li class="col-md-6 hidden-sm hidden-xs padding-0"><span class="text-muted">语言：</span>{$obj.vod_lang|mac_url_create='lang'}</li>
+								    	<li class="col-md-6 hidden-sm hidden-xs padding-0"><span class="text-muted">年份：</span>{$obj.vod_year|mac_url_create='year'}</li>
+								    	<li><span class="text-muted">时间：</span>{$obj.vod_time|date='Y-m-d',###}</li>
+								    </ul>
+								    <div class="playlink hidden-md hidden-sm hidden-xs">
+							    		<a class="btn btn-warning" href="{:mac_url_vod_play($obj,['sid'=>1,'nid'=>1])}" title="立即播放"><i class="icon iconfont icon-play"></i> 立即播放</a>
+							    	</div>
+								</dd>
+							</dl>				    																									
+						</div>																		
+					</div>
+					<div class="hy-layout active clearfix">
+						<div class="hy-switch-tabs">
+							<ul class="nav nav-tabs">
+								<li class="active"><a href="#list1" data-toggle="tab" title="播放线路">播放线路</a></li>	
+								<li><a href="#list2" data-toggle="tab" title="影片下载">影片下载</a></li>							
+								<li><a href="#list3" data-toggle="tab" title="剧情介绍">剧情介绍</a></li>	
+							</ul>
+						</div>						
+						<div class="tab-content">
+							<div class="hy-play-list tab-pane fade in active" id="list1">
+								<div class="item tyui" id="playlist">								
+									{maccms:foreach name="obj.vod_play_list" id="vo"}								
+									<div class="panel clearfix">
+										<a class="option" data-toggle="collapse" data-parent="#playlist" href="#playlist{$key}" title="{$vo.player_info.show}">
+											{$vo.player_info.show} <span class="text-muted pull-right">{$vo.player_info.tip} <i class="icon iconfont icon-right"></i></span>
+										</a>
+										<div id="playlist{$key}" class="playlist collapse {if condition="$key = 1"}in{/if}">											
+											<ul class="playlistlink-{$key} list-15256 clearfix">
+												{maccms:foreach name="vo.urls" id="vo2"}
+												<li><a title='{$vo2.name}' href='{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>$vo2.nid])}' target="_self">{$vo2.name}</a></li>{/maccms:foreach}
+											</ul>											
+										</div>
+									</div>	
+									{/maccms:foreach}
+								</div>								
+							</div>							
+							<div class="hy-play-list tab-pane fade in" id="list2">
+											   <!--迅雷下载地址-->
+			
+			{maccms:foreach name="obj.vod_down_list" id="vo"}
+			<div class="ui-box marg" id="downlist_{$key}">
+				
+				<div class="down_listt">
+					<ul id="downul">
+						{maccms:foreach name="vo.urls" id="vo2"}
+						<li>
+							<p><strong class="down_part_name"><span class="filenamee">{$vo2.name}</span><span class="filesizee"></span></strong><input type="text" class="thunder_urll" value="{$vo2.url}" title="鼠标左键单击可全选后手动复制该条迅雷地址进行分享或其它操作" onclick="this.select()" /></p></li>
+						{/maccms:foreach}
+					</ul>
+					 <span class="xuanfu">※ 请手动复制框内下载地址到下载软件中下载 ※</span>
+        
+				</div>
+			</div>
+								    							
+									{/maccms:foreach}
+															
+								</div>	
+								<div class="hy-play-list tab-pane fade in" id="list3">
+									<div class="item">
+										<div class="plot">
+											{$obj.vod_content}
+										</div>
+									</div>												
+								</div>	
+							</div>						
+					    </div>					
+						<!--相关-->	
+						<div class="hy-layout clearfix">
+					    	<div class="hy-video-list">
+						    	<div class="hy-video-head">
+						    		<a class="text-muted pull-right" href="{maccms:type ids="1"}{:mac_url_type($vo)}{/maccms:type}" title="更多">更多 <i class="icon iconfont icon-right"></i></a>
+									<h3 class="margin-0">猜你喜欢</h3>						
+								</div>								
+								<div class="swiper-container hy-switch">
+							        <div class="swiper-wrapper">				            			
+			            				{maccms:vod num="10" type="current" order="desc" by="time"}
+			            				<div class="swiper-slide">
+			            					<div class="item">
+			            						{include file="public/block_video"}			
+			            					</div>	
+			            				</div>
+			            				{/maccms:vod}						            		
+							        </div>
+							        <div class="swiper-button-next"><i class="icon iconfont icon-right"></i></div>
+	                                <div class="swiper-button-prev"><i class="icon iconfont icon-back"></i></div>
+							   </div>
+							   <div class="hy-video-text-list hidden-xs clearfix">
+									<div class="item">
+										<ul class="clearfix">
+										{maccms:vod num="10" type="current" order="desc" by="time" start="11"}
+											<li class="list5 {if condition="$key lt 18"}hidden-sm{/if}">	
+												{include file="public/block_videotext"}																										
+											</li>
+											{/maccms:vod}		
+										</ul>
+									</div>							
+								</div>
+							</div>						   
+						</div>
+						<div class="hy-layout clearfix">
+					    	<div class="hy-video-list">
+						    	<div class="hy-video-head">
+						    		<a class="text-muted pull-right" href="{maccms:type ids="1"}{:mac_url_type($vo)}{/maccms:type}" title="更多">更多 <i class="icon iconfont icon-right"></i></a>
+									<h3 class="margin-0">相关热播</h3>						
+								</div>								
+								<div class="swiper-container hy-switch">
+							        <div class="swiper-wrapper">				            			
+			            				{maccms:vod num="10" type="current" order="desc" by="hits_month"}
+			            				<div class="swiper-slide">
+			            					<div class="item">
+			            						{include file="public/block_video"}			
+			            					</div>	
+			            				</div>
+			            				{/maccms:vod}						            		
+							        </div>
+							        <div class="swiper-button-next"><i class="icon iconfont icon-right"></i></div>
+	                                <div class="swiper-button-prev"><i class="icon iconfont icon-back"></i></div>
+							   </div>
+							   <div class="hy-video-text-list hidden-xs clearfix">
+									<div class="item">
+										<ul class="clearfix">
+											{maccms:vod num="10" type="current" order="desc" by="hits_month"  start="11"}
+											<li class="list5 {if condition="$key lt 18"}hidden-sm{/if}">	
+												{include file="public/block_videotext"}																										
+											</li>
+											{/maccms:vod}		
+										</ul>
+									</div>							
+								</div>
+							</div>						   
+						</div>				
+						<!--end 相关-->
+						<!--评论-->
+						<div class="hy-layout clearfix">
+							<div class="hy-video-head">
+								<h3 class="margin-0">影片评论</h3>						
+							</div>
+							<!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="{$obj.vod_id}" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = 'cyrWcQ8bT'; 
+var conf = 'prod_634195f5a6b09715ad8dcb33bede6cdd'; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>						
+						</div>						
+						<!--end 评论-->							
+					</div>
+					<div class="col-md-3 col-sm-12 hy-main-side hidden-sm hidden-xs">	
+						<div class="hy-layout clearfix">
+							<div class="hy-details-qrcode side clearfix">
+								<div class="item">
+								    <h5 class="text-muted">扫一扫用手机观看</h5>
+						            <p><img src="http://www.m1938.com/img/wep.png" /></p>
+						            <p class="text-muted">分享到朋友圈</p>							           
+							    </div>							    
+							</div>	
+						    
+							<div class="hy-video-ranking side clearfix">
+								<div class="head">
+									<a class="text-muted pull-right" href="{maccms:type ids="1"}{:mac_url_type($vo)}{/maccms:type}" title="更多">
+									更多 <i class="icon iconfont icon-right"></i></a>
+									<h4><i class="icon iconfont icon-top text-color"></i> {$obj.type.type_name|nochaoscode}排行榜</h4>
+								</div>
+								<div class="item">											
+									<ul class="clearfix">
+						    			{maccms:vod num="9" type="current" order="desc" by="hits_month"}
+										{include file="public/block_ranking"}
+										{/maccms:vod}											
+						    	   </ul>											
+								</div>
+							</div>{include file="public/block_topic"}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+		var swiper = new Swiper('.hy-slide', {
+	        pagination: '.swiper-pagination',
+	        paginationClickable: true,
+	        autoplay: 3000,
+	        nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+	    });	 
+	    var swiper = new Swiper('.hy-switch', {
+	        pagination: '.swiper-pagination',
+	        paginationClickable: true,
+	        slidesPerView: 5,
+	        spaceBetween: 0,
+	        nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+	        breakpoints: {
+	            1200: {
+	                slidesPerView: 4,
+	                spaceBetween: 0
+	            },
+	            767: {
+	                slidesPerView: 3,
+	                spaceBetween: 0					            
+	            }
+	        }
+	    });	 
+	    </script>
+       {include file="public/foot"}
+    </body>
+</html>

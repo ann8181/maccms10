@@ -3,6 +3,9 @@ namespace app\common\controller;
 use think\Controller;
 use think\Cache;
 use think\Request;
+// add by ann 2024-12-24
+use Redis;
+// add end
 
 class All extends Controller
 {
@@ -428,6 +431,15 @@ polyfill;
             }
         }
         $this->assign('obj',$info);
+        // 添加描叙,数量8
+        // {maccms:foreach name="comment" id="vo"}
+        // {$vo}
+        // {/maccms:foreach}
+        $redis = new Redis();
+        $redis->connect('127.0.0.1', 6379);
+        $comment = $redis->sRandMember('comment',8);//m3
+        $this->assign('comments',$comment);
+        // 添加结束
         $this->label_comment();
 
         return $info;
@@ -574,7 +586,50 @@ polyfill;
             $this->assign('player_data', '<script type="text/javascript">var player_aaaa=' . json_encode($player_info) . '</script>');
             $this->assign('player_js', '<script type="text/javascript" src="' . MAC_PATH . 'static/js/playerconfig.js?t='.$this->_tsp.'"></script><script type="text/javascript" src="' . MAC_PATH . 'static/js/player.js?t=a'.$this->_tsp.'"></script>');
         }
+        // add by ann 2024-12-24
+        // 添加描叙,数量8
+        // {maccms:foreach name="comment" id="vo"}
+        // {$vo}
+        // {/maccms:foreach}
+        $redis = new Redis();
+        $redis->connect('127.0.0.1', 6379);
+        $comment = $redis->sRandMember('comment',8);//m3
+        $this->assign('comments',$comment);
+        // 添加结束        
         $this->label_comment();
         return $info;
     }
+    // add by ann 2024-12-24
+    // 添加添加关键词缓存调用
+    protected function label_taglist(){
+        $param = mac_param_url();
+        $this->assign('param',$param);
+        $redis = new Redis();
+        $redis->connect('127.0.0.1', 6379);
+        if(strlen($param['wd'])>0){
+            $key = $redis->get($param['wd']);
+            $arrkey = explode(',',$key);
+            $titlekey = $arrkey[0];
+            // 删除首个词
+            array_shift($arrkey);
+            // 打乱排序
+            shuffle($arrkey);
+            // 重新获取前面3个
+            $arrkey = array_slice($arrkey,0,3);
+            $keyword = implode(',',$arrkey);
+            // $arrkey = array_rand($arrkey, 3);
+            $this->assign('titlekey',$titlekey);
+            $this->assign('key',$arrkey);
+            $this->assign('keywords',$keyword);
+        }
+        $arrlist = array();
+		for ($x=0; $x<=10; $x++) {
+			$tmp = $redis->get($redis->randomKey());
+			$tmpcrc = crc32($tmp);
+			$arrtmp = explode(',',$tmp);
+			$arrlist[$tmpcrc] = $arrtmp[0];
+		}
+		$this->assign('taglist',$arrlist);
+    }
+    // add end    
 }

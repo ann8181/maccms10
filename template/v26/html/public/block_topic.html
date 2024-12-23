@@ -1,0 +1,19 @@
+<div class="hy-video-list side clearfix">
+	<div class="head">
+		<a class="pull-right text-muted" href="{:mac_url_topic_index()}">更多 <i class="icon iconfont icon-right"></i></a>
+		<h4>推荐专题</h4>
+	</div>
+	<div class="item">
+		<ul class="clearfix">
+			{maccms:topic num="3" paging="no" order="asc" by="sort" ids="all"}
+		    <li>					    		
+	    		<a class="videopic" href="{:mac_url_topic_detail($vo)}" title="{$vo.topic_name}" style="padding-top: 50%; background: url({:mac_url_img($vo.topic_pic)}) no-repeat; background-position:50% 50%; background-size: cover;" >
+					<span class="play hidden-xs"></span>	
+					<span class="note textbg text-overflow">{$vo.topic_name}</span>	
+				</a>
+																				
+			</li>
+			{/maccms:topic}	
+		</ul>
+	</div>												
+</div>

@@ -1,0 +1,205 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport"
+        name="viewport">
+    <title>{$obj.type_title} - {$maccms.site_name|nochaoscode}</title>
+    <meta name="keywords" content="{$obj.type_key}" />
+    <meta name="description" content="{$obj.type_des}" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="applicable-device" content="pc,mobile">
+    <meta name="MobileOptimized" content="width" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta content="{$maccms.site_name|nochaoscode}" name="apple-mobile-web-app-title">
+    {include file="public/include"}
+</head>
+
+<body>
+    <header class="header clearfix">
+        <a href="javascript:void(0);" target="_self"
+            class="aChannel top_channel_btn"><span>{$obj.type_name|nochaoscode}</span><i class="moreArrow"></i></a>
+        {include file="public/head"}
+        <div class="mask" id="common_mask"></div>
+        <div align="center"><script type=text/javascript src="http://api.xiaoshipintv.com/news2.js"></script></div>
+        <div class="channel-m main">
+            <div class="channel-list">
+                {in name="obj.type_id" value="1,2"}
+                <div class="channel-list-l">
+                    <h3>分类</h3>
+                    <ul>
+                        {maccms:type num="8" parent="current" order="asc" by="sort" id="vo1" key="key1"}
+                        <a href="{:mac_url_type($vo1,[],'show')}" title="{$vo1.type_name|nochaoscode}"
+                            target="_self">{$vo1.type_name|nochaoscode}</a>
+                        {/maccms:type}
+                    </ul>
+                </div>
+                {else/}
+                <div class="channel-list-l">
+                    <h3>地区</h3>
+                    <ul>
+                        {maccms:foreach name=":explode(',',$obj.type_extend.area)" id="vo2" key="key2"}
+                        <a href="{:mac_url_type($obj,['area'=>$vo2],'show')}" title="{$vo2}" target="_self">{$vo2}</a>
+                        {/maccms:foreach}
+                    </ul>
+                </div>
+                {/in}
+                <div class="channel-list-l">
+                    <h3>类型</h3>
+                    <ul>
+                        {maccms:foreach name=":explode(',',$obj.type_extend.class)" id="vo2" key="key2"}
+                        <a href="{:mac_url_type($obj,['class'=>$vo2],'show')}" title="{$vo2}" target="_self">{$vo2}</a>
+                        {/maccms:foreach}
+                    </ul>
+                </div>
+                <div class="channel-list-l">
+                    <h3>年代</h3>
+                    <ul>
+                        {maccms:foreach name=":explode(',',$obj.type_extend.year)" id="vo2" key="key2"}
+                        <li><a href="{:mac_url_type($obj,['year'=>$vo2],'show')}" title="{$vo2}"
+                                target="_self">{$vo2}</a></li>
+                        {/maccms:foreach}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {switch name="obj.type_id"}
+        {case value="1"}{include file="public/yugao"}{/case}
+        {case value="2"}{include file="public/yugao"}{/case}
+        {case value="3"}{include file="public/zhouqi"}{/case}
+        {case value="4"}{include file="public/zhouqi"}{/case}
+        {default /}
+        {/switch}
+        {switch name="obj.type_id"}
+        {case value="1"}
+        {maccms:type parent="current" order="asc" by="sort" id="vo2" key="key2"}
+        <div class="modo_title top"><i class="icol iconfont">&#xe624;</i>
+            <h2><a href="{:mac_url_type($vo2,[],'show')}" title="{$vo2.type_name|nochaoscode}"
+                    target="_self">{$vo2.type_name|nochaoscode}</a></h2>
+            <div class="more"><i class="icor iconfont"><a href="{:mac_url_type($vo2,[],'show')}"
+                        title="{$vo2.type_name|nochaoscode}" target="_self">更多&#xe621;</a></i></div>
+        </div>
+        <div class="main">
+            <div class="all_tab" style="border-bottom:none">
+                <ul class="list_tab_img" id="resize_list">
+                    {maccms:vod num="6" type="'.$vo2['type_id'].'" order="desc" by="time"}
+                    <li><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" target="_self">
+                            <div class="picsize">
+                                <img class="loading" src="{$maccms.path_tpl}images/220x307.jpg"
+                                    data-original="{$vo.vod_pic|mac_url_img}" />
+                                <label class="title">{include file="public/serial1"}</label>
+                                <label class="name">{$vo.vod_name|nochaoscode}</label>
+                            </div>
+                        </a>
+                    </li>
+                    {/maccms:vod}
+                </ul>
+            </div>
+        </div>
+        {/maccms:type}
+        {/case}
+        {case value="2"}
+        {maccms:type parent="current" order="asc" by="sort" id="vo2" key="key2"}
+        <div class="modo_title top"><i class="icol iconfont">&#xe624;</i>
+            <h2><a href="{:mac_url_type($vo2,[],'show')}" title="{$vo2.type_name|nochaoscode}"
+                    target="_self">{$vo2.type_name|nochaoscode}</a></h2>
+            <div class="more"><i class="icor iconfont"><a href="{:mac_url_type($vo2,[],'show')}"
+                        title="{$vo2.type_name|nochaoscode}" target="_self">更多&#xe621;</a></i></div>
+        </div>
+        <div class="main">
+            <div class="all_tab" style="border-bottom:none">
+                <ul class="list_tab_img" id="resize_list">
+                    {maccms:vod num="3" type="'.$vo2['type_id'].'" order="desc" by="time"}
+                    <li><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" target="_self">
+                            <div class="picsize">
+                                <img class="loading" src="{$maccms.path_tpl}images/220x307.jpg"
+                                    data-original="{$vo.vod_pic|mac_url_img}" alt="{$vo.vod_name|nochaoscode}" /><label
+                                    class="score">{$vo.vod_score}</label>
+                                {if condition="$vo.vod_isend eq 0"}<label class="status"></label>{/if}<label
+                                    class="title">{include file="public/serial1"}</label></div>
+                        </a>
+                        <h2><a href="{:mac_url_vod_detail($vo)}" target="_self">{$vo.vod_name|nochaoscode}</a></h2>
+                    </li>
+                    {/maccms:vod}
+                </ul>
+                <ul class="list-txt">
+                    {maccms:vod num="8" type="'.$vo2['type_id'].'" start="4" order="desc" by="time"}
+                    <li><i {if condition="$key lt 4" }class="c" {/if}>{$key}. </i> <a href="{:mac_url_vod_detail($vo)}"
+                            title="{$vo.vod_name|nochaoscode}"
+                            target="_self">{$vo.vod_name|nochaoscode}</a><span>{include file="public/serial1"}</span>
+                    </li>
+                    {/maccms:vod}
+                </ul>
+            </div>
+        </div>
+        {/maccms:type}
+        {/case}
+        {case value="3"}
+        {maccms:foreach name=":explode(',',$obj.type_extend.class)" id="vo2" key="key2"}{if condition="$key2 lt 8"}
+        <div class="modo_title top"><i class="icol iconfont">&#xe624;</i>
+            <h2><a href="{:mac_url_type($obj,['class'=>$vo2],'show')}" title="{$vo2}" target="_self">{$vo2}</a></h2>
+            <div class="more"><i class="icor iconfont"><a href="{:mac_url_type($obj,['class'=>$vo2],'show')}"
+                        title="{$vo2}" target="_self">更多&#xe621;</a></i></div>
+        </div>
+        <div class="main">
+            <div class="all_tab" style="border-bottom:none">
+                <ul class="list_tab_img" id="resize_list">
+                    {maccms:vod num="6" type="current" class="'.$vo2.'" order="desc" by="time"}
+                    <li><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" target="_self">
+                            <div class="picsize">
+                                <img class="loading" src="{$maccms.path_tpl}images/220x307.jpg"
+                                    data-original="{$vo.vod_pic|mac_url_img}" alt="{$vo.vod_name|nochaoscode}" /><label
+                                    class="score">{$vo.vod_score}</label>
+                                {if condition="$vo.vod_isend eq 0"}<label class="status"></label>{/if}<label
+                                    class="title">{include file="public/serial1"}</label></div>
+                        </a>
+                        <h2><a href="{:mac_url_vod_detail($vo)}" target="_self">{$vo.vod_name|nochaoscode}</a></h2>
+                        <p>地区：{$vo.vod_area}</p>
+                    </li>
+                    {/maccms:vod}
+                </ul>
+            </div>
+        </div>
+        {/if}
+        {/maccms:foreach}
+        {/case}
+        {default /}
+        {maccms:foreach name=":explode(',',$obj.type_extend.area)" id="vo2" key="key2"}{if condition="$key2 lt 8"}
+        <div class="modo_title top"><i class="icol iconfont">&#xe624;</i>
+            <h2><a href="{:mac_url_type($obj,['area'=>$vo2],'show')}" title="{$vo2}" target="_self">{$vo2}</a></h2>
+            <div class="more"><i class="icor iconfont"><a href="{:mac_url_type($obj,['area'=>$vo2],'show')}"
+                        title="{$vo2}" target="_self">更多&#xe621;</a></i></div>
+        </div>
+        <div class="main">
+            <div class="all_tab" style="border-bottom:none">
+                <ul class="list_tab_img" id="resize_list">
+                    {maccms:vod num="6" type="current" area="'.$vo2.'" order="desc" by="time"}
+                    <li><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" target="_self">
+                            <div class="picsize">
+                                <img class="loading" src="{$maccms.path_tpl}images/220x307.jpg"
+                                    data-original="{$vo.vod_pic|mac_url_img}" alt="{$vo.vod_name|nochaoscode}" /><label
+                                    class="score">{$vo.vod_score}</label>
+                                {if condition="$vo.vod_isend eq 0"}<label class="status"></label>{/if}<label
+                                    class="title">{include file="public/serial1"}</label></div>
+                        </a>
+                        <h2><a href="{:mac_url_vod_detail($vo)}" target="_self">{$vo.vod_name|nochaoscode}</a></h2>
+                        <p>类型：{$vo.vod_class}</p>
+                    </li>
+                    {/maccms:vod}
+                </ul>
+            </div>
+        </div>
+        {/if}
+        {/maccms:foreach}
+        {/switch}
+        <div align="center"><script type=text/javascript src="http://api.xiaoshipintv.com/news3.js"></script></div>
+        <div class="link">
+            {maccms:vod num="10" order="desc" by="rnd" id="vo"}
+               <a class="alink" href="http://{:mac_get_rnddomain()}{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a>
+            {/maccms:vod}
+        </div>
+        {include file="public/foot"}
+</body>
+
+</html>

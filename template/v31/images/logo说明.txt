@@ -1,0 +1,3 @@
+mlogo.png  是手机logo  240*750
+
+logo.png   是电脑logo  180*56

@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		 {include file="public/include"}	
+    <title>{$obj.topic_name}专题详情- {$maccms.site_name|nochaoscode}</title>
+    <meta name="keywords" content="{$obj.topic_name}电影专题,{$obj.topic_name}电视剧专题,{$obj.topic_name}综艺专题,{$obj.topic_name}动漫专题,{$obj.topic_name}推荐专题" />
+    <meta name="description" content="本站提供{$obj.topic_name},最新最全精品专题数据" />
+	</head>
+	<body>
+		{include file="public/head"}
+		<!--main-->
+		<div class="{$maccms.cache_flag} container">
+			<div class="{$maccms.cache_flag} row">				
+				<div class="{$maccms.cache_flag} hy-layout clearfix">
+					<div class="{$maccms.cache_flag} col-md-7 col-sm-12 col-xs-12">
+						<div class="{$maccms.cache_flag} hy-video-list">
+							<div class="{$maccms.cache_flag} item">
+								<div class="{$maccms.cache_flag} pic" href="" style="padding-top: 50%; background: url({$obj.topic_pic|mac_url_img})  no-repeat; background-position:50% 50%; background-size: cover;"></div></li>																		
+							</div>														
+						</div>
+					</div>
+				    <div class="{$maccms.cache_flag} col-md-5 col-sm-12 col-xs-12">
+				    	<div class="{$maccms.cache_flag} hy-topic-content">
+				    		<div class="{$maccms.cache_flag} head">
+				    			<h3>{$obj.topic_name}</h3>			    			
+				    		</div>
+				    		<div class="{$maccms.cache_flag} item">
+				    			{$obj.topic_content}
+				    		</div>			    		
+				    	</div>
+				    </div>
+				</div>
+				<div class="{$maccms.cache_flag} col-md-9 col-sm-12 hy-main-content">
+					<div class="{$maccms.cache_flag} hy-layout clearfix">
+						<div class="{$maccms.cache_flag} hy-video-head">
+							<span class="{$maccms.cache_flag} text-muted pull-right hidden-xs">共有<span class="{$maccms.cache_flag} text-color">“{$obj.vod_list|count}部”</span>个影片</span>	
+							<h4 class="{$maccms.cache_flag} margin-0">该专题包含的影片</h4>					
+						</div>
+						{maccms:foreach name="$obj.vod_list"}
+						<div class="{$maccms.cache_flag} hy-video-details active clearfix">						
+						    <div class="{$maccms.cache_flag} item clearfix">
+								<dl class="{$maccms.cache_flag} content">
+									<dt>
+										<a class="{$maccms.cache_flag} videopic" href="{:mac_url_vod_detail($vo)}" style="background: url({$vo.vod_pic|mac_url_img})  no-repeat; background-position:50% 50%; background-size: cover;">
+											<span class="{$maccms.cache_flag} play hidden-xs"></span>
+											<span class="{$maccms.cache_flag} note textbg">{if condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集/共{$vo.vod_total}集{else/}{$vo.vod_remarks}{/if}</span>
+										</a>																		
+									</dt>
+									<dd class="{$maccms.cache_flag} clearfix">
+									    <div class="{$maccms.cache_flag} head">
+									    	<h3><a href="{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a></h3>
+									    </div>
+									    <div class="{$maccms.cache_flag} score">
+											<div class="{$maccms.cache_flag} star"><span class="{$maccms.cache_flag} star-cur" id="score-[vod:i]"></span></div>
+											<span class="{$maccms.cache_flag} branch">{$vo.vod_score} </span>
+											<script type="text/javascript">
+												var str = "[vod:douban]%" 
+												document.getElementById("score-[vod:i]").style.width = (str.replace(".", ""))
+										    </script>
+										</div>
+									    <ul>
+									    	<li><span class="{$maccms.cache_flag} text-muted">主演：</span>{$vo.vod_actor}</li>
+									    	<li><span class="{$maccms.cache_flag} text-muted">导演：</span>{$vo.vod_director}</li>
+									    	<li class="{$maccms.cache_flag} col-md-6 hidden-md hidden-sm hidden-xs padding-0"><span class="{$maccms.cache_flag} text-muted">地区：</span>{$vo.vod_area}</li>
+									    	<li class="{$maccms.cache_flag} col-md-6 hidden-md hidden-sm hidden-xs padding-0"><span class="{$maccms.cache_flag} text-muted">类型：</span>{$vo.type.type_name|nochaoscode}</li>
+									    	<li class="{$maccms.cache_flag} col-md-6 hidden-md hidden-sm hidden-xs padding-0"><span class="{$maccms.cache_flag} text-muted">语言：</span>{$vo.vod_lang}</li>
+									    	<li class="{$maccms.cache_flag} col-md-6 hidden-md hidden-sm hidden-xs padding-0"><span class="{$maccms.cache_flag} text-muted">年份：</span>{$vo.vod_year}</li>								    	
+									    </ul>
+									    <div class="{$maccms.cache_flag} block">
+								    		<a class="{$maccms.cache_flag} text-muted" href="{:mac_url_vod_detail($vo)}">查看详情 <i class="{$maccms.cache_flag} icon iconfont icon-right"></i> </a>
+								    	</div>
+									</dd>
+								</dl>
+						   </div>						    																												
+						</div>																							
+						{/maccms:foreach}									
+						<div class="{$maccms.cache_flag} hy-page clearfix">
+							<ul class="{$maccms.cache_flag} cleafix">
+							</ul>					
+						</div>
+					</div>
+				</div>	
+				<div class="{$maccms.cache_flag} col-md-3 col-sm-12 hy-main-side hidden-sm hidden-xs">
+					<div class="{$maccms.cache_flag} hy-layout clearfix">						
+						<div class="{$maccms.cache_flag} hy-details-qrcode side clearfix">
+							<div class="{$maccms.cache_flag} item">
+							    <h5 class="{$maccms.cache_flag} text-muted">扫一扫用手机查看</h5>
+					            <p><img src="http://qr.liantu.com/api.php?&w=200&text=http://{$maccms.site_url}" /></p>
+					            <p class="{$maccms.cache_flag} text-muted">分享到朋友圈</p>							           
+						    </div>							    
+						</div>	
+						
+						<div class="{$maccms.cache_flag} hy-video-ranking side clearfix">
+							<div class="{$maccms.cache_flag} head">
+								<a class="{$maccms.cache_flag} text-muted pull-right" href="{maccms:type ids="1"}{:mac_url_type($vo)}{/maccms:type}">更多 <i class="{$maccms.cache_flag} icon iconfont icon-right"></i></a>
+								<h4><i class="{$maccms.cache_flag} icon iconfont icon-top text-color"></i> 电影排行榜</h4>
+							</div>
+							<div class="{$maccms.cache_flag} item">											
+								<ul class="{$maccms.cache_flag} clearfix">
+					    			{maccms:vod num="9" type="1" order="desc" by="hits_month"}
+									{include file="public/block_ranking"}
+									{/maccms:vod}											
+					    	   </ul>											
+							</div>
+						</div>
+						<div class="{$maccms.cache_flag} hy-video-ranking side clearfix">
+							<div class="{$maccms.cache_flag} head">
+								<a class="{$maccms.cache_flag} text-muted pull-right" href="{maccms:type ids="2"}{:mac_url_type($vo)}{/maccms:type}">更多 <i class="{$maccms.cache_flag} icon iconfont icon-right"></i></a>
+								<h4><i class="{$maccms.cache_flag} icon iconfont icon-top text-color"></i> 电视排行榜</h4>
+							</div>
+							<div class="{$maccms.cache_flag} item">											
+								<ul class="{$maccms.cache_flag} clearfix">
+					    			{maccms:vod num="9" type="2" order="desc" by="hits_month"}
+									{include file="public/block_ranking"}
+									{/maccms:vod}											
+					    	   </ul>											
+							</div>
+						</div>
+						{include file="public/block_topic"}
+					</div>
+				</div>
+			</div>
+		</div>
+		{include file="public/foot"}
+	</body>
+</html>

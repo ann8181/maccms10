@@ -1,0 +1,4 @@
+<li class="{$maccms.cache_flag} text-overflow">
+<span class="{$maccms.cache_flag} pull-right text-color">{$vo.vod_hits}</span>
+<a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}"><em class="{$maccms.cache_flag} number {if condition="$key lt 4"}active{/if}">{$key}</em>{$vo.vod_name|nochaoscode}</a>
+</li>

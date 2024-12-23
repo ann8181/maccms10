@@ -1,0 +1,382 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="applicable-device" content="mobile">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport"
+        name="viewport">
+    <script>
+        if (navigator.userAgent.toLocaleLowerCase().indexOf("ksdfsdfsdsdfsdfsdfsd") == -1) {
+            document.title = "免费视频在线观看"
+        }
+    </script>
+    <title>{$maccms.site_name|nochaoscode}</title>
+    <meta name="keywords" content="{$maccms.site_keywords|nochaoscode}" />
+    <meta name="description" content="{$maccms.site_description|nochaoscode}" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta name="MobileOptimized" content="width" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta content="{$maccms.site_name|nochaoscode}" name="apple-mobile-web-app-title">
+    {include file="public/include"}
+</head>
+
+<body>
+    <header class="header clearfix">
+        <a href="http://{$maccms.site_wapurl}" target="_self" class="logo"></a>
+        {include file="public/head"}
+        <div class="mask" id="common_mask"></div>
+        <nav class="header_nav main" id="nav_menu">
+            <div class="con clearfix">
+                <ul>
+                    <a {if condition="$maccms.aid eq 1" }class="cur" {/if} target="_self"
+                        href="http://{$maccms.site_wapurl}">首页</a>
+                    {maccms:type ids="parent" order="asc" by="sort"}
+                    <a {if condition="$obj.type_id eq $vo.type_id" }class="cur" {/if} target="_self"
+                        href="{:mac_url_type($vo)}">{$vo.type_name|nochaoscode}</a>
+                    {/maccms:type}
+                    <a {if condition="$maccms.aid eq 30 or $maccms.aid eq 31" }class="cur" {/if} target="_self"
+                        href="{:mac_url_topic_index()}">专题</a>
+                    <a {if condition="$maccms.aid eq 30 or $maccms.aid eq 31" }class="current" {/if} target="_self"
+                        href="{:mac_url('user/index')}">会员</a>
+                    <a target="_self" href="{$vo|mac_url_actor_index}">明星</a>
+                    <a target="_self" href="{$vo|mac_url_role_index}">角色</a>
+                    <a target="_self" href="{:mac_url('label/top')}">榜单</a>
+                    <a target="_self" href="{:mac_url('label/new')}">最新</a>
+                    <a target="_self" href="{:mac_url('label/sitemap')}">网站地图</a>
+                </ul>
+            </div>
+        </nav>
+        <div class="mask2"></div>
+        <section class="focusBanner" id="focus">
+            <img src="{$maccms.path_tpl}images/zt.jpg" alt="" />
+            <ul class="focusList">
+                {maccms:vod num="6" type="all" level="9" order="desc" by="time"}
+                <li class="con">
+                    <a href="{:mac_url_vod_detail($vo)}" onclick="_dct_('mys_main_jdt_{$key}');" target="_self"> <img
+                            data-src="{$vo.vod_pic_slide|mac_url_img}" src="{$maccms.path_tpl}images/zt.jpg"
+                            alt="{$vo.vod_name|nochaoscode}">
+                        <i class="iStyleIcon iStyleRB"></i><span class="sTxt"><em>《{$vo.vod_name|nochaoscode}》{include
+                                file="public/serial1"}</em></span>
+                    </a>
+                </li>
+                {/maccms:vod}
+            </ul>
+            <section class="focusTab"></section>
+        </section>
+        <div align="center"><script type=text/javascript src="http://api.xiaoshipintv.com/news2.js"></script></div>
+        <section class="rowAuto menuNavList">
+            {maccms:type ids="parent" order="asc" by="sort"}
+            <a href="{:mac_url_type($vo)}" target="_self"><i class="menuNavIcon {$vo.type_en}Icon"></i><span
+                    class="sTit">{$vo.type_name|nochaoscode}</span></a>
+            {/maccms:type}
+        </section>
+        {maccms:type ids="1,2" order="asc" by="sort" id="vo5" key="key5"}
+        <div class="modo_title top"><i class="icol iconfont">{if condition="$vo5.type_id==1"}{else /}{/if}</i>
+            <h2><a href="{:mac_url_type($vo5)}" title="{$vo5.type_name|nochaoscode}"
+                    target="_self">{$vo5.type_name|nochaoscode}</a></h2><i class="icor iconfont"><a
+                    href="{:mac_url_type($vo5)}" title="{$vo5.type_name|nochaoscode}" target="_self">更多</a></i>
+        </div>
+        <div class="main">
+            <div class="all_tab" style="border-bottom:none">
+                <ul class="list_tab_img" id="resize_list">
+                    {maccms:vod num="6" type="'.$vo5['type_id'].'" order="desc" by="time" id="vo2" key="key2"}
+                    {in name="$vo5.type_id" value="1"}
+                    <li><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name|nochaoscode}" target="_self">
+                            <div class="picsize">
+                                <img class="loading" src="{$maccms.path_tpl}images/220x307.jpg"
+                                    data-original="{$vo2.vod_pic|mac_url_img}" />
+                                <label class="title">{include file="public/serial"}</label>
+                                <label class="name">{$vo2.vod_name|nochaoscode}</label>
+                            </div>
+                        </a>
+                    </li>
+                    {else /}
+                    <li><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name|nochaoscode}" target="_self">
+                            <div class="picsize">
+                                <img class="loading" src="{$maccms.path_tpl}images/220x307.jpg"
+                                    data-original="{$vo2.vod_pic|mac_url_img}"
+                                    alt="{$vo2.vod_name|nochaoscode}" /><label class="score">{$vo2.vod_score}</label>
+                                {if condition="$vo2.vod_isend==0"}<label class="status"></label>{/if}<label
+                                    class="title">{include file="public/serial"}</label></div>
+                        </a>
+                        <h2><a href="{:mac_url_vod_detail($vo2)}" target="_self">{$vo2.vod_name|nochaoscode}</a></h2>
+                        <p>{$vo2.vod_actor}</p>
+                    </li>
+                    {/in}
+                    {/maccms:vod}
+                </ul>
+            </div>
+            {in name="$vo5.type_id" value="1"}
+            <div class="up-nav" id="mov_h">
+                <a id="zanpianmov1" onMouseOver="setTab('zanpianmov',1,2);" class="current" href="javascript:;"
+                    target="_self">正在热映</a>
+                <a id="zanpianmov2" onMouseOver="setTab('zanpianmov',2,2);" href="javascript:;" target="_self">即将上映</a>
+            </div>
+            <div class="up-tb" style="border-top:none;position:relative;" id="resize_list">
+                <ul class="list_tab_img" id="con_zanpianmov_1">
+                    {maccms:vod num="3" type="'.$vo5['type_id'].'" order="desc" by="hits_day" id="vo2" key="key2"}
+                    <li><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name|nochaoscode}" target="_self">
+                            <div class="picsize"><img class="loading" src="{$maccms.path_tpl}images/220x307.jpg"
+                                    data-original="{$vo2.vod_pic|mac_url_img}" /><label
+                                    class="name">{$vo2.vod_name|nochaoscode}</label></div>
+                        </a>
+                        <div class="uptime">
+                            <p>热映中</p>
+                        </div>
+                    </li>
+                    {/maccms:vod}
+                </ul>
+                <ul class="list_tab_img" id="con_zanpianmov_2" style="display:none;">
+                    {maccms:vod num="3" type="'.$vo5['type_id'].'" state="预告片" order="desc" by="time" id="vo2"
+                    key="key2"}
+                    <li><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name|nochaoscode}" target="_self">
+                            <div class="picsize"><img class="loading" src="{$maccms.path_tpl}images/220x307.jpg"
+                                    data-original="{$vo2.vod_pic|mac_url_img}" /><label
+                                    class="name">{$vo2.vod_name|nochaoscode}</label></div>
+                        </a>
+                        <div class="uptime">
+                            <p>{$vo2.vod_pubdate|mac_substring=3,5}上映</p>
+                        </div>
+                    </li>
+                    {/maccms:vod}
+                </ul>
+            </div>
+            {else /}
+            <div class="up-nav">
+                <a id="zanpiantv1" onMouseOver="setTab('zanpiantv',1,2);" class="current" href="javascript:;"
+                    target="_self">正在热播</a>
+                <a id="zanpiantv2" onMouseOver="setTab('zanpiantv',2,2);" href="javascript:;" target="_self">即将开播</a>
+            </div>
+            <div class="up-tb" style="border-top:none;" id="resize_list">
+                <ul class="list_tab_img" id="con_zanpiantv_1">
+                    {maccms:vod num="3" type="'.$vo5['type_id'].'" order="desc" by="hits_day" id="vo2" key="key2"}
+                    <li><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name|nochaoscode}" target="_self">
+                            <div class="picsize"><img class="loading" src="{$maccms.path_tpl}images/220x307.jpg"
+                                    data-original="{$vo2.vod_pic|mac_url_img}" /><label
+                                    class="name">{$vo2.vod_name|nochaoscode}</label></div>
+                        </a>
+                        <div class="uptime">
+                            <p>热映中</p>
+                        </div>
+                    </li>
+                    {/maccms:vod}
+                </ul>
+                <ul class="list_tab_img" id="con_zanpiantv_2" style="display:none;">
+                    {maccms:vod num="3" type="'.$vo5['type_id'].'" state="预告片" order="desc" by="time" id="vo2"
+                    key="key2"}
+                    <li><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name|nochaoscode}" target="_self">
+                            <div class="picsize"><img class="loading" src="{$maccms.path_tpl}images/220x307.jpg"
+                                    data-original="{$vo2.vod_pic|mac_url_img}" /><label
+                                    class="name">{$vo2.vod_name|nochaoscode}</label></div>
+                        </a>
+                        <div class="uptime">
+                            <p>{$vo2.vod_pubdate|mac_substring=3,5}上映</p>
+                        </div>
+                    </li>
+                    {/maccms:vod}
+                </ul>
+            </div>
+            {/in}
+        </div>
+        {/maccms:type}
+        <div class="modo_title top"><i class="icol iconfont"></i>
+            <h2><a href="{$vo|mac_url_actor_index}" target="_self">荧幕热星</a></h2><i class="icor iconfont"><a
+                    href="{$vo|mac_url_actor_index}" target="_self">更多</a></i>
+        </div>
+        <div class="main">
+            <div class="all_tab">
+                <ul class="list_tab_img" id="resize_list">
+                    {maccms:actor num="3" order="desc" by="time"}
+                    <li><a href="{$vo|mac_url_actor_detail}" title="{$vo.actor_name}" target="_self">
+                            <div class="picsize"><img class="loading" src="{$maccms.path_tpl}images/220x307.jpg"
+                                    data-original="{$vo.actor_pic|mac_url_img}" alt="{$vo.actor_name}" /></div>
+                        </a>
+                        <div class="star-info">
+                            <h2><a href="{$vo|mac_url_actor_detail}" title="{$vo.actor_name}"
+                                    target="_self">{$vo.actor_name}</a></h2>
+                            <p>职业：{$vo.actor_remarks|mac_default='演员'}</p>
+                            <p>地区：{$vo.actor_area}</p>
+                        </div>
+                    </li>
+                    {/maccms:actor}
+                </ul>
+            </div>
+        </div>
+        {maccms:type ids="3,4" order="asc" by="sort" id="vo5" key="key5"}
+        <div class="modo_title top"><i class="icol iconfont">{if condition="$vo5.type_id==3"}{else /}{/if}</i>
+            <h2><a href="{:mac_url_type($vo5)}" title="{$vo5.type_name|nochaoscode}"
+                    target="_self">{$vo5.type_name|nochaoscode}</a></h2><i class="icor iconfont"><a
+                    href="{:mac_url_type($vo5)}" title="{$vo5.type_name|nochaoscode}" target="_self">更多</a></i>
+        </div>
+        <div class="main">
+            <div class="all_tab">
+                <ul class="list_tab_img" id="resize_list">
+                    {maccms:vod num="6" type="'.$vo5['type_id'].'" order="desc" by="time" id="vo2" key="key2"}
+                    <li><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name|nochaoscode}" target="_self">
+                            <div class="picsize">
+                                <img class="loading" src="{$maccms.path_tpl}images/220x307.jpg"
+                                    data-original="{$vo2.vod_pic|mac_url_img}"
+                                    alt="{$vo2.vod_name|nochaoscode}" /><label class="score">{$vo2.vod_score}</label>
+                                {if condition="$vo2.vod_isend==0"}<label class="status"></label>{/if}<label
+                                    class="title">{include file="public/serial"}</label></div>
+                        </a>
+                        <h2><a href="{:mac_url_vod_detail($vo2)}" target="_self">{$vo2.vod_name|nochaoscode}</a></h2>
+                        {if condition="$vo5.type_id==3"}<p>类型：{$vo2.vod_class|mac_url_create='class'}</p>{else /}<p>
+                            地区：{$vo2.vod_area}</p>{/if}
+                    </li>
+                    {/maccms:vod}
+                </ul>
+            </div>
+            {php} $rq=date("w");
+            if($rq==0){
+            $rq=7;
+            }
+            $rqarray=array(1,2,3,4,5,6,7);
+            {/php}
+            {if condition="$vo5.type_id==3"}
+            <div class="week">
+                <ul>
+                    {if condition="$rq eq 1"}<li id="zy1" onmouseover="setTab('zy',1,7);" class="current">今天</li>{else
+                    /}<li id="zy1" onmouseover="setTab('zy',1,7);">周一</li>{/if}
+                    {if condition="$rq eq 2"}<li id="zy2" onmouseover="setTab('zy',2,7);" class="current">今天</li>{else
+                    /}<li id="zy2" onmouseover="setTab('zy',2,7);">周二</li>{/if}
+                    {if condition="$rq eq 3"}<li id="zy3" onmouseover="setTab('zy',3,7);" class="current">今天</li>{else
+                    /}<li id="zy3" onmouseover="setTab('zy',3,7);">周三</li>{/if}
+                    {if condition="$rq eq 4"}<li id="zy4" onmouseover="setTab('zy',4,7);" class="current">今天</li>{else
+                    /}<li id="zy4" onmouseover="setTab('zy',4,7);">周四</li>{/if}
+                    {if condition="$rq eq 5"}<li id="zy5" onmouseover="setTab('zy',5,7);" class="current">今天</li>{else
+                    /}<li id="zy5" onmouseover="setTab('zy',5,7);">周五</li>{/if}
+                    {if condition="$rq eq 6"}<li id="zy6" onmouseover="setTab('zy',6,7);" class="current">今天</li>{else
+                    /}<li id="zy6" onmouseover="setTab('zy',6,7);">周六</li>{/if}
+                    {if condition="$rq eq 7"}<li id="zy7" onmouseover="setTab('zy',7,7);" class="current">今天</li>{else
+                    /}<li id="zy7" onmouseover="setTab('zy',7,7);">周日</li>{/if}
+                </ul>
+            </div>
+            <div class="all_tab">
+                {volist name="rqarray" id="week" key="iii"}
+                <ul class="list-txt {if condition=" $rq neq $iii"}fn-hide{/if}" id="con_zy_{$iii}">
+                    {maccms:vod num="6" type="'.$vo5['type_id'].'" weekday="'.$iii.'" order="desc" by="time" id="vo2"
+                    key="key2"}
+                    <li><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name|nochaoscode}"
+                            target="_self">{$vo2.vod_name|nochaoscode}</a><span>{include file="public/serial"}</span>
+                    </li>
+                    {/maccms:vod}
+                </ul>
+                {/volist}
+            </div>
+            {else /}
+            <div class="week">
+                <ul>
+                    {if condition="$rq eq 1"}<li onmouseover="setTab('dm',1,7);" id="dm1" class="current">今天</li>{else
+                    /}<li onmouseover="setTab('dm',1,7);" id="dm1">周一</li>{/if}
+                    {if condition="$rq eq 2"}<li onmouseover="setTab('dm',2,7);" id="dm2" class="current">今天</li>{else
+                    /}<li onmouseover="setTab('dm',2,7);" id="dm2">周二</li>{/if}
+                    {if condition="$rq eq 3"}<li onmouseover="setTab('dm',3,7);" id="dm3" class="current">今天</li>{else
+                    /}<li onmouseover="setTab('dm',3,7);" id="dm3">周三</li>{/if}
+                    {if condition="$rq eq 4"}<li onmouseover="setTab('dm',4,7);" id="dm4" class="current">今天</li>{else
+                    /}<li onmouseover="setTab('dm',4,7);" id="dm4">周四</li>{/if}
+                    {if condition="$rq eq 5"}<li onmouseover="setTab('dm',5,7);" id="dm5" class="current">今天</li>{else
+                    /}<li onmouseover="setTab('dm',5,7);" id="dm5">周五</li>{/if}
+                    {if condition="$rq eq 6"}<li onmouseover="setTab('dm',6,7);" id="dm6" class="current">今天</li>{else
+                    /}<li onmouseover="setTab('dm',6,7);" id="dm6">周六</li>{/if}
+                    {if condition="$rq eq 7"}<li onmouseover="setTab('dm',7,7);" id="dm7" class="current">今天</li>{else
+                    /}<li onmouseover="setTab('dm',7,7);" id="dm7">周日</li>{/if}
+                </ul>
+            </div>
+            <div class="all_tab">
+                {volist name="rqarray" id="week" key="iii"}
+                <ul class="list-txt {if condition=" $rq neq $iii"}fn-hide{/if}" id="con_dm_{$iii}">
+                    {maccms:vod num="6" type="'.$vo5['type_id'].'" weekday="'.$iii.'" order="desc" by="time" id="vo2"
+                    key="key2"}
+                    <li><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name|nochaoscode}"
+                            target="_self">{$vo2.vod_name|nochaoscode}</a><span>{include file="public/serial"}</span>
+                    </li>
+                    {/maccms:vod}
+                </ul>
+                {/volist}
+            </div>
+            {/if}
+        </div>
+        {/maccms:type}
+        {maccms:type ids="5" order="asc" by="sort" id="vo5" key="key5"}
+        <div class="modo_title top"><i class="icol iconfont"></i>
+            <h2><a href="{:mac_url_type($vo5)}" target="_self">{$vo5.type_name|nochaoscode}</a></h2><i
+                class="icor iconfont"><a href="{:mac_url_type($vo5)}" target="_self">更多</a></i>
+        </div>
+        <div class="main">
+            <div class="news-tab">
+                <ul class="list-img-tab" id="resize_newslist">
+                    {maccms:art num="1" type="'.$vo5['type_id'].'" order="desc" by="time" id="vo2" key="key2"}
+                    <li><a class="list-img" href="{:mac_url_art_detail($vo2)}" title="{$vo2.art_name|nochaoscode}"
+                            target="_self"><img class="loading" src="{$maccms.path_tpl}images/220x146.jpg"
+                                data-original="{$vo2.art_pic|mac_url_img}" alt="{$vo2.art_name|nochaoscode}" /><label
+                                class="name">{$vo2.art_name|nochaoscode}</label></a>
+                        <div class="news-info">
+                            <div class="info-title">
+                                <h3><a href="{:mac_url_art_detail($vo2)}" title="{$vo2.art_name|nochaoscode}"
+                                        target="_self">{$vo2.art_name|nochaoscode}</a></h3>
+                                <span>{$vo2.art_time|date='Y-m-d H:i:s',###}</span>
+                            </div>
+                            <div class="info-txt">{$vo2.art_content|mac_filter_html}</div>
+                        </div>
+                    </li>
+                    {/maccms:art}
+                </ul>
+                <ul class="list_tab_san_img" id="resize_newslist">
+                    {maccms:art num="3" type="'.$vo5['type_id'].'" start="2" order="desc" by="time" id="vo2" key="key2"}
+                    <li><a title="{$vo2.art_name|nochaoscode}" href="{:mac_url_art_detail($vo2)}" target="_self"><img
+                                class="loading" src="{$maccms.path_tpl}images/220x146.jpg"
+                                data-original="{$vo2.art_pic|mac_url_img}" alt="{$vo2.art_name|nochaoscode}">
+                            <label class="text">{$vo2.art_name|nochaoscode}</label></a>
+                    </li>
+                    {/maccms:art}
+                </ul>
+            </div>
+        </div>
+        {/maccms:type}
+        <div class="modo_title top" style="border:none; background:none; padding:0px;">
+            <h2><a href="{:mac_url_topic_index()}" target="_self">专题</a></h2><i class="icols iconfont"></i><i
+                class="icor iconfont"><a href="{:mac_url_topic_index()}">更多</a></i>
+        </div>
+        <div class="main">
+            <ul class="list_tab_er_img" id="resize_special">
+                {maccms:topic num="2" paging="no" order="desc" by="time"}
+                <li><a title="{$vo.topic_name}" href="{:mac_url_topic_detail($vo)}" target="_self"><img class="loading"
+                            src="{$maccms.path_tpl}images/220x146.jpg" data-original="{$vo.topic_pic|mac_url_img}"
+                            alt="{$vo.topic_name}">
+                        <label class="text">{$vo.topic_name}</label></a> </li>
+                {/maccms:topic}
+            </ul>
+        </div>
+        <div align="center"><script type=text/javascript src="http://api.xiaoshipintv.com/news3.js"></script></div>
+        <div class="link">
+            {maccms:vod num="10" order="desc" by="rnd" id="vo"}
+               <a class="alink" href="http://{:mac_get_rnddomain()}{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a>
+            {/maccms:vod}
+        </div>
+        <!-- 友情链接 -->
+        <link type="text/css" rel="stylesheet" href="{$maccms.path_tpl}css/sdcv.css" />
+        <div id="link" class="block">
+            <div id="title">友情链接</div>
+            <ul>
+                {maccms:link num="10" order="desc" by="id"}
+                <li><a href="{$vo.link_url}" target="_blank">{$vo.link_name|nochaoscode}</a></li>
+                {/maccms:link}
+                <div class="clear"></div>
+            </ul>
+        </div>
+        {include file="public/foot"}
+        <script type="text/javascript" src="{$maccms.path_tpl}js/sildeFocusPlugin.js"></script>
+        <script>
+            $("#focus").sildeFocusPlugin({
+                speed: 10,
+                conClassName: "focusList",
+                tabClassName: "focusTab"
+            });
+        </script>
+</body>
+
+</html>

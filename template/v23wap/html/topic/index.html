@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+<title>最新专题_电影专题_明星专题_专题大全-{$maccms.site_name|nochaoscode}</title>
+<meta name="keywords" content="最新专题,电影专题,明星专题,专题大全" />
+<meta name="description" content="{$maccms.site_name|nochaoscode}提供最新电影、电视、明星专题包含的影片,电影介绍，剧情介绍等完全免费在线观看，一切都在{$maccms.site_name|nochaoscode}！" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="applicable-device" content="pc,mobile">
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta content="{$maccms.site_name|nochaoscode}" name="apple-mobile-web-app-title">
+{include file="public/include"}
+</head>
+<body>
+<header class="header clearfix">
+<a href="javascript:void(0);" target="_self" class="aChannel top_channel_btn"><span>专题</span><i class="moreArrow"></i></a>
+{include file="public/head"}
+<div class="mask" id="common_mask"></div>
+<div class="list_nav" style="border:none">
+<div class="main fn-left"><span>您所在的位置：</span><a href="/" title="{$maccms.site_name|nochaoscode}" target="_self">首页</a>
+<em><i class="iconfont">&#xe621;</i></em><a class="current" href="{:mac_url_topic_index()}" target="_self">专题列表</a></div></div>
+<div class="main top" style="margin-top:15px;">
+<div class="list_ico">
+<a href="javascript:;" class='cur'><i class="iconfont">&#xe616;</i>最新</a>
+<a href="javascript:;"><i class="iconfont">&#xe61b;</i>人气</a>
+</div>
+{maccms:topic num="16" paging="yes" order="desc" by="time"}{/maccms:topic}
+<div class="ui-pages fn-right">
+<strong>{$__PAGING__.page_current}/{$__PAGING__.page_total}</strong>
+{if condition="$__PAGING__.page_current==1"}
+<span class="prev disabled">上一页</span>
+{else /}
+<a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_prev}" class="prev pagegbk">上一页</a>&nbsp;
+{/if}
+{if condition="$__PAGING__.page_current==$__PAGING__.page_total"}
+<span class="prev disabled">下一页</span>
+{else /}
+<a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_next}" class="next pagegbk">下一页</a>&nbsp;
+{/if}
+</div>
+</div>
+<div class="main top">
+<ul class="list_tab_er_img" id="resize_special">
+{maccms:topic num="16" paging="yes" order="desc" by="time"}
+<li><a title="{$vo.topic_name}" href="{:mac_url_topic_detail($vo)}" target="_self"><img class="loading" src="{$maccms.path_tpl}images/220x146.jpg" data-original="{$vo.topic_pic|mac_url_img}" alt="{$vo.topic_name}">
+<label class="text">{$vo.topic_name}</label></a>
+</li>
+{/maccms:topic}
+</ul>
+</div>
+{include file="public/paging"}
+{include file="public/foot"}
+</body>
+</html>

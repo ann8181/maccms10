@@ -12,5 +12,10 @@ class Index extends Base
     {
         return $this->label_fetch('index/index');
     }
-
+    // add by ann 2024-12-24
+    public function label_taglist()
+    {
+        return $this->label_fetch('index/taglist');
+    }
+    // add end
 }

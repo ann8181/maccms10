@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{$obj.type_title} - {$maccms.site_name|nochaoscode}</title>
+    <meta name="keywords" content="{$obj.type_key} - {$maccms.site_keywords|nochaoscode}" />
+	<meta name="description" content="{$obj.type_des} - {$maccms.site_description|nochaoscode}" />
+{include file="public/include"}
+</head>
+<body>
+ 
+
+{include file="map/v"}
+
+<nav class="mnav">
+<a href="{$maccms.path}" {if condition="$maccms.aid eq 1"}class="active"{/if}><span class="iconfont icon-home" tapmode onclick="showDefault('loading')"></span><p>首页</p></a>
+<a href="http://go.qin52.com" ><span class="iconfont icon-copy" tapmode onclick="showDefault('loading')"></span><p>商城</p></a>
+<a href="{:mac_url('label/live')}" {if condition="$maccms.aid eq 7"}class="active"{/if}><span class="iconfont icon-discover" tapmode onclick="showDefault('loading')"></span><p>直播</p></a>
+<a href="{:mac_url('map/index')}" {if condition="$maccms.aid eq 7"}class="active"{/if}><span class="iconfont icon-musicfill leo-fs-icon-m" tapmode onclick="showDefault('loading')"></span><p>音乐</p></a>
+<a href="{:mac_url('gbook/index')}" {if condition="$maccms.aid eq 7"}class="active"{/if}><span class="iconfont icon-search" tapmode onclick="showDefault('loading')"></span><p>求片</p></a>
+<a href="{:mac_url('user/login')}"><span class="iconfont icon-people" tapmode onclick="showDefault('loading')"></span><p>会员</p></a></nav>
+</body>
+</html>

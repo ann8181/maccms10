@@ -1,0 +1,15 @@
+<div class="{$maccms.cache_flag} fed-part-layout fed-margin-right fed-back-whits">
+	<div class="{$maccms.cache_flag} fed-list-head fed-part-rows fed-padding">
+		<h2 class="{$maccms.cache_flag} fed-font-xvi">相关资讯</h2>
+		<ul class="{$maccms.cache_flag} fed-part-tips fed-padding">
+			<li><a class="{$maccms.cache_flag} fed-more" href="{:mac_url_type($obj.type)}">更多</a></li>
+		</ul>
+	</div>
+	<ul class="{$maccms.cache_flag} fed-list-info fed-list-img fed-part-rows">
+		{maccms:art num="4" type="current" order="desc" by="time"}
+		<li class="{$maccms.cache_flag} fed-list-item fed-padding fed-col-xs6 fed-col-sm4 fed-col-md3{if$key>3} fed-hide-sm fed-show-md-block{/if}">
+			{include file="module/picture"}
+		</li>
+		{/maccms:art}
+	</ul>
+</div>

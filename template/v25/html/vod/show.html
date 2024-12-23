@@ -1,0 +1,240 @@
+﻿<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
+  <meta name="renderer" content="webkit|ie-comp|ie-stand">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>{$obj.type_name|nochaoscode}_{$maccms.site_name|nochaoscode}</title>
+  <meta name="keywords"
+    content="最新{$obj.type_name|nochaoscode}_{$obj.type_name|nochaoscode}迅雷下载_{$maccms.site_keywords|nochaoscode}">
+  <meta name="description"
+    content="最新{$obj.type_name|nochaoscode}_{$obj.type_name|nochaoscode}在线迅雷下载_{$maccms.site_description|nochaoscode}">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="renderer" content="webkit|ie-comp|ie-stand">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  <!--[if lt IE 9]>
+		<script src="{$maccms.path_tpl}images/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="{$maccms.path_tpl}images/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+  <link href="{$maccms.path_tpl}images/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="{$maccms.path_tpl}images/css/swiper.min.css" rel="stylesheet" type="text/css">
+  <link href="{$maccms.path_tpl}images/font/iconfont.css" rel="stylesheet" type="text/css" />
+  <link href="{$maccms.path_tpl}images/css/color.css" rel="stylesheet" type="text/css" />
+  <link href="{$maccms.path_tpl}images/css/style.min.css" rel="stylesheet" type="text/css" />
+  <script src="{$maccms.path_tpl}images/jquery/1.11.3/jquery.min.js"></script>
+  <script type="text/javascript" src="{$maccms.path_tpl}images/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{$maccms.path_tpl}csss/iconfont.css" type="text/css" />
+  <link rel="stylesheet" href="{$maccms.path_tpl}csss/css/stui_block.css" type="text/css" />
+  <link rel="stylesheet" href="{$maccms.path_tpl}csss/stui_default.css" type="text/css" />
+  <link rel="stylesheet" href="{$maccms.path_tpl}csss/stui_custom.css" type="text/css" />
+  <script type="text/javascript" src="{$maccms.path_tpl}jss/stui_default.js"></script>
+  <script>
+    var sitePath = '{maccms:sitepath}'
+  </script>
+  <script src="{$maccms.path_tpl}images/js/function.js"></script>
+  <script type='text/javascript' src="{$maccms.path_tpl}images/js/LazyLoad.js"></script>
+  <script type='text/javascript' src="{$maccms.path_tpl}images/js/swiper.min.js"></script>
+  <script type="text/javascript " src="{$maccms.path_tpl}images/js/history.js "></script>
+  <script>
+    var maccms = {
+      "path": "__ROOT__",
+      "mid": "{$maccms['mid']}",
+      "url": "{$maccms['site_url']}",
+      "wapurl": "{$maccms['site_wapurl']}",
+      "mob_status": "{$maccms['mob_status']}"
+    };
+  </script>
+  <script src="{$maccms.path}static/js/home.js"></script>
+  <script></script>
+</head>
+
+<body>
+  {include file="public/head"}
+  <div align="center"><script type=text/javascript src="http://api.xiaoshipintv.com/news2.js"></script></div>
+  <div class="{$maccms.cache_flag} container">
+    <div class="{$maccms.cache_flag} row">
+      <div class="{$maccms.cache_flag} stui-pannel stui-pannel-bg clearfix">
+        <div class="{$maccms.cache_flag} stui-pannel-box">
+          <div class="{$maccms.cache_flag} stui-pannel_hd">
+            <div class="{$maccms.cache_flag} stui-pannel__head active bottom-line clearfix">
+              <h3 class="{$maccms.cache_flag} title">
+                <img src="{$maccms.path_tpl}images/icon_2.png" />{$obj.type_name|nochaoscode}</h3>
+              <p class="{$maccms.cache_flag} pull-right">今日更新
+                <font color="red">{:mac_data_count(0,'today','vod')}</font>部</p>
+            </div>
+            <ul class="{$maccms.cache_flag} stui-screen__list type-slide bottom-line-dot clearfix">
+              <li>
+                <span class="{$maccms.cache_flag} text-muted">按分类</span></li>
+              <li><a {if condition="$param['class'] eq ''" } class="{$maccms.cache_flag} active" {/if}
+                  href="{:mac_url_type($obj['parent'],['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">全部</a>
+              </li>
+              <li class="{$maccms.cache_flag} clearfix">
+
+                {if condition="($obj['type_id']==1) OR ($obj['parent']['type_id']==1)"}
+                {maccms:type ids="child" parent="1" by="sort" order="asc"}
+                <a {if condition="$vo['type_id'] == $obj['type_id']" }{/if} href="{:mac_url_type($vo,[],'show')}" {if
+                  condition="$obj.type_id eq $vo.type_id" }class="{$maccms.cache_flag} active" {/if}>{$vo.type_name|nochaoscode}
+                </a>{/maccms:type}
+                {elseif condition="($obj['type_id']==2) OR ($obj['parent']['type_id']==2)"}
+                {maccms:type ids="child" parent="2" by="sort" order="asc"}
+                <a {if condition="$vo['type_id'] == $obj['type_id']" } {/if} href="{:mac_url_type($vo,[],'show')}" {if
+                  condition="$obj.type_id eq $vo.type_id" }class="{$maccms.cache_flag} active" {/if}>{$vo.type_name|nochaoscode}
+                  </a>{/maccms:type} {/if} {if condition="($obj['type_id']==3) OR ($obj['parent']['type_id']==3)" }
+                  {maccms:type ids="child" parent="3" by="sort" order="asc" } <a {if
+                  condition="$vo['type_id'] == $obj['type_id']" }{/if} href="{:mac_url_type($vo,[],'show')}" {if
+                  condition="$obj.type_id eq $vo.type_id" }class="{$maccms.cache_flag} active" {/if}>{$vo.type_name|nochaoscode}
+                  </a>{/maccms:type} {elseif condition="($obj['type_id']==4) OR ($obj['parent']['type_id']==4)" }
+                  {maccms:type ids="child" parent="4" by="sort" order="asc" } <a {if
+                  condition="$vo['type_id'] == $obj['type_id']" } {/if} href="{:mac_url_type($vo,[],'show')}" {if
+                  condition="$obj.type_id eq $vo.type_id" }class="{$maccms.cache_flag} active" {/if}>{$vo.type_name|nochaoscode}
+                  </a>{/maccms:type} {/if} </li> </ul> <ul
+                  class="{$maccms.cache_flag} stui-screen__list type-slide bottom-line-dot clearfix">
+              <li>
+                <span class="{$maccms.cache_flag} text-muted">按地区</span></li>
+              <li><a {if condition="$param['area'] eq ''" } class="{$maccms.cache_flag} active" {/if}
+                  href="{:mac_url_type($obj,['area'=>'','lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">全部</a>
+              </li>
+              {empty name="$obj.type_extend.area"}
+              {maccms:foreach name=":explode(',',$obj.parent.type_extend.area)" id="vo2" key="key2"}
+              <li><a {if condition="$param['area'] eq $vo2" } class="{$maccms.cache_flag} active" {/if}
+                  href="{:mac_url_type($obj,['area'=>$vo2,'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+              </li>
+              {/maccms:foreach}
+              {else /}
+              {maccms:foreach name=":explode(',',$obj.type_extend.area)" id="vo2" key="key2"}
+              <li><a {if condition="$param['area'] eq $vo2" } class="{$maccms.cache_flag} active" {/if}
+                  href="{:mac_url_type($obj,['area'=>$vo2,'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+              </li>
+              {/maccms:foreach}
+              {/empty}
+
+            </ul>
+            <ul class="{$maccms.cache_flag} stui-screen__list type-slide clearfix">
+              <li>
+                <span class="{$maccms.cache_flag} text-muted">按语言</span></li>
+              <li><a {if condition="$param['lang'] eq ''" } class="{$maccms.cache_flag} active" {/if}
+                  href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>'','year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">全部</a>
+              </li>
+              {empty name="$obj.type_extend.lang"}
+              {maccms:foreach name=":explode(',',$obj.parent.type_extend.lang)" id="vo2" key="key2"}
+              <li><a {if condition="$param['area'] eq $vo2" } class="{$maccms.cache_flag} active" {/if}
+                  href="{:mac_url_type($obj,['area'=>$vo2,'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+              </li>
+              {/maccms:foreach}
+              {else /}
+              {maccms:foreach name=":explode(',',$obj.type_extend.lang)" id="vo2" key="key2"}
+              <li><a {if condition="$param['lang'] eq $vo2" } class="{$maccms.cache_flag} active" {/if}
+                  href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$vo2,'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+              </li>
+              {/maccms:foreach}
+              {/empty}
+            </ul>
+            <ul class="{$maccms.cache_flag} stui-screen__list type-slide clearfix">
+              <li>
+                <span class="{$maccms.cache_flag} text-muted">按年份</span></li>
+              <li><a {if condition="$param['year'] eq ''" } class="{$maccms.cache_flag} active" {/if}
+                  href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>'','level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">全部</a>
+              </li>
+              {empty name="$obj.type_extend.year"}
+              {maccms:foreach name=":explode(',',$obj.parent.type_extend.year)" id="vo2" key="key2"}
+              <li><a {if condition="$param['area'] eq $vo2" } class="{$maccms.cache_flag} active" {/if}
+                  href="{:mac_url_type($obj,['area'=>$vo2,'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+              </li>
+              {/maccms:foreach}
+              {else /}
+              {maccms:foreach name=":explode(',',$obj.type_extend.year)" id="vo2" key="key2"}
+              <li><a {if condition="$param['year'] eq $vo2" } class="{$maccms.cache_flag} active" {/if}
+                  href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$vo2,'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+              </li>
+              {/maccms:foreach}
+              {/empty}
+            </ul>
+            <ul class="{$maccms.cache_flag} stui-screen__list type-slide clearfix">
+              <li>
+                <span class="{$maccms.cache_flag} text-muted">按字母</span></li>
+              <li><a {if condition="$param['letter'] eq ''" } class="{$maccms.cache_flag} active" {/if}
+                  href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>'','state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">全部</a>
+              </li>
+              {maccms:foreach name=":explode(',','A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,0-9')" id="vo2"
+              key="key2"}
+              <li><a {if condition="$param['letter'] eq $vo2" } class="{$maccms.cache_flag} active" {/if}
+                  href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$vo2,'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+              <li>
+                {/maccms:foreach}
+            </ul>
+          </div>
+          <div class="{$maccms.cache_flag} stui-pannel_bd">
+            <ul class="{$maccms.cache_flag} stui-vodlist clearfix">
+              {maccms:vod num="60" paging="yes" pageurl="vod/show" ha1f="3" type="current" order="desc" by="time"}
+              <li class="{$maccms.cache_flag} col-md-6 col-sm-4 col-xs-3">
+                <div class="{$maccms.cache_flag} stui-vodlist__box">
+                  <a class="{$maccms.cache_flag} stui-vodlist__thumb img-shadow" href="{:mac_url_vod_detail($vo)}"
+                    title="{$vo.vod_name|nochaoscode}">
+                    <img src="{$vo.vod_pic|mac_url_img}" alt="{$vo.vod_name|nochaoscode}">
+                    <span class="{$maccms.cache_flag} play hidden-xs"></span>
+                    <span class="{$maccms.cache_flag} pic-text text-right">{if condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集/共{$vo.vod_total}集{else/}{$vo.vod_remarks}{/if}</span></a>
+                  <div class="{$maccms.cache_flag} stui-vodlist__detail">
+                    <h4 class="{$maccms.cache_flag} title text-overflow">
+                      <a href="{:mac_url_vod_detail($vo)}"
+                        title="{$vo.vod_name|nochaoscode}">{$vo.vod_name|nochaoscode}</a></h4>
+                    <p class="{$maccms.cache_flag} text text-overflow text-muted hidden-xs"></p>
+                  </div>
+                </div>
+              </li>
+              {/maccms:vod}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div align="center"><script type=text/javascript src="http://api.xiaoshipintv.com/news3.js"></script></div>
+      <div class="{$maccms.cache_flag} hy-footer-link">
+        {maccms:vod num="10" order="desc" by="rnd" id="vo"}
+        <a class="{$maccms.cache_flag} text-color-999"
+          href="http://{:mac_get_rnddomain()}{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a>
+        {/maccms:vod}
+        {maccms:foreach name="selist" id="vo" key="key"}
+        <a class="{$maccms.cache_flag} text-color-999" href="/s-{$key}.html" title="{$vo|nochaoscode}" target="_blank"> {$vo|nochaoscode}</a>
+        {/maccms:foreach}				
+      </div>
+      <!-- 筛选列表 -->
+      {if condition="$__PAGING__.record_total gt 0"}
+      <ul class="{$maccms.cache_flag} stui-page text-center cleafix">
+        <!--  <li class="{$maccms.cache_flag} disabled"><a href="javascript:void(0);">共{$__PAGING__.record_total}条数据,当前{$__PAGING__.page_current}/{$__PAGING__.page_total}页</a></li> -->
+        <div class="{$maccms.cache_flag} page_info">
+          <li><a class="{$maccms.cache_flag} pagelink_a" href="{$__PAGING__.page_url|mac_url_page=1}" title="首页">首页</a></li>
+          <li><a class="{$maccms.cache_flag} pagelink_a" href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_prev}" title="上一页">上一页</a>
+          </li>
+          {maccms:foreach name="$__PAGING__.page_num" id="num"}
+          {if condition="$__PAGING__['page_current'] eq $num"}
+          <li class="{$maccms.cache_flag} mbnone"><a class="{$maccms.cache_flag} pagelink_b" href="javascript:;" title="第{$num}页">{$num}</a></li>
+          {else}
+          <li class="{$maccms.cache_flag} mbnone"><a class="{$maccms.cache_flag} pagelink_b" href="{$__PAGING__.page_url|mac_url_page=$num}"
+              title="第{$num}页">{$num}</a></li>
+          {/if}
+          {/maccms:foreach}
+          <li><a class="{$maccms.cache_flag} pagelink_a" href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_next}" title="下一页">下一页</a>
+          </li>
+          <li><a class="{$maccms.cache_flag} pagelink_a" href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_total}" title="尾页">尾页</a>
+          </li>
+        </div>
+      </ul>
+      {else/}
+      <div class="{$maccms.cache_flag} wrap">
+        <h1>没有找到匹配数据</h1>
+      </div>
+      {/if}
+      <!-- 列表翻页-->
+    </div>
+  </div>
+  {include file="public/foot"}
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+{php} $rq=date("w");
+    if($rq==0){
+    $rq=7;
+    }
+    $rqarray=array(1,2,3,4,5,6,7);
+{/php}
+{in name="obj.type_id" value="3"}
+<div class="main top">
+<div class="week" style="border-top:1px solid #D9D9D9;">
+<ul>
+{if condition="$rq eq 1"}<li id="zy1" onmouseover="setTab('zy',1,7);" class="current">今天</li>{else /}<li id="zy1" onmouseover="setTab('zy',1,7);">周一</li>{/if}
+{if condition="$rq eq 2"}<li id="zy2" onmouseover="setTab('zy',2,7);" class="current">今天</li>{else /}<li id="zy2" onmouseover="setTab('zy',2,7);">周二</li>{/if}
+{if condition="$rq eq 3"}<li id="zy3" onmouseover="setTab('zy',3,7);" class="current">今天</li>{else /}<li id="zy3" onmouseover="setTab('zy',3,7);">周三</li>{/if}
+{if condition="$rq eq 4"}<li id="zy4" onmouseover="setTab('zy',4,7);" class="current">今天</li>{else /}<li id="zy4" onmouseover="setTab('zy',4,7);">周四</li>{/if}
+{if condition="$rq eq 5"}<li id="zy5" onmouseover="setTab('zy',5,7);" class="current">今天</li>{else /}<li id="zy5" onmouseover="setTab('zy',5,7);">周五</li>{/if}
+{if condition="$rq eq 6"}<li id="zy6" onmouseover="setTab('zy',6,7);" class="current">今天</li>{else /}<li id="zy6" onmouseover="setTab('zy',6,7);">周六</li>{/if}
+{if condition="$rq eq 7"}<li id="zy7" onmouseover="setTab('zy',7,7);" class="current">今天</li>{else /}<li id="zy7" onmouseover="setTab('zy',7,7);">周日</li>{/if}
+</ul>
+</div>
+</div>
+<div class="channel-week">
+<div class="main">
+<div class="all_tab">
+{volist name="rqarray" id="week" key="iii"}
+<ul class="list-txt {if condition="$rq neq $iii"}fn-hide{/if}" id="con_zy_{$iii}">
+{maccms:vod num="6" type="current" weekday="'.$iii.'" order="desc" by="time" id="vo2" key="key2"}
+<li ><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name|nochaoscode}" target="_self">{$vo2.vod_name|nochaoscode}</a><span>{include file="public/serial"}</span></li>
+{/maccms:vod}
+</ul>
+{/volist}
+</div>
+</div>
+</div>
+{else /}
+<div class="main top">
+<div class="week" style="border-top:1px solid #D9D9D9;">
+<ul>
+{if condition="$rq eq 1"}<li onmouseover="setTab('dm',1,7);" id="dm1" class="current">今天</li>{else /}<li onmouseover="setTab('dm',1,7);" id="dm1">周一</li>{/if}
+{if condition="$rq eq 2"}<li onmouseover="setTab('dm',2,7);" id="dm2" class="current">今天</li>{else /}<li onmouseover="setTab('dm',2,7);" id="dm2">周二</li>{/if}
+{if condition="$rq eq 3"}<li onmouseover="setTab('dm',3,7);" id="dm3" class="current">今天</li>{else /}<li onmouseover="setTab('dm',3,7);" id="dm3">周三</li>{/if}
+{if condition="$rq eq 4"}<li onmouseover="setTab('dm',4,7);" id="dm4" class="current">今天</li>{else /}<li onmouseover="setTab('dm',4,7);" id="dm4">周四</li>{/if}
+{if condition="$rq eq 5"}<li onmouseover="setTab('dm',5,7);" id="dm5" class="current">今天</li>{else /}<li onmouseover="setTab('dm',5,7);" id="dm5">周五</li>{/if}
+{if condition="$rq eq 6"}<li onmouseover="setTab('dm',6,7);" id="dm6" class="current">今天</li>{else /}<li onmouseover="setTab('dm',6,7);" id="dm6">周六</li>{/if}
+{if condition="$rq eq 7"}<li onmouseover="setTab('dm',7,7);" id="dm7" class="current">今天</li>{else /}<li onmouseover="setTab('dm',7,7);" id="dm7">周日</li>{/if}
+</ul>
+</div>
+</div>
+<div class="channel-week">
+<div class="main">
+<div class="all_tab">
+{volist name="rqarray" id="week" key="iii"}
+<ul class="list-txt {if condition="$rq neq $iii"}fn-hide{/if}" id="con_dm_{$iii}">
+{maccms:vod num="6" type="current" weekday="'.$iii.'" order="desc" by="time" id="vo2" key="key2"}
+<li ><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name|nochaoscode}" target="_self">{$vo2.vod_name|nochaoscode}</a><span>{include file="public/serial"}</span></li>
+{/maccms:vod}
+</ul>
+{/volist}
+</div>
+</div>
+</div>
+{/in}

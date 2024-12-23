@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>高清直播|CCTV11 - {$maccms.site_name|nochaoscode}</title>
+<meta name="keywords" content="{$maccms.site_keywords|nochaoscode}" />
+<meta name="description" content="{$maccms.site_description|nochaoscode}" />
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimal-ui">
+
+<link rel="shortcut icon" href="{$maccms.path}favicon.ico">
+{include file="public/include"}
+<body><!-- 头部  --> 
+<div class="{$maccms.cache_flag} channel">
+    <header>
+		<div class="{$maccms.cache_flag} head">
+		<a class="{$maccms.cache_flag} pull-left btn" onclick="back();">
+			<span class="{$maccms.cache_flag} iconfont icon-back"></span>
+		</a>
+		<font style="float: left;margin-left:5px;font-size:.38rem;line-height:.85rem">CCTV11</font>
+		    <a class="{$maccms.cache_flag} pull-right btn"  tapmode onclick="openDialog('text')">
+		        <span class="{$maccms.cache_flag} iconfont icon-creative"></span>
+		    </a>
+			<a class="{$maccms.cache_flag} pull-right btn" href="{:mac_url('label/top')}" tapmode onclick="showDefault('loading')">
+		        <span class="{$maccms.cache_flag} iconfont icon-hot"></span>
+		   	</a>
+			<a class="{$maccms.cache_flag} pull-right btn" href="{:mac_url('label/news')}" tapmode onclick="showDefault('loading')">
+		        <span class="{$maccms.cache_flag} iconfont icon-time"></span>
+		    </a>
+		</div>
+	</header>
+<!--播放器-->
+    <div class="{$maccms.cache_flag} vod-tips" id="tips-1" >
+	    <span class="{$maccms.cache_flag} iconfont icon-info"></span>
+	    <div class="{$maccms.cache_flag} vod-tips-title ellipsis-2">正在播放：CCTV11</div>
+	    <span class="{$maccms.cache_flag} iconfont icon-close" tapmode onclick="closeTips()"></span>
+	</div>
+	<section class="{$maccms.cache_flag} aplayer">
+	<video style="width: 100%;height:100%;" src="http://ivi.bupt.edu.cn/hls/cctv11.m3u8" type="application/x-mpegURL" autoplay="" controls=""></video>
+	</section>
+</div>	
+{include file="public/foot"}
+</body>
+</html>

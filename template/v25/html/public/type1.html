@@ -1,0 +1,53 @@
+﻿<div id="main">
+  <div class="{$maccms.cache_flag} pside">
+    <ul>
+      <div class="{$maccms.cache_flag} title">分类检索</div>
+        {maccms:type ids="1,2,3,4,6,7,8,9,10,11,12,13,14,15,16" order="asc" by="sort"}
+        <li class="{$maccms.cache_flag} smenu16"><a href="{:mac_url_type($vo)}">{$vo.type_name|nochaoscode}</a></li>{/maccms:type}
+
+</ul>
+
+
+</div>
+<div class="{$maccms.cache_flag} pagelist">
+<div class="{$maccms.cache_flag} filter">
+    <div class="{$maccms.cache_flag} title"><b>当前位置：<a href='/'>首页</a>  »  <a href="{:mac_url_type($obj)}" target="_self">{$obj.type_name|nochaoscode}</div>
+</div>
+<div class="{$maccms.cache_flag} movielist">
+      <div class="{$maccms.cache_flag} pagepre">
+        <p>共找到<span>{:mac_data_count(1,'all')}</span>个视频</p>
+       </div>
+    
+
+<ul class="{$maccms.cache_flag} mlist">
+{maccms:vod num="36" paging="yes" type="current" order="desc" by="time"}
+<li><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" target="_blank" class="{$maccms.cache_flag} p"><img src="{$vo.vod_pic|mac_url_img}" alt="{$vo.vod_name|nochaoscode}" /></a>
+          <div class="{$maccms.cache_flag} info">
+            <h2><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" target="_blank">{$vo.vod_name|nochaoscode}</a><em></em></h2>
+            <p><i>更新：{$vo.vod_time|date='y-m-d',###}</i></p>
+            <p><i>类型：{$vo.type.type_name|nochaoscode}</i></p>
+            <p><i>已有
+{$vo.vod_hits}位撸友撸过</i></p>
+            <span><a href="{:mac_url_vod_detail($vo)}#kan" target="_blank">观看</a><a href="{:mac_url_vod_detail($vo)}#down" target="_blank">下载</a></span></div>
+        </li>
+		
+		{/maccms:vod}
+
+
+ <div class="{$maccms.cache_flag} cr"></div>
+      </ul>
+
+<div id="pager_article" style="margin-top:10px;">
+
+{include file="public/paging"}
+
+         
+
+</div>
+
+    </div>
+  </div>
+</div>
+
+   
+

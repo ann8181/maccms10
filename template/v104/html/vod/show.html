@@ -1,0 +1,141 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta http-equiv="cache-control" content="no-siteapp">
+  <title>最新电影</title>
+  {include file="public/include"}
+  <link rel='stylesheet' id='main-css' href='{$maccms.path_tpl}css/movie.css' type='text/css' media='all' />
+</head>
+
+<body class="{$maccms.cache_flag} page-template page-template-pages page-template-posts-film page-template-pagesposts-film-php page page-id-9">
+  {include file="public/head"}
+  <div class="{$maccms.cache_flag} header_end"></div>
+  <section class="{$maccms.cache_flag} container">
+    <div class="{$maccms.cache_flag} fenlei">
+      <div class="{$maccms.cache_flag} b-listfilter" style="padding: 0px;">
+        <dl class="{$maccms.cache_flag} b-listfilter-item js-listfilter" style="padding-left: 0px;height:auto;padding-right:0px;">
+          <dd class="{$maccms.cache_flag} item g-clear js-listfilter-content" style="margin: 0;"> <a href='javascript:;' class="{$maccms.cache_flag} menu-itema" target='_self'>分类：</a>
+            {if condition="($obj.type_pid ==0)"}
+            {maccms:type parent="menu-itema" order="asc" by="sort"}
+            <a {if condition="($vo.type_name==$obj.type_name)" }class="{$maccms.cache_flag} menu-itema" {/if}
+              href="{:mac_url_type($vo,[],'show')}">{$vo.type_name|nochaoscode}</a>
+            {/maccms:type}
+            {else /}
+            {maccms:type parent="'.$obj['type_pid'].'" order="asc" by="sort"}
+            <a {if condition="($vo.type_name==$obj.type_name)" }class="{$maccms.cache_flag} menu-itema" {/if}
+              href="{:mac_url_type($vo,[],'show')}">{$vo.type_name|nochaoscode}</a>
+            {/maccms:type}
+            {/if}
+          </dd>
+        </dl>
+        <dl class="{$maccms.cache_flag} b-listfilter-item js-listfilter" style="padding-left: 0px;height:auto;padding-right:0px;">
+          <dd class="{$maccms.cache_flag} item g-clear js-listfilter-content" style="margin: 0;"> <a href='javascript:;'
+              class="{$maccms.cache_flag} menu-itema" target='_self'>类型：</a>
+            <!---->
+            <a {if condition="$param['class'] eq ''" } class="{$maccms.cache_flag} menu-itema" {/if}
+              href='{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>'','order'=>$param['order'],'by'=>$param['by']
+              ],'show')}' class="{$maccms.cache_flag} menu-itema" target='_self'>全部</a>
+
+            {empty name="$obj.type_extend.area"}
+            {maccms:foreach name=":explode(',',$obj.parent.type_extend.class)" id="vo2" key="key2"}
+            <a {if condition="$param['class'] eq $vo2" } class="{$maccms.cache_flag} menu-itema" {/if}
+              href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$vo2,'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+            {/maccms:foreach}
+            {else /}
+            {maccms:foreach name=":explode(',',$obj.type_extend.class)" id="vo2" key="key2"}
+            <a {if condition="$param['class'] eq $vo2" } class="{$maccms.cache_flag} menu-itema" {/if}
+              href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$vo2,'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+            {/maccms:foreach}
+            {/empty}
+          </dd>
+        </dl>
+        <dl class="{$maccms.cache_flag} b-listfilter-item js-listfilter" style="padding-left: 0px;height:auto;padding-right:0px;">
+          <dd class="{$maccms.cache_flag} item g-clear js-listfilter-content" style="margin: 0;"> <a href='javascript:;' class="{$maccms.cache_flag} menu-itema" target='_self'>地区：</a>
+            <!---->
+            <a {if condition="$param['area'] eq ''" } class="{$maccms.cache_flag} menu-itema" {/if}
+              href="{:mac_url_type($obj,['area'=>'','lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">全部</a>
+            {empty name="$obj.type_extend.area"}
+            {maccms:foreach name=":explode(',',$obj.parent.type_extend.area)" id="vo2" key="key2"}
+            <a {if condition="$param['area'] eq $vo2" } class="{$maccms.cache_flag} menu-itema" {/if}
+              href="{:mac_url_type($obj,['area'=>$vo2,'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+            {/maccms:foreach}
+            {else /}
+            {maccms:foreach name=":explode(',',$obj.type_extend.area)" id="vo2" key="key2"}
+            <a {if condition="$param['area'] eq $vo2" } class="{$maccms.cache_flag} menu-itema" {/if}
+              href="{:mac_url_type($obj,['area'=>$vo2,'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+            {/maccms:foreach}
+            {/empty}
+          </dd>
+        </dl>
+        <dl class="{$maccms.cache_flag} b-listfilter-item js-listfilter" style="padding-left: 0px;height:auto;padding-right:0px;">
+          <dd class="{$maccms.cache_flag} item g-clear js-listfilter-content" style="margin: 0;"> <a href='javascript:;' class="{$maccms.cache_flag} menu-itema" target='_self'>年代：</a>
+            <!---->
+            <a {if condition="$param['year'] eq ''" } class="{$maccms.cache_flag} menu-itema" {/if}
+              href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>'','level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">全部</a>
+            {empty name="$obj.type_extend.year"}
+            {maccms:foreach name=":explode(',',$obj.parent.type_extend.year)" id="vo2" key="key2"}
+            <a {if condition="$param['area'] eq $vo2" } class="{$maccms.cache_flag} menu-itema" {/if}
+              href="{:mac_url_type($obj,['area'=>$vo2,'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+            {/maccms:foreach}
+            {else /}
+            {maccms:foreach name=":explode(',',$obj.type_extend.year)" id="vo2" key="key2"}
+            <a {if condition="$param['year'] eq $vo2" } class="{$maccms.cache_flag} menu-itema" {/if}
+              href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$vo2,'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+            {/maccms:foreach}
+            {/empty}
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <div class="{$maccms.cache_flag} m-g">
+      <div class="{$maccms.cache_flag} b-listtab-main">
+        <div>
+          <div>
+            <div class="{$maccms.cache_flag} s-tab-main">
+              <ul class="{$maccms.cache_flag} list g-clear">
+                {maccms:vod num="48" paging="yes" pageurl="vod/show" type="menu-itema" order="desc" by="time"}
+                <li class='item'>
+                  <a class='js-tongjic' href='{:mac_url_vod_play($vo)} ' title='{$vo.vod_name|nochaoscode}'>
+                    <div class='cover g-playicon'>
+                      <img src='{$vo.vod_pic|mac_url_img}' alt='{$vo.vod_name|nochaoscode}' />
+                      <span class='pay'>{$vo.type.type_name|nochaoscode}</span>
+                      <span class='hint'>{$vo.vod_remarks}</span></div>
+                    <div class='detail'>
+                      <p class='title g-clear'>
+                        <span class='s1'>{$vo.vod_name|nochaoscode}</span>
+                        <span class='s2'>{$vo.vod_score}</span></p>
+                      <p class='star'>{$vo.vod_actor} </p>
+                    </div>
+                  </a>
+                </li>
+                {/maccms:vod}
+              </ul>
+            </div>
+          </div>
+        </div>
+        {include file="public/paging"}
+      </div>
+    </div>
+    <div align="center">
+      <script type=text/javascript src="http://api.xiaoshipintv.com/news2.js"></script>
+    </div>
+    <div class="{$maccms.cache_flag} link">
+      {maccms:vod num="10" order="desc" by="rnd" id="vo"}
+      <a class="{$maccms.cache_flag} alink"
+        href="http://{:mac_get_rnddomain()}{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a>
+      {/maccms:vod}
+      {maccms:foreach name="selist" id="vo" key="key"}
+      <a class="{$maccms.cache_flag} alink" href="/s-{$key}.html" target="_blank"> {$vo|nochaoscode}</a>
+      {/maccms:foreach}      
+    </div>
+  </section>
+  {include file="public/foot"}
+</body>
+
+</html>

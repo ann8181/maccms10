@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>修改资料 - 会员中心 - {$maccms.site_name|nochaoscode}</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes" />    
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="format-detection" content="telephone=yes"/>
+<meta name="msapplication-tap-highlight" content="no" />
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	{include file="user/include" /}
+</head>
+<body>
+{include file="user/head" /}
+<!-- 会员中心 -->
+<div id="member" class="{$maccms.cache_flag} fn-clear">
+	<div id="left">
+		<div class="{$maccms.cache_flag} tou"><img src="{$obj.user_portrait|mac_default='static/images/touxiang.png'|mac_url_img}" alt="会员头像"><p>{$obj.user_name}<br />{$obj.group.group_name}</p></div>
+		<ul>
+			<li class="{$maccms.cache_flag} hover"><a href="{:url('user/index')}">我的资料</a></li>
+			<li><a href="{:url('user/favs')}">我的收藏</a></li>
+			<li><a href="{:url('user/plays')}">播放记录</a></li>
+			<li><a href="{:url('user/downs')}">下载记录</a></li>
+			<li><a href="{:url('user/buy')}">在线充值</a></li>
+			<li><a href="{:url('user/upgrade')}">升级会员</a></li>
+			<li><a href="{:url('user/orders')}">充值记录</a></li>
+			<li><a href="{:url('user/cash')}">提现记录</a></li>
+			<li><a href="{:url('user/reward')}">三级分销</a></li>
+		</ul>
+	</div>
+	<div id="right">
+		<h2>我的资料</h2>
+		<div id="tab">
+			<div class="{$maccms.cache_flag} list">
+				<ul class="{$maccms.cache_flag} fn-clear">
+					<li><a href="{:url('user/index')}">基本资料</a></li>
+					<li class="{$maccms.cache_flag} cur">修改信息</li>
+					<li><a href="{:url('user/popedom')}">我的权限</a></li>
+				</ul>
+			</div>
+			<div id="listCon">
+
+				<!-- 修改信息 -->
+				<div class="{$maccms.cache_flag} cur">
+					<form id="fm" name="fm" method="post" action="" >
+					<p><span class="{$maccms.cache_flag} xiang">用户名：</span>{$obj.user_name}</p>
+					<p><span class="{$maccms.cache_flag} xiang">原始密码：</span><input type="password" name="user_pwd" class="{$maccms.cache_flag} member-input"></p>
+					<p><span class="{$maccms.cache_flag} xiang">新密码：</span><input type="password" name="user_pwd1" class="{$maccms.cache_flag} member-input"><span class="{$maccms.cache_flag} tishi">不修改请留空</span></p>
+					<p><span class="{$maccms.cache_flag} xiang">重复密码：</span><input type="password" name="user_pwd2" class="{$maccms.cache_flag} member-input"></p>
+					<p><span class="{$maccms.cache_flag} xiang">QQ号码：</span><input type="text" name="user_qq" class="{$maccms.cache_flag} member-input" value="{$obj.user_qq}"></p>
+					{if condition="$obj.user_email neq ''"}
+						<p><span class="{$maccms.cache_flag} xiang">邮箱：</span><input type="text" name="user_email" class="{$maccms.cache_flag} member-input" readonly="readonly" value="{$obj.user_email}">[<a class="{$maccms.cache_flag} btn_unbind" ac="email" href="javascript:;">解绑</a>]</p>
+					{else/}
+						<p><span class="{$maccms.cache_flag} xiang">邮箱：</span><input type="text" name="user_email" class="{$maccms.cache_flag} member-input" value="">[<a href="{:url('user/bind')}?ac=email">绑定</a>]</p>
+					{/if}
+
+						{if condition="$obj.user_phone neq ''"}
+						<p><span class="{$maccms.cache_flag} xiang">手机：</span><input type="text" name="user_phone" class="{$maccms.cache_flag} member-input" readonly="readonly" value="{$obj.user_phone}">[<a class="{$maccms.cache_flag} btn_unbind" ac="phone" href="javascript:;">解绑</a>]</p>
+						{else/}
+						<p><span class="{$maccms.cache_flag} xiang">手机：</span><input type="text" name="user_phone" class="{$maccms.cache_flag} member-input" value="">[<a href="{:url('user/bind')}?ac=phone">绑定</a>]</p>
+						{/if}
+
+					<p><span class="{$maccms.cache_flag} xiang">找回密码问题：</span><input type="text" name="user_question" class="{$maccms.cache_flag} member-input" value="{$obj.user_question}"></p>
+					<p><span class="{$maccms.cache_flag} xiang">找回密码答案：</span><input type="text" name="user_answer" class="{$maccms.cache_flag} member-input" value="{$obj.user_answer}"></p>
+					<p><span class="{$maccms.cache_flag} xiang"></span><input type="button" id="btn_submit" class="{$maccms.cache_flag} search-button" value="保存"><span class="{$maccms.cache_flag} wjmm"><a href="{:url('user/findpass')}">忘记密码了？</a></span></p>
+					<p><span class="{$maccms.cache_flag} xiang"></span></p>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+
+	$('.btn_unbind').click(function(){
+		var ac = $(this).attr('ac');
+		if(ac!='email' && ac!='phone'){
+			alert('参数错误');
+		}
+		if(confirm('确认解除绑定吗？此操作不可恢复？')) {
+			$.ajax({
+				url: "{:url('user/unbind')}",
+				type: "post",
+				dataType: "json",
+				data: {ac: ac},
+				beforeSend: function () {
+					//开启loading
+				},
+				success: function (r) {
+					alert(r.msg);
+					if(r.code==1){
+						location.href="{:url('user/info')}";
+					}
+				},
+				complete: function () {
+					//结束loading
+				}
+			});
+		}
+	});
+
+	$("#btn_submit").click(function() {
+		var data = $("#fm").serialize();
+		$.ajax({
+			url: "{:url('user/info')}",
+			type: "post",
+			dataType: "json",
+			data: data,
+			beforeSend: function () {
+				//开启loading
+				//$(".loading_box").css("display","block");
+				$("#btn_submit").css("background","#fd6a6a").val("loading...");
+			},
+			success: function (r) {
+				alert(r.msg);
+				if(r.code==1){
+					location.href="{:url('user/info')}";
+				}
+			},
+			complete: function () {
+				//结束loading
+				//$(".loading_box").css("display","none");
+				$("#btn_submit").css("background","#fa4646").val("提交");
+			}
+		});
+	});
+
+</script>
+{include file="user/foot" /}
+</body>
+</html>

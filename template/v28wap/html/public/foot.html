@@ -1,0 +1,61 @@
+ 
+
+<script src="{$maccms.path_tpl}youku_m/js/jquery.cookie.js"></script>
+<script src="{$maccms.path_tpl}youku_m/js/wap_appdown.js"></script>
+<div class="to-top">
+<div class="scroll-to-top"><i class="aui-iconfont aui-icon-top"></i></div>
+<div class="scroll-to-comment"><a href="{:mac_url('gbook/index')}" target="_blank"><i class="aui-iconfont aui-icon-edit"></i></a></div>
+</div>
+
+<footer class="yk-footer footer">
+    	<div class="footer-copyright">
+<p><a href="http://{$maccms.site_url}">{$maccms.site_keywords|nochaoscode}</a></p>
+		本网站提供新影视视频资源均系收集各大网站，本网站只提供web页面浏览服务，并不提供{$maccms.site_keywords|nochaoscode}影片资源存储，也不参与任何视频录制、上传
+若本站收集的节目无意侵犯了贵司版权，请给{$maccms.site_email}邮箱地址来信，我们将在第一时间删除相应资源
+		 
+	</div>
+</footer>
+ 
+
+<!-- 页脚 -->
+
+<footer class="footer">
+	<div class="footer-copyright">Copyright&copy;2020 {$maccms.site_name|nochaoscode} 版权所有  {$maccms.site_icp} {$maccms.site_tj}<br />
+   
+</footer>
+<div class="aui-bar aui-bar-tab" id="footer">
+<div class="aui-bar-tab-item" id="ftindex" tapmode="">
+	<a href="/" title="首页">
+	        <i class="aui-icon-index"></i>
+        <div class="aui-bar-tab-label">首页</div>
+		</a>
+    </div>
+	{maccms:type ids="2" order="asc" by="sort"}
+	<div class="aui-bar-tab-item" id="ftdianshiju" tapmode="">
+	<a href="{:mac_url_type($vo)}" title="电视剧">{/maccms:type}
+	<div class="aui-dot"></div>        <i class="aui-icon-dianshiju"></i>
+        <div class="aui-bar-tab-label">电视剧</div>
+		</a>
+    </div>
+	{maccms:type ids="1" order="asc" by="sort"}
+	<div class="aui-bar-tab-item" id="ftdianying" tapmode="">
+	<a href="{:mac_url_type($vo)}" title="电影">{/maccms:type}
+	        <i class="aui-icon-dianying"></i>
+        <div class="aui-bar-tab-label">电影</div>
+		</a>
+    </div>
+	{maccms:type ids="4" order="asc" by="sort"}
+	<div class="aui-bar-tab-item" id="ftdongman" tapmode="">
+	<a href="{:mac_url_type($vo)}" title="动漫">{/maccms:type}
+	        <i class="aui-icon-dongman"></i>
+        <div class="aui-bar-tab-label">动漫</div>
+		</a>
+    </div>
+	{maccms:type ids="3" order="asc" by="sort"}
+	<div class="aui-bar-tab-item" id="ftzongyi" tapmode="">
+	<a href="{:mac_url_type($vo)}" title="综艺">{/maccms:type}
+	        <i class="aui-icon-zongyi"></i>
+        <div class="aui-bar-tab-label">综艺</div>
+		</a>
+    </div></div>
+<script>$("#ft").addClass("aui-active");</script>

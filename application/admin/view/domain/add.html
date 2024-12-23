@@ -1,0 +1,107 @@
+{include file="../../../application/admin/view/public/head" /}
+<div class="page-container p10">
+    <form class="layui-form layui-form-pane" method="post" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label">域名：</label>
+            <div class="layui-input-block  ">
+                <input type="text" class="layui-input" value="{$info.site_url}" placeholder="" id="domain[site_url]" name="domain[site_url]">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">网站名称：</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" value="{$info.site_name}" placeholder="" id="domain[site_name]" name="domain[site_name]">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">关键字：</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" value="{$info.site_keywords}" placeholder="" id="domain[site_keywords]" name="domain[site_keywords]">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">描述：</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" value="{$info.site_description}" placeholder="" id="domain[site_description]" name="domain[site_description]">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">PC模板：</label>
+            <div class="layui-input-block">
+                <select class="w150" name="domain[template_dir]">
+                    {volist name="templates" id="vo"}
+                    <option value="{$vo}" {if condition="$info.template_dir eq $vo"}selected {/if}>{$vo}</option>
+                    {/volist}
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">手机模板：</label>
+            <div class="layui-input-block">
+                <select class="w150" name="domain[mob_template_dir]">
+                    {volist name="templates" id="vo"}
+                    <option value="{$vo}" {if condition="$info.mob_template_dir eq $vo"}selected {/if}>{$vo}</option>
+                    {/volist}
+                </select>
+            </div>
+            <!-- <div class="layui-form-mid layui-word-aux" style="">提示信息：如果某个资源作为副资源不想新增数据，可以只勾选更新。</div> -->
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">网站目录：</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" value="{if condition="$info.html_dir == ''"}html{else}{$info.html_dir}{/if}" placeholder="" id="domain[html_dir]" name="domain[html_dir]">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">广告目录：</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" value="{if condition="$info.ads_dir == ''"}js{else}{$info.ads_dir}{/if}" placeholder="" id="domain[ads_dir]" name="domain[ads_dir]">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">搜索热词：</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" value="{$info.search_hot}" placeholder="" id="domain[search_hot]" name="domain[search_hot]">
+            </div>
+        </div>        
+        <div class="layui-form-item">
+            <label class="layui-form-label">缓存标识：</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" value="{$info.cache_flag}" placeholder="" id="domain[cache_flag]" name="domain[cache_flag]">
+            </div>
+        </div>        
+        <div class="layui-form-item center">
+            <div class="layui-input-block">
+                <button type="submit" class="layui-btn" lay-submit="" lay-filter="formSubmit" data-child="true">保 存</button>
+                <button class="layui-btn layui-btn-warm" type="reset">还 原</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+{include file="../../../application/admin/view/public/foot" /}
+
+<script type="text/javascript">
+    layui.use(['form', 'layer'], function () {
+        // 操作对象
+        var form = layui.form
+                , layer = layui.layer
+                , $ = layui.jquery;
+        // 验证
+        form.verify({
+            collect_name: function (value) {
+                if (value == "") {
+                    return "请输入资源名称";
+                }
+            },
+            collect_url: function (value) {
+                if (value == "") {
+                    return "请输入接口地址";
+                }
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

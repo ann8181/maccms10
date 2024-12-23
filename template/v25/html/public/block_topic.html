@@ -1,0 +1,19 @@
+<div class="{$maccms.cache_flag} hy-video-list side clearfix">
+	<div class="{$maccms.cache_flag} head">
+		<a class="{$maccms.cache_flag} pull-right text-muted" href="{:mac_url_topic_index()}">更多 <i class="{$maccms.cache_flag} icon iconfont icon-right"></i></a>
+		<h4>推荐专题</h4>
+	</div>
+	<div class="{$maccms.cache_flag} item">
+		<ul class="{$maccms.cache_flag} clearfix">
+			{maccms:topic num="3" paging="no" order="asc" by="sort" ids="all"}
+		    <li>					    		
+	    		<a class="{$maccms.cache_flag} videopic" href="{:mac_url_topic_detail($vo)}" title="{$vo.topic_name}" style="padding-top: 50%; background: url({:mac_url_img($vo.topic_pic)}) no-repeat; background-position:50% 50%; background-size: cover;" >
+					<span class="{$maccms.cache_flag} play hidden-xs"></span>	
+					<span class="{$maccms.cache_flag} note textbg text-overflow">{$vo.topic_name}</span>	
+				</a>
+																				
+			</li>
+			{/maccms:topic}	
+		</ul>
+	</div>												
+</div>

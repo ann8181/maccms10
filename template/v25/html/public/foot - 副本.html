@@ -1,0 +1,68 @@
+<div class="{$maccms.cache_flag} hy-gototop hidden-sm hidden-xs">
+	<ul class="{$maccms.cache_flag} item clearfix">
+		<li><a href="{$maccms.path}index.php/user/login.html" title="会员中心"><i class="{$maccms.cache_flag} icon iconfont icon-member1"></i></a></li>
+		<li><a href="{:mac_url('gbook/index')}" title="留言求片"><i class="{$maccms.cache_flag} icon iconfont icon-comment"></i></a></li>
+		<li>
+			<a href="javascript:()" title="观看记录"><i class="{$maccms.cache_flag} icon iconfont icon-record1"></i></a>
+			<div class="{$maccms.cache_flag} history clearfix">
+				<div class="{$maccms.cache_flag} head">
+					<h5 class="{$maccms.cache_flag} margin-0 text-muted">观看历史</h5>
+				</div>
+				<script type="text/javascript ">
+					$MH.limit = 10;
+					$MH.WriteHistoryBox(200, 170, 'font');
+					$MH.recordHistory({
+						name: '[vod:name]',
+						link: '[vod:link]',
+						pic: '[vod:pic]'
+					})
+				</script>
+			</div>			
+		</li>		
+		<li>
+			<a href="javascript:()"  title="二维码"><i class="{$maccms.cache_flag} icon iconfont icon-code1"></i></a>
+			<div class="{$maccms.cache_flag} code clearfix">
+				<p class="{$maccms.cache_flag} margin-0"><img class="{$maccms.cache_flag} pic-responsive" src="http://www.xxysvip.com/template/xingxin/images/2wm.png" alt="扫描二维码" /></p>					
+			</div>
+		</li>
+		<li><a href="javascript:scroll(0,0)" title="返回顶部"><i class="{$maccms.cache_flag} icon iconfont icon-uparrow"></i></a></li>
+	</ul>
+</div>
+<div class="{$maccms.cache_flag} tabbar visible-xs"><a href="{$maccms.path}" class="{$maccms.cache_flag} item"><i class="{$maccms.cache_flag} icon iconfont icon-home"></i><p class="{$maccms.cache_flag} text">首页</p></a>
+<a href="{maccms:type ids="1"}{:mac_url_type($vo)}{/maccms:type}" class="{$maccms.cache_flag} item"><i class="{$maccms.cache_flag} icon iconfont icon-film"></i><p class="{$maccms.cache_flag} text">电影 </p></a>
+<a href="{maccms:type ids="2"}{:mac_url_type($vo)}{/maccms:type}" class="{$maccms.cache_flag} item"><i class="{$maccms.cache_flag} icon iconfont icon-show"></i><p class="{$maccms.cache_flag} text">电视剧 </p></a>
+<a href="{maccms:type ids="3"}{:mac_url_type($vo)}{/maccms:type}" class="{$maccms.cache_flag} item"><i class="{$maccms.cache_flag} icon iconfont icon-flag"></i><p class="{$maccms.cache_flag} text">综艺 </p></a>
+<a href="{maccms:type ids="4"}{:mac_url_type($vo)}{/maccms:type}" class="{$maccms.cache_flag} item"><i class="{$maccms.cache_flag} icon iconfont icon-mallanimation"></i><p class="{$maccms.cache_flag} text">动漫 </p></a>
+</div>
+<div class="{$maccms.cache_flag} container">
+	<div class="{$maccms.cache_flag} row">
+		<div class="{$maccms.cache_flag} hy-footer clearfix">
+			<p class="{$maccms.cache_flag} text-muted hidden-sm hidden-xs">
+				本网站内容收集于互联网，热片网不承担任何由于内容的合法性及健康性所引起的争议和法律责任。 欢迎大家对网站内容侵犯版权等不合法和不健康行为进行监督和举报。
+			</p>
+			<p class="{$maccms.cache_flag} margin-0 text-muted">Copyright © 2008-2020</p>
+			<p class="{$maccms.cache_flag} visible-xs"><a class="{$maccms.cache_flag} text-muted" href="{:mac_url('gbook/index')}" title="留言求片">留言求片</a></p>
+		</div>
+	</div>
+</div>
+<span style="display:none">{$maccms.site_tj}</span>
+<script type="text/javascript" charset="utf-8">
+    $(function() {
+        $(".videopic.lazy").lazyload({effect: "fadeIn"});  
+        $("[data-toggle='tooltip']").tooltip();
+    });
+   
+	window._bd_share_config = {
+		common: {
+			bdText: '',
+			bdDesc: '',
+			bdUrl: '',
+			bdPic: ''
+		},
+		share: [{
+			"bdSize": 24,
+			bdCustomStyle: 'images/css/share.css'
+		}]
+	}
+	with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~(-new Date() / 36e5)];
+</script>

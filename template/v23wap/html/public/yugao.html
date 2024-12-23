@@ -1,0 +1,23 @@
+
+<div class="main top">
+<div class="up-nav">
+<a id="zanpiantv1" onMouseOver="setTab('zanpiantv',1,2);" class="current" href="javascript:;" target="_self">正在热映</a>
+<a id="zanpiantv2" onMouseOver="setTab('zanpiantv',2,2);" href="javascript:;" target="_self">{if condition="$obj.type_id == 1"}即将上映{else /}即将开播{/if}</a>
+</div>
+<div class="up-tb" style="border-top:none;" id="resize_list">
+<ul class="list_tab_img" id="con_zanpiantv_1">
+{maccms:vod num="3" type="current" order="desc" by="hits_day" id="vo2" key="key2"}
+<li><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name|nochaoscode}" target="_self"><div class="picsize"><img class="loading" src="{$maccms.path_tpl}images/220x307.jpg" data-original="{$vo2.vod_pic|mac_url_img}" /><label class="name">{$vo2.vod_name|nochaoscode}</label></div></a>
+<div class="uptime"><p>热映中</p> </div>
+</li>
+{/maccms:vod}
+</ul>
+<ul class="list_tab_img" id="con_zanpiantv_2" style="display:none;">
+{maccms:vod num="3" type="current" state="预告片" order="desc" by="time" id="vo2" key="key2"}
+<li><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name|nochaoscode}" target="_self"><div class="picsize"><img class="loading" src="{$maccms.path_tpl}images/220x307.jpg" data-original="{$vo2.vod_pic|mac_url_img}" /><label class="name">{$vo2.vod_name|nochaoscode}</label></div></a>
+<div class="uptime"><p>{$vo2.vod_pubdate|mac_substring=3,5}上映</p> </div>
+</li>
+{/maccms:vod}
+</ul>
+</div>
+</div>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="applicable-device" content="pc,mobile">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+<script>if(navigator.userAgent.toLocaleLowerCase().indexOf("ksdfsdfsdsdfsdfsdfsd") == -1){document.title ="免费视频在线观看"}</script>
+<title>{$maccms.site_name|nochaoscode}</title>
+<meta name="keywords" content="{$maccms.site_keywords|nochaoscode}">
+<meta name="description" content="{$maccms.site_description|nochaoscode}">
+{include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div align="center"><script type=text/javascript src="http://api.xiaoshipintv.com/news2.js"></script></div>
+<section class="main-container">
+	{maccms:type ids="parent" order="asc" by="sort"}
+	<div class="row-six">
+		<div class="box-title"><b>最新{$vo.type_name|nochaoscode}</b><span><a target="_blank" href="{:mac_url_type($vo)}" title="{$vo.type_name|nochaoscode}">更多{$vo.type_name|nochaoscode}&gt;&gt;&gt;</a></span></div>
+		<div class="box-body">
+			{maccms:vod num="12" type="'.$vo['type_id'].'"  order="desc" by="time"}
+			<div class="box-item">
+				<a class="item-link" href="{:mac_url_vod_detail($vo)}" target="_blank" title="{$vo.vod_name|nochaoscode}">
+					
+					<img class="lazy" src="{$vo.vod_pic|mac_url_img}" >
+					{if condition="$vo.vod_serial gt 0"}<button class="hdtag">共{$vo.vod_serial}集</button>{else/}<button class="hdtag">{$vo.vod_remarks}</button>{/if}
+				</a>
+				<div class="meta">
+					<div class="item-name"><a class="movie-name" target="_blank" title="{$vo.vod_name|nochaoscode}" href="{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a></div>
+					<em>添加时间：<strong><span>{$vo.vod_time|date='Y-m-d',###}</span></strong></em>
+				</div>
+			</div>
+			{/maccms:vod}
+		</div>
+	</div>
+	{/maccms:type}
+	<div align="center"><script type=text/javascript src="http://api.xiaoshipintv.com/news3.js"></script></div>
+ <!-- 友情链接 -->
+ <div class="link">
+    {maccms:vod num="10" order="desc" by="rnd" id="vo"}
+       <a class="alink" href="http://{:mac_get_rnddomain()}{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a>
+    {/maccms:vod}
+</div>
+<link type="text/css" rel="stylesheet" href="{$maccms.path_tpl}css/sdcv.css" />
+<div class="row-six">
+<div id="link" class="block">
+    <div id="title"><h2>友情链接</h2></div>
+    <ul>
+        {maccms:link num="100" order="desc" by="id"}
+        <li><a class="text-color-999" href="{$vo.link_url}" target="_blank"><span style="font-size:14px">{$vo.link_name|nochaoscode}</span></a></li>
+        {/maccms:link}
+    </ul>
+</div>
+</div>
+</section>
+{include file="public/foot"}
+</body>
+</html>

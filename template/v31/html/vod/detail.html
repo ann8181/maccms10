@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+<meta name="applicable-device" content="pc,mobile">
+<title>{$obj.vod_name|nochaoscode}详情介绍 - {$maccms.site_name|nochaoscode}</title>
+<meta name="keywords" content="{$obj.vod_name|nochaoscode}在线收看,{$obj.vod_name|nochaoscode}迅雷下载" />
+    <meta name="description" content="{$obj.vod_name|nochaoscode}剧情:{$obj.vod_blurb}" />
+{include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<section class="content-box">
+	<ol class="breadcrumb">
+	<li class="home"><a href="{$maccms.path}">首页</a>&nbsp;»&nbsp;<a href="{:mac_url_type($obj.type)}">{$obj.type.type_name|nochaoscode}</a>&nbsp;»&nbsp;{$obj.vod_name|nochaoscode}在线点播{$obj.vod_nmae}迅雷下载</li>
+	</ol>
+	<div align="center"><script type=text/javascript src="http://api.xiaoshipintv.com/news2.js"></script></div>
+	<h1 class="movie-title"><!-- {playpage:name} {if:{playpage:publishtime}>0}<span class="movie-year">({playpage:publishtime})</span>{end if} --></h1>
+	<div class="content-row">
+		<div class="cont-l">
+			<div class="con-pic">
+				<a class="img-link" href="{:mac_url_vod_play($obj,['sid'=>1,'nid'=>1])}">
+					<img class="lazy" class="img-thumbnail" alt="{$obj.vod_name|nochaoscode}" src="{$obj.vod_pic|mac_url_img}">
+					<!-- <button class="hdtag">{$obj.vod_serial}</button> -->
+					{if condition="$vo.vod_serial gt 0"}<button class="hdtag">第{$vo.vod_serial}集/共{$vo.vod_total}集</button>{else/}{$vo.vod_remarks}{/if}
+				</a>
+				<div class="online-button">
+					<a target="_blank" class="btn btn-success btn-block" href="{:mac_url_vod_play($obj,['sid'=>1,'nid'=>1])}">立即播放</a>
+				</div>
+				<div class="ptime">
+					<em>更新时间：{$obj.vod_time|date='Y-m-d h:m:s',###}</em>
+				</div>
+			</div>
+			<div class="con-dete">
+				<div class="con-detail">
+					<ul>
+						<li class="li_l"><span class="info-label">导演</span></li>
+						<li class="li_r">{$obj.vod_director|mac_url_create='director'}</li>
+					</ul>
+					<ul>
+						<li class="li_l"><span class="info-label">主演</span></li>
+						<li class="li_r">{$obj.vod_actor|mac_url_create='actor'}</li>
+					</ul>
+					<ul>
+						<li class="li_l"><span class="info-label">类型</span></li>
+						<li class="li_r"><span class="color">{$obj.vod_class|mac_url_create='class'}</span></li>
+					</ul>
+					<ul>
+						<li class="li_l"><span class="info-label">语言</span></li>
+						<li class="li_r">{$obj.vod_lang|mac_url_create='lang'}</li>
+					</ul>
+					<ul>
+						<li class="li_l"><span class="info-label">年份</span></li>
+						<li class="li_r">{$obj.vod_year|mac_url_create='year'}</li>
+					</ul>
+					<ul>
+						<li class="li_l"><span class="info-label">更新状态</span></li>
+						<li class="li_r"><span class="color">{$obj.vod_version|mac_default='未知'}</span></li>
+					</ul>
+					<ul>
+						<li class="li_l"><span class="info-label">更新日期</span></li>
+						<li class="li_r">{$obj.vod_time|date='Y-m-d h:m:s',###}</li>
+					</ul>
+				</div>
+			</div>
+			<div class="con-des">
+				<p class="des-t"><strong>剧情介绍：</strong></p>
+				<p class="summary">{$obj.vod_blurb}…</p>
+			</div>
+		</div>
+		<div class="cont-r mbnone">
+			<div class="list-group">
+            <a class="list-group-item list-head">
+                <i></i> 最新{$obj.type.type_name|nochaoscode} ：
+            </a>
+			{maccms:vod num="6" type="current" order="desc" by="time"}
+			<a target="_blank" title="{$vo.vod_name|nochaoscode}" href="{:mac_url_vod_detail($vo)}" class="list-group-item">{$vo.vod_name|nochaoscode}{if condition="$obj.vod_year"}<em>({$obj.vod_year})</em>{/if}</a>
+			{/maccms:vod}
+			</div>
+		</div>
+	</div>
+	<div class="play-list">
+		<div class="panel">
+			{maccms:foreach name="obj.vod_play_list" id="vo"}
+			<div class="panel-heading"><strong><mb class="mbnone">《{$obj.vod_name|nochaoscode}》 - </mb>{$vo.player_info.show} - 如果不能播放先刷新试试：</strong></div>
+			<ul class="dslist-group">
+				{maccms:foreach name="vo.urls" id="vo2"}
+				<li class="dslist-group-item"><a target="_blank" href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>$vo2.nid])}">{$vo2.name}</a> </li>
+				{/maccms:foreach}
+			</ul> 
+			{/maccms:foreach}
+			<div class="panel-footer">
+				<strong>《{$obj.vod_name|nochaoscode}》 - 资源观看帮助：</strong><br>
+				1、有个别电影打开后播放需要等待。<br>
+				2、如果电影打开不能播放请留言给我们，我们更换资源。<br>
+				3、有的播放不了请多刷新几下，试试。
+			</div>
+		</div>
+	</div>
+	<div align="center"><script type=text/javascript src="http://api.xiaoshipintv.com/news3.js"></script></div>
+	<div class="link">
+		{maccms:vod num="10" order="desc" by="rnd" id="vo"}
+		   <a class="alink" href="http://{:mac_get_rnddomain()}{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a>
+		{/maccms:vod}
+	</div>
+	<span style="display:none" class="mac_ulog_set" alt="设置内容页浏览记录" data-type="1" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-sid="{$param.sid}" data-nid="{$param.nid}"></span>
+</section>
+{include file="public/foot"}
+</body>
+</html>

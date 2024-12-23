@@ -1,0 +1,430 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>	
+    <title>{$maccms.site_name|nochaoscode}</title>
+    <meta name="keywords" content="{$maccms.site_keywords|nochaoscode}" />
+    <meta name="description" content="{$maccms.site_description|nochaoscode}" />
+ {include file="public/include"}
+	</head>
+	<body>		
+		{include file="public/head"}
+		
+		<!--main-->
+		<div class="{$maccms.cache_flag} container">
+			<div class="{$maccms.cache_flag} row">																					
+				<div class="{$maccms.cache_flag} hy-layout clearfix">
+					<div class="{$maccms.cache_flag} col-lg-7 col-md-6 col-sm-12">
+						<div class="{$maccms.cache_flag} swiper-container hy-slide">
+					        <div class="{$maccms.cache_flag} swiper-wrapper">				            			
+	            				{maccms:vod num="3"  type="all" order="desc" by="time" level="9"}
+	            				{include file="public/block_slide"}
+	            				{/maccms:vod}						            		
+					        </div>
+					        <div class="{$maccms.cache_flag} swiper-button-next hidden-xs"><i class="{$maccms.cache_flag} icon iconfont icon-right"></i></div>
+                    		<div class="{$maccms.cache_flag} swiper-button-prev hidden-xs"><i class="{$maccms.cache_flag} icon iconfont icon-back"></i></div>
+					        <div class="{$maccms.cache_flag} swiper-pagination"></div>
+					    </div>					    					    						    
+					</div>
+					<div class="{$maccms.cache_flag} col-lg-5 col-md-6 col-sm-12 padding-0">
+						<div class="{$maccms.cache_flag} hy-index-menu clearfix">
+							<div class="{$maccms.cache_flag} item">
+								<ul class="{$maccms.cache_flag} clearfix">
+									<li class="{$maccms.cache_flag} hidden-sm hidden-xs">
+										<a href="{maccms:type ids="1" order="asc" by="sort"}{:mac_url_type($vo,[],'show')}{/maccms:type}" title="全部影片"><i class="{$maccms.cache_flag} icon iconfont icon-menu1 text-color"></i><span>全部影片</span></a>
+									</li>
+									<li>
+										<a href="{:mac_url('label/top')}" title="影片排行"><i class="{$maccms.cache_flag} icon iconfont icon-ic_mymatch_ranking text-color"></i><span>影片排行</span></a>
+									</li>
+									<li>
+										<a href="{:mac_url('label/new')}" title="最近更新"><i class="{$maccms.cache_flag} icon iconfont icon-update text-color"></i><span>最近更新</span></a>
+									</li>									
+									<li>
+										<a href="{:mac_url_topic_index()}" title="专题合集"><i class="{$maccms.cache_flag} icon iconfont icon-icon_special text-color"></i><span>专题合集</span></a>
+									</li>
+									<li class="{$maccms.cache_flag} visible-sm visible-xs">
+										<a href="{$maccms.path}index.php?m=user-index.html" title="个人中心"><i class="{$maccms.cache_flag} icon iconfont icon-member1 text-color"></i><span>个人中心</span></a>
+									</li>
+								</ul>
+							</div>						
+						</div>						
+						<div class="{$maccms.cache_flag} hy-index-tags hidden-md clearfix">
+							<div class="{$maccms.cache_flag} item">
+								<ul class="{$maccms.cache_flag} clearfix">{maccms:type ids="6,7,8,9,10,11,12" order="asc" by="sort"}															
+									<li><a class="{$maccms.cache_flag} text-overflow" href="{:mac_url_type($vo)}">{$vo.type_name|nochaoscode}</a></li>{/maccms:type}				
+								</ul>
+							</div>									
+						</div>
+						<div class="{$maccms.cache_flag} hy-right-qrcode hidden-sm hidden-xs">
+							<div class="{$maccms.cache_flag} item">
+								<dl class="{$maccms.cache_flag} clearfix">
+									<dt>
+										<img class="{$maccms.cache_flag} pic-responsive" src="{$maccms.path_tpl}images/index.png" alt="扫描二维码" />
+									</dt>
+									<dd>
+										<h4>扫描二维码“手机看大片”</h4>
+										<p class="{$maccms.cache_flag} text-muted">也可以分享到朋友圈哦！</p>
+										<p class="{$maccms.cache_flag} margin-0 text-muted">{$maccms.site_url}</p>
+									</dd>
+								</dl>
+							</div>							
+						</div>																												
+					</div>
+				</div>
+				
+										   
+			    <!--最近更新-->
+			    <div class="{$maccms.cache_flag} hy-layout clearfix">				    	
+		    		<div class="{$maccms.cache_flag} hy-video-head">
+						<h3 class="{$maccms.cache_flag} margin-0"><i class="{$maccms.cache_flag} icon iconfont icon-update text-color"></i> 最近更新</h3>
+						<ul class="{$maccms.cache_flag} pull-right">							
+							<li class="{$maccms.cache_flag} active"><a href="{:mac_url('label/new')}" class="{$maccms.cache_flag} text-muted" title="更多">今日更新
+                  <font color="red">{:mac_data_count(0,'today','vod')}</font>部-共<font color="red">{$vo1.type_id|mac_data_count=all}</font>部-更多 <i class="{$maccms.cache_flag} icon iconfont icon-right"></i></a></li>
+						</ul>
+					</div>
+					<div class="{$maccms.cache_flag} clearfix">
+						<div class="{$maccms.cache_flag} hy-video-list cleafix">
+						    <div class="{$maccms.cache_flag} item">																			
+								{maccms:vod num="12" type="all" order="desc" by="time"}
+							    <div class="{$maccms.cache_flag} col-md-2 col-sm-3 col-xs-4 {if-A:{$key} > 6}visible-sm{endif-A}">						    	
+						    		{include file="public/block_video"}							    				    						
+								</div>
+								{/maccms:vod}	
+							</div>
+						</div>					
+						<div class="{$maccms.cache_flag} hy-video-text-list hidden-xs clearfix">
+							<div class="{$maccms.cache_flag} item">
+								<ul class="{$maccms.cache_flag} clearfix">
+									{maccms:vod num="12" type="all" order="desc" by="time" start="7"}
+									<li>	
+										{include file="public/block_videotext"}																										
+									</li>
+									{/maccms:vod}		
+								</ul>
+							</div>							
+						</div>
+					</div>				
+					<div class="{$maccms.cache_flag} hy-video-footer visible-xs clearfix">
+						<a href="{:mac_url('label/new')}" class="{$maccms.cache_flag} text-muted" title="查看更多">查看更多 <i class="{$maccms.cache_flag} icon iconfont icon-right pull-right"></i></a>
+					</div>		    																									
+				</div>
+				<!--end 最近更新-->
+     			  
+
+     			    <!--电影/电视剧 -->
+				<div class="{$maccms.cache_flag} hy-layout clearfix">														
+					<div class="{$maccms.cache_flag} hy-video-head">
+						<h3 class="{$maccms.cache_flag} margin-0"><i class="{$maccms.cache_flag} icon iconfont icon-flag text-color"></i> {maccms:type ids="1"}{$vo.type_name|nochaoscode}{/maccms:type}</h3>
+						<ul class="{$maccms.cache_flag} pull-right">						
+							<li class="{$maccms.cache_flag} active"><a href="{maccms:type ids="1"}{:mac_url_type($vo)}{/maccms:type}" class="{$maccms.cache_flag} text-muted">更多 <i class="{$maccms.cache_flag} icon iconfont icon-right"></i></a></li>
+						</ul>
+					</div>
+					<div class="{$maccms.cache_flag} clearfix">
+						<div class="{$maccms.cache_flag} col-md-5 col-sm-12 col-xs-12">
+							<div class="{$maccms.cache_flag} swiper-container hy-slide">
+						        <div class="{$maccms.cache_flag} swiper-wrapper">				            			
+		            				{maccms:vod num="3"  type="1" order="desc" by="time" level="9"}
+		            				{include file="public/block_slide"}
+		            				{/maccms:vod}						            		
+						        </div>
+						        <div class="{$maccms.cache_flag} swiper-button-next hidden-xs"><i class="{$maccms.cache_flag} icon iconfont icon-right"></i></div>
+                    			<div class="{$maccms.cache_flag} swiper-button-prev hidden-xs"><i class="{$maccms.cache_flag} icon iconfont icon-back"></i></div>
+						        <div class="{$maccms.cache_flag} swiper-pagination"></div>
+						    </div>
+						    
+						</div>	
+						<div class="{$maccms.cache_flag} col-md-7 col-sm-12 col-xs-12 padding-0">																																			
+							<div class="{$maccms.cache_flag} hy-video-list clearfix">
+								<div class="{$maccms.cache_flag} item clearfix">
+									{maccms:vod num="6" type="1" order="desc" by="time"}
+								    <div class="{$maccms.cache_flag} col-md-4 col-sm-4 col-xs-6">									    	
+							    		<a class="{$maccms.cache_flag} videopic lazy" href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" data-original="{$vo.vod_pic|mac_url_img}" style="padding-top: 62.5%; background: url({$vo.vod_pic|mac_url_img}) no-repeat; background-position:50% 50%; background-size: cover;" >								
+											<span class="{$maccms.cache_flag} play hidden-xs"></span>										
+											<span class="{$maccms.cache_flag} score">{$vo.vod_remarks}</span>
+											<span class="{$maccms.cache_flag} note textbg">{$vo.vod_name|nochaoscode}</span>
+										</a>																							    										
+									</div>
+									{/maccms:vod}	
+									
+								</div>															
+							</div>
+						</div>						
+					</div>
+					<div class="{$maccms.cache_flag} hy-video-text-list hidden-xs clearfix">
+						<div class="{$maccms.cache_flag} item">
+							<ul class="{$maccms.cache_flag} clearfix">
+								{maccms:vod num="12" type="1" order="desc" by="time" start="7"}
+								<li>	
+									{include file="public/block_videotext"}																										
+								</li>
+								{/maccms:vod}		
+							</ul>
+						</div>							
+					</div>
+					
+					<div class="{$maccms.cache_flag} hy-video-footer visible-xs clearfix">
+						<a href="{maccms:type ids="1"}{:mac_url_type($vo)}{/maccms:type}" class="{$maccms.cache_flag} text-muted" title="查看更多">查看更多 <i class="{$maccms.cache_flag} icon iconfont icon-right pull-right"></i></a>
+					</div>	
+				</div>
+
+				<!--end 电影/******************电视剧 -->   
+
+				<!--电影/电视剧 -->
+				<div class="{$maccms.cache_flag} hy-layout clearfix">														
+					<div class="{$maccms.cache_flag} hy-video-head">
+						<h3 class="{$maccms.cache_flag} margin-0"><i class="{$maccms.cache_flag} icon iconfont icon-flag text-color"></i> {maccms:type ids="2"}{$vo.type_name|nochaoscode}{/maccms:type}</h3>
+						<ul class="{$maccms.cache_flag} pull-right">						
+							<li class="{$maccms.cache_flag} active"><a href="{maccms:type ids="2"}{:mac_url_type($vo)}{/maccms:type}" class="{$maccms.cache_flag} text-muted">更多 <i class="{$maccms.cache_flag} icon iconfont icon-right"></i></a></li>
+						</ul>
+					</div>
+					<div class="{$maccms.cache_flag} clearfix">
+						<div class="{$maccms.cache_flag} col-md-5 col-sm-12 col-xs-12">
+							<div class="{$maccms.cache_flag} swiper-container hy-slide">
+						        <div class="{$maccms.cache_flag} swiper-wrapper">				            			
+		            				{maccms:vod num="3"  type="2" order="desc" by="time" level="9"}
+		            				{include file="public/block_slide"}
+		            				{/maccms:vod}						            		
+						        </div>
+						        <div class="{$maccms.cache_flag} swiper-button-next hidden-xs"><i class="{$maccms.cache_flag} icon iconfont icon-right"></i></div>
+                    			<div class="{$maccms.cache_flag} swiper-button-prev hidden-xs"><i class="{$maccms.cache_flag} icon iconfont icon-back"></i></div>
+						        <div class="{$maccms.cache_flag} swiper-pagination"></div>
+						    </div>
+						    
+						</div>	
+						<div class="{$maccms.cache_flag} col-md-7 col-sm-12 col-xs-12 padding-0">																																			
+							<div class="{$maccms.cache_flag} hy-video-list clearfix">
+								<div class="{$maccms.cache_flag} item clearfix">
+									{maccms:vod num="6" type="2" order="desc" by="time"}
+								    <div class="{$maccms.cache_flag} col-md-4 col-sm-4 col-xs-6">									    	
+							    		<a class="{$maccms.cache_flag} videopic lazy" href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" data-original="{$vo.vod_pic|mac_url_img}" style="padding-top: 62.5%; background: url({$vo.vod_pic|mac_url_img}) no-repeat; background-position:50% 50%; background-size: cover;" >								
+											<span class="{$maccms.cache_flag} play hidden-xs"></span>										
+											<span class="{$maccms.cache_flag} score">{$vo.vod_remarks}</span>
+											<span class="{$maccms.cache_flag} note textbg">{$vo.vod_name|nochaoscode}</span>
+										</a>																							    										
+									</div>
+									{/maccms:vod}	
+									
+								</div>															
+							</div>
+						</div>						
+					</div>
+					<div class="{$maccms.cache_flag} hy-video-text-list hidden-xs clearfix">
+						<div class="{$maccms.cache_flag} item">
+							<ul class="{$maccms.cache_flag} clearfix">
+								{maccms:vod num="12" type="2" order="desc" by="time" start="7"}
+								<li>	
+									{include file="public/block_videotext"}																										
+								</li>
+								{/maccms:vod}		
+							</ul>
+						</div>							
+					</div>
+					
+					<div class="{$maccms.cache_flag} hy-video-footer visible-xs clearfix">
+						<a href="{maccms:type ids="2"}{:mac_url_type($vo)}{/maccms:type}" class="{$maccms.cache_flag} text-muted" title="查看更多">查看更多 <i class="{$maccms.cache_flag} icon iconfont icon-right pull-right"></i></a>
+					</div>	
+				</div>
+
+				<!--end 电影/******************电视剧 -->  
+											    
+				<!--综艺-->
+				<div class="{$maccms.cache_flag} hy-layout clearfix">														
+					<div class="{$maccms.cache_flag} hy-video-head">
+						<h3 class="{$maccms.cache_flag} margin-0"><i class="{$maccms.cache_flag} icon iconfont icon-flag text-color"></i> {maccms:type ids="3"}{$vo.type_name|nochaoscode}{/maccms:type}</h3>
+						<ul class="{$maccms.cache_flag} pull-right">						
+							<li class="{$maccms.cache_flag} active"><a href="{maccms:type ids="3"}{:mac_url_type($vo)}{/maccms:type}" class="{$maccms.cache_flag} text-muted">更多 <i class="{$maccms.cache_flag} icon iconfont icon-right"></i></a></li>
+						</ul>
+					</div>
+					<div class="{$maccms.cache_flag} clearfix">
+						<div class="{$maccms.cache_flag} col-md-5 col-sm-12 col-xs-12">
+							<div class="{$maccms.cache_flag} swiper-container hy-slide">
+						        <div class="{$maccms.cache_flag} swiper-wrapper">				            			
+		            				{maccms:vod num="3"  type="3" order="desc" by="time" level="9"}
+		            				{include file="public/block_slide"}
+		            				{/maccms:vod}						            		
+						        </div>
+						        <div class="{$maccms.cache_flag} swiper-button-next hidden-xs"><i class="{$maccms.cache_flag} icon iconfont icon-right"></i></div>
+                    			<div class="{$maccms.cache_flag} swiper-button-prev hidden-xs"><i class="{$maccms.cache_flag} icon iconfont icon-back"></i></div>
+						        <div class="{$maccms.cache_flag} swiper-pagination"></div>
+						    </div>
+						    
+						</div>	
+						<div class="{$maccms.cache_flag} col-md-7 col-sm-12 col-xs-12 padding-0">																																			
+							<div class="{$maccms.cache_flag} hy-video-list clearfix">
+								<div class="{$maccms.cache_flag} item clearfix">
+									{maccms:vod num="6" type="3" order="desc" by="time"}
+								    <div class="{$maccms.cache_flag} col-md-4 col-sm-4 col-xs-6">									    	
+							    		<a class="{$maccms.cache_flag} videopic lazy" href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" data-original="{$vo.vod_pic|mac_url_img}" style="padding-top: 62.5%; background: url({$vo.vod_pic|mac_url_img}) no-repeat; background-position:50% 50%; background-size: cover;" >								
+											<span class="{$maccms.cache_flag} play hidden-xs"></span>										
+											<span class="{$maccms.cache_flag} score">{$vo.vod_remarks}</span>
+											<span class="{$maccms.cache_flag} note textbg">{$vo.vod_name|nochaoscode}</span>
+										</a>																							    										
+									</div>
+									{/maccms:vod}	
+									
+								</div>															
+							</div>
+						</div>						
+					</div>
+					<div class="{$maccms.cache_flag} hy-video-text-list hidden-xs clearfix">
+						<div class="{$maccms.cache_flag} item">
+							<ul class="{$maccms.cache_flag} clearfix">
+								{maccms:vod num="12" type="3" order="desc" by="time" start="7"}
+								<li>	
+									{include file="public/block_videotext"}																										
+								</li>
+								{/maccms:vod}		
+							</ul>
+						</div>							
+					</div>
+					
+					<div class="{$maccms.cache_flag} hy-video-footer visible-xs clearfix">
+						<a href="{maccms:type ids="3"}{:mac_url_type($vo)}{/maccms:type}" class="{$maccms.cache_flag} text-muted" title="查看更多">查看更多 <i class="{$maccms.cache_flag} icon iconfont icon-right pull-right"></i></a>
+					</div>	
+				</div>
+				<!--end 综艺-->
+				
+				<!--动漫-->
+				<div class="{$maccms.cache_flag} hy-layout clearfix">														
+					<div class="{$maccms.cache_flag} hy-video-head">
+						<h3 class="{$maccms.cache_flag} margin-0"><i class="{$maccms.cache_flag} icon iconfont icon-flag text-color"></i> {maccms:type ids="4"}{$vo.type_name|nochaoscode}{/maccms:type}</h3>
+						<ul class="{$maccms.cache_flag} pull-right">						
+							<li class="{$maccms.cache_flag} active"><a href="{maccms:type ids="2"}{:mac_url_type($vo)}{/maccms:type}" class="{$maccms.cache_flag} text-muted">更多 <i class="{$maccms.cache_flag} icon iconfont icon-right"></i></a></li>
+						</ul>
+					</div>
+					<div class="{$maccms.cache_flag} clearfix">
+						<div class="{$maccms.cache_flag} col-md-5 col-sm-12 col-xs-12">
+							<div class="{$maccms.cache_flag} swiper-container hy-slide">
+						        <div class="{$maccms.cache_flag} swiper-wrapper">				            			
+		            				{maccms:vod num="3"  type="4" order="desc" by="time" level="9"}
+		            				{include file="public/block_slide"}
+		            				{/maccms:vod}						            		
+						        </div>
+						        <div class="{$maccms.cache_flag} swiper-button-next hidden-xs"><i class="{$maccms.cache_flag} icon iconfont icon-right"></i></div>
+                    			<div class="{$maccms.cache_flag} swiper-button-prev hidden-xs"><i class="{$maccms.cache_flag} icon iconfont icon-back"></i></div>
+						        <div class="{$maccms.cache_flag} swiper-pagination"></div>
+						    </div>
+						    
+						</div>	
+						<div class="{$maccms.cache_flag} col-md-7 col-sm-12 col-xs-12 padding-0">																																			
+							<div class="{$maccms.cache_flag} hy-video-list clearfix">
+								<div class="{$maccms.cache_flag} item clearfix">
+									{maccms:vod num="6" type="4" order="desc" by="time"}
+								    <div class="{$maccms.cache_flag} col-md-4 col-sm-4 col-xs-6">									    	
+							    		<a class="{$maccms.cache_flag} videopic lazy" href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" data-original="{$vo.vod_pic|mac_url_img}" style="padding-top: 62.5%; background: url({$vo.vod_pic|mac_url_img}) no-repeat; background-position:50% 50%; background-size: cover;" >								
+											<span class="{$maccms.cache_flag} play hidden-xs"></span>										
+											<span class="{$maccms.cache_flag} score">{$vo.vod_remarks}</span>
+											<span class="{$maccms.cache_flag} note textbg">{$vo.vod_name|nochaoscode}</span>
+										</a>																							    										
+									</div>
+									{/maccms:vod}	
+									
+								</div>															
+							</div>
+						</div>						
+					</div>
+					<div class="{$maccms.cache_flag} hy-video-text-list hidden-xs clearfix">
+						<div class="{$maccms.cache_flag} item">
+							<ul class="{$maccms.cache_flag} clearfix">
+								{maccms:vod num="12" type="4" order="desc" by="time" start="7"}
+								<li>	
+									{include file="public/block_videotext"}																										
+								</li>
+								{/maccms:vod}		
+							</ul>
+						</div>							
+					</div>
+					
+					<div class="{$maccms.cache_flag} hy-video-footer visible-xs clearfix">
+						<a href="{maccms:type ids="4"}{:mac_url_type($vo)}{/maccms:type}" class="{$maccms.cache_flag} text-muted" title="查看更多">查看更多 <i class="{$maccms.cache_flag} icon iconfont icon-right pull-right"></i></a>
+					</div>	
+				</div>
+				<!--end 动漫-->				
+				
+				<!--专题-->				
+				<div class="{$maccms.cache_flag} hy-layout clearfix">	
+					<div class="{$maccms.cache_flag} hy-video-head">
+						<h3 class="{$maccms.cache_flag} margin-0"><i class="{$maccms.cache_flag} icon iconfont icon-icon_special text-color"></i> 专题</h3>
+						<ul class="{$maccms.cache_flag} pull-right">							
+							<li class="{$maccms.cache_flag} active"><a href="{:mac_url_topic_index()}" class="{$maccms.cache_flag} text-muted" title="查看更多">更多 <i class="{$maccms.cache_flag} icon iconfont icon-right"></i></a></li>
+						</ul>
+					</div>
+					<div class="{$maccms.cache_flag} hy-topic-list clearfix">
+						<div class="{$maccms.cache_flag} item">							
+							{maccms:topic num="3" paging="no" order="asc" by="sort" ids="all"}
+						    <div class="{$maccms.cache_flag} col-md-4 {if condition="$key lt 1"}col-sm-12{else /}col-sm-6 {/if}col-xs-12">					    		
+					    		<a class="{$maccms.cache_flag} videopic lazy" href="{:mac_url_topic_detail($vo)}" title="{$vo.topic_name}" data-original="{:mac_url_img($vo.topic_pic)}" style="padding-top: 50%; background: url({$vo.topic_pic}) no-repeat; background-position:50% 50%; background-size: cover;" >
+					    			<div class="{$maccms.cache_flag} details textbg">
+					    				<span class="{$maccms.cache_flag} text"> <i class="{$maccms.cache_flag} icon iconfont icon-icon_special"></i> 专题</span>
+					    				<span class="{$maccms.cache_flag} name">{$vo.topic_name}</span>
+					    				<span class="{$maccms.cache_flag} count">—— {$vo.topic_hits} ——</span>
+					    			</div>
+								</a>														
+							</div>
+							{/maccms:topic}	
+						</div>												
+					</div>
+					
+					<div class="{$maccms.cache_flag} hy-video-footer visible-xs clearfix">
+						<a href="{:mac_url_topic_index()}" class="{$maccms.cache_flag} text-muted" title="查看更多">查看更多 <i class="{$maccms.cache_flag} icon iconfont icon-right pull-right"></i></a>
+					</div>	
+				</div>	
+				<!--end 专题 -->
+				
+				<!--合作伙伴-->	
+				<div class="{$maccms.cache_flag} hy-layout hidden-md hidden-sm hidden-xs clearfix">					
+					<div class="{$maccms.cache_flag} hy-video-head">
+						<h3 class="{$maccms.cache_flag} margin-0">合作伙伴</h3>							
+					</div>
+					<div class="{$maccms.cache_flag} hy-footer-partner">
+						<div class="{$maccms.cache_flag} item clearfix">
+							<a href="http://www.iqiyi.com/" target="_blank" class="{$maccms.cache_flag} iqiyi"><span></span></a>
+							<a href="http://www.letv.com/" target="_blank" class="{$maccms.cache_flag} letv"><span></span></a>
+							<a href="http://www.wasu.cn/" target="_blank" class="{$maccms.cache_flag} wasu"><span></span></a>
+							<a href="http://www.fun.tv/" target="_blank" class="{$maccms.cache_flag} fun"><span></span></a>
+							<a href="http://www.hunantv.com/" target="_blank" class="{$maccms.cache_flag} hunantv"><span></span></a>
+							<a href="http://www.cntv.cn/" target="_blank" class="{$maccms.cache_flag} cntv"><span></span></a>
+							<a href="http://v.ifeng.com/" target="_blank" class="{$maccms.cache_flag} ifeng line-last"><span></span></a>
+							<a href="http://www.pptv.com/" target="_blank" class="{$maccms.cache_flag} pptv"><span></span></a>
+							<a href="http://www.m1938.com" target="_blank" class="{$maccms.cache_flag} kankan"><span></span></a>
+							<a href="http://www.56.com/" target="_blank" class="{$maccms.cache_flag} v56"><span></span></a>
+							<a href="http://www.ku6.com/" target="_blank" class="{$maccms.cache_flag} ku6"><span></span></a>
+							<a href="http://www.1905.com/" target="_blank" class="{$maccms.cache_flag} m1905"><span></span></a>
+							<a href="http://www.cztv.com/" target="_blank" class="{$maccms.cache_flag} sina"><span></span></a>
+							<a href="http://www.yinyuetai.com/" target="_blank" class="{$maccms.cache_flag} yinyuetai line-last"><span></span></a>
+						</div>
+					</div>
+				</div>
+				<!--end 合作伙伴 -->
+				
+				<!--友链-->	
+				<div class="{$maccms.cache_flag} hy-layout hidden-sm hidden-xs clearfix">					
+					<div class="{$maccms.cache_flag} hy-video-head">
+						<h3 class="{$maccms.cache_flag} margin-0">友情链接</h3>							
+					</div>
+					<div class="{$maccms.cache_flag} hy-footer-link">
+						<div class="{$maccms.cache_flag} item clearfix">
+								{maccms:link num="100" type="all" order="asc" by="sort"}
+								<li><a class="{$maccms.cache_flag} text-color-999" href="{$vo.link_url}" title="{$vo.link_name|nochaoscode}" target="_blank">{$vo.link_name|nochaoscode}</a></li>
+								{/maccms:link}
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!--end 友链 -->
+				
+			</div>
+		</div>
+		
+		<script>
+	    var swiper = new Swiper('.hy-slide', {
+	        pagination: '.swiper-pagination',
+	        paginationClickable: true,
+	        autoplay: 3000,
+	        nextButton: '.swiper-button-next',
+            prevButton: '.swiper-button-prev',
+	    });	    
+	    </script>
+		
+		{include file="public/foot"}
+	</body>
+</html>

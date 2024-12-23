@@ -1,0 +1,62 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>电视剧明星-电影明星-明星介绍-明星大全-{$maccms.site_name|nochaoscode}</title>
+<meta name="keywords" content="明星介绍,电影明星,电视剧明星,明星大全" />
+<meta name="description" content="{$maccms.site_name|nochaoscode}为您提供各国男女明星的详细介绍、最新明星主演的电影，电视剧在线观看。" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="applicable-device" content="pc,mobile">
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta content="{$maccms.site_name|nochaoscode}" name="apple-mobile-web-app-title">
+{include file="public/include"}
+</head>
+<body>
+<header class="header clearfix">
+<a href="javascript:void(0);" target="_self" class="aChannel top_channel_btn"><span>明星</span><i class="moreArrow"></i></a>
+{include file="public/head"}
+<div class="mask" id="common_mask"></div>
+<div class="list-nav">
+{maccms:actor num="24" paging="yes" order="desc" by="time"}{/maccms:actor}
+<div class="main">
+<div class="list-nav-s">
+<div class="list-nav-s-l"><i>明星索引</i><span class="name">共:(<font color="#FF0000">{$__PAGING__.record_total}</font>)个明星资料</span></div>
+</div>
+</div>
+</div>
+<div class="main top" style="margin-top:15px;">
+<div class="list_ico">
+<a href="javascript:;" class='cur'><i class="iconfont">&#xe616;</i>最新</a>
+</div>
+<div class="ui-pages fn-right">
+<strong>{$__PAGING__.page_current}/{$__PAGING__.page_total}</strong>
+{if condition="$__PAGING__.page_current==1"}
+<span class="prev disabled">上一页</span>
+{else /}
+<a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_prev}" class="prev pagegbk">上一页</a>&nbsp;
+{/if}
+{if condition="$__PAGING__.page_current==$__PAGING__.page_total"}
+<span class="prev disabled">下一页</span>
+{else /}
+<a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_next}" class="next pagegbk">下一页</a>&nbsp;
+{/if}
+</div>
+</div>
+<div class="main top">
+<div class="list_vod">
+<ul class="list_tab_img" id="resize_list">
+{maccms:actor num="24" paging="yes" order="desc" by="time"}
+<li><a href="{$vo|mac_url_actor_detail}" title="{$vo.actor_name}" target="_self"><div class="picsize"><img class="loading" src="{$maccms.path_tpl}images/220x307.jpg" data-original="{$vo.actor_pic|mac_url_img}" alt="{$vo.actor_name}" /></div></a><div class="star-info"><h2><a href="{$vo|mac_url_actor_detail}" title="{$vo.actor_name}" target="_self">{$vo.actor_name}</a></h2><p>职业：{$vo.actor_remarks|mac_default='演员'}</p><p>地区：{$vo.actor_area}</p>
+</div>
+</li>
+{/maccms:actor}
+</ul>
+</div>
+</div>
+{include file="public/paging"}
+{include file="public/foot"}
+<script type="text/javascript" src="{$maccms.path_tpl}js/list.min.js"></script>
+</body>
+</html>

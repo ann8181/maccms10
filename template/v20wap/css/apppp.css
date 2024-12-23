@@ -1,0 +1,6 @@
+﻿
+.v-pic{position:relative;overflow:hidden;width:100%;border-radius:4px;background:rgba(0,0,0,.05)}
+.tvhots .v-pic{height:324px}
+
+
+.v-tips{position:absolute;bottom:0;left:0;overflow:hidden;padding:3px 6px;width:100%; background-image: linear-gradient(transparent,rgba(0, 0, 0, 0));background-repeat:no-repeat;color:#fff;text-align:right;text-overflow:ellipsis;white-space:nowrap;}

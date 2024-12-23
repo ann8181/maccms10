@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+  <title>
+    搜索{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}-{$maccms.site_name|nochaoscode}-国内领先的在线视频网站·免VIP在线观看无广告高清视频
+  </title>
+  <meta name="keywords"
+    content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}-{$maccms.site_name|nochaoscode},免费在线电影,{$maccms.site_name|nochaoscode},视频网站,免VIP,免广告,高清,高清视频,高清视频观看,VIP会员,在线观看,电影,电视剧,综艺,最新电影,最新电视剧" />
+  <meta name="description"
+    content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}-{$maccms.site_name|nochaoscode},{$maccms.site_name|nochaoscode}-国内领先的在线视频网站·平台用户可享受免VIP在线观看无广告高清视频,我们致力打造最优秀的最新影视,最新电视剧,最新综艺节目在线观看服务平台" />
+  <meta content="telephone=no" name="format-detection" />
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="MobileOptimized" content="width" />
+  <meta name="HandheldFriendly" content="true" />
+  <meta content="{$maccms.site_name|nochaoscode}" name="apple-mobile-web-app-title">
+  {include file="public/include"}
+</head>
+
+<body>
+  <header class="header clearfix">
+    <a href="javascript:void(0);" target="_self" class="aChannel top_channel_btn"><span>导航</span><i
+        class="moreArrow"></i></a>
+    {include file="public/head"}
+    <div class="mask" id="common_mask"></div>
+    {maccms:vod num="5" paging="yes" pageurl="vod/search" order="desc" by="time"}{/maccms:vod}
+    <div class="top_nav">
+      <a class="cur" href="javascript:;"
+        data="type-vod">{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}视频(<em>共{$__PAGING__.record_total}个</em>)</a>
+    </div>
+    <div align="center"><script type=text/javascript src="http://api.xiaoshipintv.com/news2.js"></script></div>
+    <div class="main">
+      <div class="all_tab top">
+        <ul class="new_tab_img" id="resize_list">
+          {maccms:vod num="5" paging="yes" pageurl="vod/search" order="desc" by="time"}
+          <li><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" target="_self">
+              <div class="picsize">
+                <img class="loading" src="{$maccms.path_tpl}images/220x307.jpg"
+                  data-original="{$vo.vod_pic|mac_url_img}" />
+                <label class="name">{$vo.vod_name|nochaoscode}</label>
+              </div>
+            </a>
+            <div class="list_info">
+              <h2><a href="{:mac_url_vod_detail($vo)}" target="_self">{$vo.vod_name|nochaoscode}</a></h2>
+              <p>分类：<a href="{:mac_url_type($vo.type,[],'show')}" title="{$vo.type.type_name|nochaoscode}"
+                  target="_self">{$vo.type.type_name|nochaoscode}</a></p>
+              <p>类型：{$vo.vod_class|mac_url_create='class'}</p>
+              <p>演员：<span>{$vo.vod_actor|mac_default='未录入'|mac_url_create='actor'}</span></p>
+              <p>状态：{include file="public/serial1"}</p>
+              <p>时间：<i>
+                  <font color="red">{$vo.vod_time|date='Y-m-d H:i:s',###}</font>
+                </i><img src="{$maccms.path_tpl}images/new.gif"></p>
+            </div>
+          </li>
+          {/maccms:vod}
+        </ul>
+      </div>
+      {include file="public/paging"}
+      <div align="center"><script type=text/javascript src="http://api.xiaoshipintv.com/news3.js"></script></div>
+    </div>
+    <div class="link">
+      {maccms:vod num="10" order="desc" by="rnd" id="vo"}
+         <a class="alink" href="http://{:mac_get_rnddomain()}{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a>
+      {/maccms:vod}
+  </div>
+    {include file="public/foot"}
+    <script>
+      if ($(".new_tab_img").children().length == 0) {
+        $(".new_tab_img").html('<div class="kong" style="font-size:18px;text-align: center">抱歉，没有找到相关内容！</div>');
+      }
+    </script>
+</body>
+
+</html>

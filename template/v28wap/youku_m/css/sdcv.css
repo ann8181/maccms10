@@ -1,0 +1,6 @@
+/*友情链接*/
+#link {margin:0 auto;clear:both; border-top:2px #3097FD solid;}
+#link #title{font-size:1rem; color:#3097FD; text-align:left;border-bottom:1px #e6e4e4 solid; height:2.5rem; line-height:2.5rem;margin:0 auto; padding-left:2%;}
+#link ul{padding:0.5rem 0;}
+#link ul li {float:left;} 
+#link ul li a:link,#link ul li a:visited { display:block;font-size:0.8rem;line-height:1.5rem;text-align:left;margin-left:0.5rem} 

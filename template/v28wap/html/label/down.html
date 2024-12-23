@@ -1,0 +1,205 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+	<meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no, email=no">
+    <meta name="description" content="">
+    <meta name="title" content="">
+    <meta name="site" content="前往App Store下载APP">
+    <meta name="data-spm" content="a2h0j">
+	<title>前往App Store下载APP</title>
+</head>
+<style stype="text/css">
+body{
+	margin:0;
+	font-family: sans-serif;
+	background:#fff;
+}
+body,div,h3,p{
+	padding:0;
+	margin:0;
+}
+.wrap{
+    width: 100%;
+	display: none;
+}
+.download-wrap{
+	margin-left: -146px;
+	width: 292px;
+	height: 71px;
+	position: absolute;
+	bottom:10px;
+	left:50%;
+	background: 0 0 no-repeat;
+	background-size: 270px 71px;
+}
+.download-btn{
+	width:214px;
+	height:49px;
+	margin:16px auto 0 auto;
+}
+.safari_tip{
+    width: 100%;
+    position: absolute;
+	top: 17px;
+	text-align: center;
+	color:#fff;
+	font-size: 12px;
+    display: none;
+}
+.wx_guide{
+	display: none;
+	width: 100%;
+}
+.wx_guide img{
+	width: 100%;
+	height: auto;
+}
+img{
+    width: 100%;
+    height: auto;
+}
+
+</style>
+<body data-spm="8280701"><script>
+with(document)with(body)with(insertBefore(createElement("script"),firstChild))setAttribute("exparams","category=&userid=&aplus&yunid=&&trid=0b8a6f2215289813317932325e92cf&asid=AQAAAABTZyJbjDWERQAAAAAEmzGjLuBolg==",id="tb-beacon-aplus",src=(location>"https"?"//g":"//g")+".alicdn.com/alilog/mlog/aplus_v2.js")
+</script>
+
+	<div class="wrap" id="wrap" data-spm="2768500">
+		 
+	</div>
+	<div class="wx_guide" id="guide">
+	</div>
+	<div class="download-wrap" id="btn">
+		<div class="download-btn" id="download" data-statn-role="ck" data-spm-click="gostr=/youkuh5_downloadpage.click_type.dclick/;locaid=dh5download;" data-clipboard-text=""></div>
+	</div>
+</div>
+<script>
+	//调用背景图片地址
+	var downloadConfig = null;
+    //url参数查询
+	var getQueryString = function(name){
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = location.search.substr(1).match(reg);  //获取url中"?"符后的字符串并正则匹配
+        var context = "";
+        if (r != null)
+             context = r[2];
+        reg = null;
+        r = null;
+        return context == null || context == "" || context == "undefined" ? "" : context;
+    };
+    //特殊需求参数获取
+	var speConfig = function(downloadConfig){
+		var config = null,
+			speulink = getQueryString('speulink');
+		if (speulink && downloadConfig.paramArray){
+			var pa = downloadConfig.paramArray;
+			pa.forEach(function(item){
+				if (item.speType === speulink) config = item;
+			});
+		}
+		return config;
+	};
+    //下载链接获取
+    //var downLoadApp = function(){
+	//	var uriDownload = getQueryString('uriDownload'),
+	//		link = "";
+
+     //   if(uriDownload){
+     //       link = decodeURIComponent(uriDownload);
+     //   }else{
+      //      link = "https://itunes.apple.com/app/id336141475";
+      //  }
+
+	//	return link;
+	//};
+    //mt回调方法
+	function downloadBg(ret){
+		downloadConfig = ret;
+		downloadInit(downloadConfig)
+	}
+	//初始化UI
+	function downloadInit(downloadConfig){
+  		var ua = navigator.userAgent;
+		//微信提示safari打开
+		//设置背景图宽高
+		var wrap = document.getElementById('wrap');
+        var guide = document.getElementById('guide');
+		var btn = document.getElementById('btn');
+		var screenH = window.screen.height + 'px';
+		var screenW = window.screen.width + 'px';
+		var speC = speConfig(downloadConfig);
+        var autodown = speC ? speC.autodown : downloadConfig.autodown;
+
+        var cimg = document.createElement('img');
+        cimg.src = speC&&speC.download_bg || downloadConfig.download_bg;
+
+		btn.style.backgroundImage = 'url(' + (speC&&speC.download_btn || downloadConfig.download_btn) + ')';
+
+		//safari支持下拉唤起
+		if(/micromessenger/i.test(ua) && !speC){
+            cimg.src = downloadConfig.wxdownload_bg;
+            downloadConfig.wxdownload_btn&&(btn.style.backgroundImage = 'url(' + downloadConfig.wxdownload_btn + ')');
+			autodown = false;
+            guide.appendChild(cimg);
+ 			guide.style.display = 'block'
+			document.addEventListener('touchmove', function (ev) {
+				ev.preventDefault();
+			},false);
+		}else if(/(version)(applewebkit)[/]([\d.]+).*(safari)[/]([\d.]+)/i.test(ua) || /(webkit)[ \/]([\d.]+).*(version)[/]([\d.]+).*(safari)[/]([\d.]+)/i.test(ua)){
+			var tip = document.getElementById('tip');
+            wrap.appendChild(cimg);
+			wrap.style.display = 'block'
+			tip.style.display = "block";
+		}else{
+			var tip = document.getElementById('tip');
+            wrap.appendChild(cimg);
+			wrap.style.display = 'block'
+			tip.style.display = "block";
+			tip.innerText = '若您已安装了优酷无法唤起，请到safari中打开此页面';
+			document.addEventListener('touchmove', function (ev) {
+				ev.preventDefault();
+			},false);
+		}
+
+        if(autodown){
+            setTimeout(function(){
+                location.href=downLoadApp();
+            });
+        }
+	}
+
+	//下拉唤起优酷
+	var url = getQueryString("fallback_url");
+	if(url){
+        url = decodeURIComponent(url);
+		matches = url.match(/^(https?:)?(?:\/\/)?([0-9a-zA-Z.-]+\.zhebaikou\.com(?:\/.*)?)$/);
+		if (matches) {
+		    if (!matches[1]) {
+		        url = "//" + matches[2];
+		        window.location.href = url;
+		    }else{
+                window.location.href = url;
+            }
+		}
+	}
+
+	localStorage["down_initDate"] = Date.now();
+	//点击按钮
+	document.querySelector("#download").addEventListener("click",function(){
+		localStorage["down_7dayDate"] = Date.now();
+		try {
+			goldlog.record('/yt/youkuphoneplaypage.download.ulinkbutton', 'CLK', '', 'GET')
+		} catch (err) {}
+		location.href=downLoadApp();
+	},false);
+</script>
+<script src="{$maccms.path_tpl}youku_m/js/dae63cbedc1d433ab024b3c7d270e5bf.js"></script>
+</body>
+</html>
