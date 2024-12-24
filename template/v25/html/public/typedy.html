@@ -1,0 +1,212 @@
+<div class="{$maccms.cache_flag} slide">
+<div class="{$maccms.cache_flag} slide-box">
+	<ul>{maccms:vod num="6" paging="no" type="current" level="8,9" order="desc" by="sort"}
+		<li style="background:#bed5dd url({$vo.vod_pic_slide|mac_url_img}) 50% 0 no-repeat;"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" target="_blank">{$vo.vod_name|nochaoscode}</a></li>{/maccms:vod}
+	</ul>
+</div>
+<div class="{$maccms.cache_flag} slide-item box">{maccms:vod num="6" paging="no" type="current" level="8,9" order="desc" by="sort"}
+	<div class="{$maccms.cache_flag} slide-detail">
+		<a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" target="_blank" class="{$maccms.cache_flag} img"><img src="{$vo.vod_pic|mac_url_img}" alt="{$vo.vod_name|nochaoscode}"></a>
+		<div class="{$maccms.cache_flag} slide-txt">
+			<h2 style="text-align:left"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}">{$vo.vod_name|nochaoscode}</a></h2>
+			<p>主演：{$vo.vod_actor}</p>
+			<p>{$vo.vod_blurb}</p>
+		</div>
+	</div>{/maccms:vod}
+</div>
+<div class="{$maccms.cache_flag} slide-img">{maccms:vod num="6" paging="no" type="current" level="8,9" order="desc" by="sort"}
+	<a href="{:mac_url_vod_detail($vo)}" target="_blank"><img src="{$vo.vod_pic|mac_url_img}" alt="{$vo.vod_name|nochaoscode}"/></a>{/maccms:vod}
+</div>
+</div>
+<script type="text/javascript">jQuery(".slide").slide({ titCell:".slide-img a", mainCell:".slide-box ul", effect:"fold",  autoPlay:true, delayTime:700,targetCell:".slide-item .slide-detail"});</script>
+<div class="{$maccms.cache_flag} list-mcid">
+<div class="{$maccms.cache_flag} box">
+	<div class="{$maccms.cache_flag} list-micd-type rs">
+		<span>分类</span>
+		<ul>
+			<p class="{$maccms.cache_flag} fn-clear">{maccms:type num="8" parent="current" order="asc" by="sort" id="vo1" key="key1"}{in name="$key1" value="5"}
+			</p><p class="{$maccms.cache_flag} fn-clear">{/in}
+				<a href="{:mac_url_type($vo1)}" target="_blank">{$vo1.type_name|nochaoscode}</a>{/maccms:type}
+			</p>
+		</ul>
+	</div>
+	<div class="{$maccms.cache_flag} list-micd-type as">
+		<span>类型</span>
+		<ul>
+			<p class="{$maccms.cache_flag} fn-clear">{maccms:foreach name=":explode(',',$obj.type_extend.class)" id="vo2" key="key2"}{if condition="$key2 lt 12"}{in name="$key2" value="6"}
+			</p><p class="{$maccms.cache_flag} fn-clear">{/in}
+				<a href="{:mac_url_type($obj,['class'=>$vo2],'show')}" title="{$vo2}" target="_blank">{$vo2}</a>{/if}{/maccms:foreach}
+			</p>
+		</ul>
+	</div>
+	<div class="{$maccms.cache_flag} list-micd-type as">
+		<span>年代</span>
+		<ul>
+			<p class="{$maccms.cache_flag} fn-clear">{maccms:foreach name=":explode(',',$obj.type_extend.year)" id="vo2" key="key2"}{if condition="$key2 lt 8"}{in name="$key2" value="4"}
+			</p><p class="{$maccms.cache_flag} fn-clear">{/in}
+				<a href="{:mac_url_type($obj,['year'=>$vo2],'show')}" title="{$vo2}" target="_blank">{$vo2}</a>{/if}{/maccms:foreach}
+			</p>
+		</ul>
+	</div>
+	<div class="{$maccms.cache_flag} list-micd-type ls">
+		<span class="{$maccms.cache_flag} so">热搜词</span>
+		<ul>
+			<p class="{$maccms.cache_flag} fn-clear">{maccms:vod num="6" type="current" order="desc" by="hits"}{in name="$key" value="4"}
+			</p><p class="{$maccms.cache_flag} fn-clear">{/in}
+				<a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" target="_blank">{$vo.vod_name|mac_substring=4}</a>{/maccms:vod}
+			</p>
+		</ul>
+	</div>
+</div>
+</div>
+<div class="{$maccms.cache_flag} boxt">
+<div class="{$maccms.cache_flag} w920 fn-left">
+	<div class="{$maccms.cache_flag} title ont t10 mb10">
+		<h2>正在热映</h2>
+	</div>
+	<div class="{$maccms.cache_flag} back-tabs" id="tongbu">
+		<ul class="{$maccms.cache_flag} tab-qh">
+		</ul>
+		<a href="javascript:;" class="{$maccms.cache_flag} switchBtn left disabled prev"></a><a href="javascript:;" class="{$maccms.cache_flag} switchBtn right disabled next"></a>
+		<div class="{$maccms.cache_flag} pb20">
+			<ul class="{$maccms.cache_flag} tlist4 list-img" id="xj">{maccms:vod num="8" type="current" order="desc" by="hits_day"}
+				<li><a class="{$maccms.cache_flag} picm" href="{:mac_url_vod_detail($vo)}" target="_self"><img class="{$maccms.cache_flag} loading" src="{$maccms.path_tpl}images/pic.png" data-original="{$vo.vod_pic|mac_url_img}" title="{$vo.vod_name|nochaoscode}"><label class="{$maccms.cache_flag} qx">{include file="public/serial1"}</label>
+				<div class="{$maccms.cache_flag} info">
+					<h3>{$vo.vod_name|nochaoscode}</h3>
+					<p><em>主演：</em>{$vo.vod_actor}</p>
+					<p><em>类型：</em>{$vo.vod_class}</p>
+					<p><em>年代：{$vo.vod_year}</em></p>
+					<p><em>上映时间：{$vo.vod_pubdate}</em></p>
+				</div>
+				</a>
+				<div class="{$maccms.cache_flag} txt">
+					<h3><a href="{:mac_url_vod_detail($vo)}" target="_self">{$vo.vod_name|nochaoscode}</a></h3>
+					<span class="{$maccms.cache_flag} des">{$vo.vod_content|mac_filter_html}</span>
+				</div>
+				</li>{/maccms:vod}
+			</ul>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">jQuery("#tongbu").slide({titCell:".tab-qh",mainCell:".pb20 ul",autoPage:true,effect:"left",autoPlay:false,scroll:4,vis:4,trigger:"click"});</script>
+{maccms:type ids="5" order="asc" by="sort"}
+<div class="{$maccms.cache_flag} w260 fn-right">
+	<div class="{$maccms.cache_flag} title t10">
+		<h2><a href="{:mac_url_type($vo)}" target="_blank">{$vo.type_name|nochaoscode}</a></h2>
+	</div>
+	<ul class="{$maccms.cache_flag} news-rank pb10">{maccms:art num="1" type="'.$vo['type_id'].'" order="desc" by="time" id="vo2" key="key2"}
+		<li class="{$maccms.cache_flag} top1"><a href="{:mac_url_art_detail($vo2)}" target="_self"><img class="{$maccms.cache_flag} loading" src="{$maccms.path_tpl}images/pic.png" data-original="{$vo2.art_pic|mac_url_img}" alt="{$vo2.art_name|nochaoscode}" title="{$vo2.art_name|nochaoscode}">
+		<div class="{$maccms.cache_flag} masktxt">
+			<em>{$key2}</em><span>{$vo2.art_name|nochaoscode}</span>
+		</div>
+		</a></li>{/maccms:art}
+{maccms:art num="5" type="'.$vo['type_id'].'" start="2" order="desc" by="time" id="vo2" key="key2"}
+		<li><a href="{:mac_url_art_detail($vo2)}" title="{$vo2.art_name|nochaoscode}" target="_self"><em>{$key2+1}</em><span>{$vo2.art_name|nochaoscode}</span></a></li>{/maccms:art}
+	</ul>
+</div>{/maccms:type}
+</div>
+<div class="{$maccms.cache_flag} box t10">
+<div class="{$maccms.cache_flag} title ont">
+	<h2>新片预告</h2>
+</div>
+</div>
+<div class="{$maccms.cache_flag} back-tabs boxn" id="new">
+<ul class="{$maccms.cache_flag} tab-qh">
+</ul>
+<a href="javascript:;" class="{$maccms.cache_flag} switchBtn left disabled prev"></a><a href="javascript:;" class="{$maccms.cache_flag} switchBtn right disabled next"></a>
+<ul class="{$maccms.cache_flag} up-list list-img sy" id="xp">{maccms:vod num="10" type="current" state="预告片" order="desc" by="time" id="vo2" key="key2"}
+	<li><a href="{:mac_url_vod_detail($vo2)}" target="_self"><img class="{$maccms.cache_flag} loading" src="{$maccms.path_tpl}images/pic.png" data-original="{$vo2.vod_pic|mac_url_img}" alt="{$vo2.vod_name|nochaoscode}" title="{$vo2.vod_name|nochaoscode}">
+	<div class="{$maccms.cache_flag} info">
+		<h3>{$vo2.vod_name|nochaoscode}</h3>
+		<p><em>主演：</em>{$vo2.vod_actor}</p>
+		<p><em>导演：</em>{$vo2.vod_director|mac_default='未知'}</p>
+		<p><em>类型：</em>{$vo2.vod_class}</p>
+		<p><em>首映：</em>{$vo2.vod_pubdate}</p>
+	</div>
+	</a>
+	<div class="{$maccms.cache_flag} txt">
+		<h3><a href="{:mac_url_vod_detail($vo2)}" target="_self">{$vo2.vod_name|nochaoscode}</a></h3>
+		<span class="{$maccms.cache_flag} des">{$vo2.vod_actor}</span>
+	</div>
+	<em class="{$maccms.cache_flag} time">{$vo2.vod_pubdate|mac_substring=8,5} 上映</em><em class="{$maccms.cache_flag} dian"></em></li>{/maccms:vod}
+</ul>
+<div class="{$maccms.cache_flag} tv-up-title">
+</div>
+</div>
+<script type="text/javascript">jQuery("#new").slide({titCell:".tab-qh",mainCell:".up-list",autoPage:true,effect:"left",autoPlay:false,scroll:5,vis:5,trigger:"click"});</script>
+<div class="{$maccms.cache_flag} box t10">
+<div class="{$maccms.cache_flag} title ont">
+	<h2>{$obj.type_name|nochaoscode}明星</h2>
+	<a href="{$obj|mac_url_actor_index}" target="_blank" title="{$obj.type_name|nochaoscode}明星" class="{$maccms.cache_flag} more">更多<i class="{$maccms.cache_flag} iconfont">&#xe61f;</i></a>
+</div>
+</div>
+<div class="{$maccms.cache_flag} star-hot-list boxn back-tabs">
+{maccms:actor num="3" order="desc" by="hits"}
+<div class="{$maccms.cache_flag} star-hot-box">
+	<div class="{$maccms.cache_flag} starinfo">
+		<div class="{$maccms.cache_flag} star-hot-pic">
+			<a href="{$vo|mac_url_actor_detail}" target="_blank"><img src="{$vo.actor_pic|mac_url_img}" title="{$vo.actor_name}" alt="{$vo.actor_name}"/></a>
+		</div>
+		<h3><a href="{$vo|mac_url_actor_detail}" target="_blank">{$vo.actor_name}</a></h3>
+{maccms:vod num="1" actor="'.$vo['actor_name'].'" type="current" order="desc" by="hits" id="vo2" key="key2"}<p>正在热映：<a href="{:mac_url_vod_detail($vo2)}" target="_self">{$vo2.vod_name|nochaoscode}</a></p>{/maccms:vod}
+	</div>
+	<div class="{$maccms.cache_flag} star-hot-vod">
+		<i class="{$maccms.cache_flag} iArrow"></i>
+		<ul class="{$maccms.cache_flag} star-hot-img">{maccms:vod num="3" actor="'.$vo['actor_name'].'" type="current" order="desc" by="time" id="vo2" key="key2"}
+			<li class="{$maccms.cache_flag} imglist"><a href="{:mac_url_vod_detail($vo2)}" target="_self"><img class="{$maccms.cache_flag} loading" src="{$vo2.vod_pic|mac_url_img}" alt="{$vo2.vod_name|nochaoscode}" title="{$vo2.vod_name|nochaoscode}">
+			<div class="{$maccms.cache_flag} info">
+				<i class="{$maccms.cache_flag} iconfont">&#xe622;</i>
+			</div>
+			</a>
+			<h3 class="{$maccms.cache_flag} mh3"><a href="{:mac_url_vod_detail($vo2)}" target="_self">{$vo2.vod_name|nochaoscode}</a></h3>
+			</li>{/maccms:vod}
+		</ul>
+	</div>
+</div>
+{/maccms:actor}
+</div>
+{maccms:type parent="current" order="asc" by="sort" id="vo2" key="key2"}
+<div class="{$maccms.cache_flag} box">
+<div class="{$maccms.cache_flag} w920 fn-left">
+	<div class="{$maccms.cache_flag} title ont t10 mb10">
+		<h2>{$vo2.type_name|nochaoscode}</h2>
+		<a href="{:mac_url_type($vo2,[],'show')}" target="_blank" title="{$vo2.type_name|nochaoscode}" class="{$maccms.cache_flag} more">更多<i class="{$maccms.cache_flag} iconfont">&#xe61f;</i></a>
+	</div>
+	<div class="{$maccms.cache_flag} back-tab">
+		<ul class="{$maccms.cache_flag} list4 list-img">{maccms:vod num="4" type="'.$vo2['type_id'].'" order="desc" by="time"}
+			<li><a class="{$maccms.cache_flag} picm" href="{:mac_url_vod_detail($vo)}" target="_self"><img class="{$maccms.cache_flag} loading" src="{$maccms.path_tpl}images/pic.png" data-original="{$vo.vod_pic|mac_url_img}" alt="{$vo.vod_name|nochaoscode}" title="{$vo.vod_name|nochaoscode}"><label class="{$maccms.cache_flag} qx">{include file="public/serial1"}</label>
+			<div class="{$maccms.cache_flag} info">
+				<i class="{$maccms.cache_flag} iconfont">&#xe622;</i>
+			</div>
+			</a>
+			<div class="{$maccms.cache_flag} txt">
+				<h3><a href="{:mac_url_vod_detail($vo)}" target="_self">{$vo.vod_name|nochaoscode}</a></h3>
+				<span class="{$maccms.cache_flag} des">{$vo.vod_actor}</span>
+			</div>
+			</li>{/maccms:vod}
+		</ul>
+	</div>
+</div>
+<div class="{$maccms.cache_flag} w260 fn-right">
+	<div class="{$maccms.cache_flag} title ont t10 mb10">
+		<h2><a href="{:mac_url_type($vo2,[],'show')}" target="_blank">{$vo2.type_name|nochaoscode}排行榜</a></h2>
+	</div>
+	<ul class="{$maccms.cache_flag} hot-list back-tab movlist">{maccms:vod num="1" type="'.$vo2['type_id'].'" order="desc" by="hits_week"}
+		<li class="{$maccms.cache_flag} hot1">
+		<div class="{$maccms.cache_flag} hot1-img">
+			<a href="{:mac_url_vod_detail($vo)}" target="_self"><img class="{$maccms.cache_flag} loading" src="{$maccms.path_tpl}images/pic.png" data-original="{$vo.vod_pic|mac_url_img}" alt="{$vo.vod_name|nochaoscode}" title="{$vo.vod_name|nochaoscode}"></a><span>{$key}</span>
+		</div>
+		<div class="{$maccms.cache_flag} hot-txt">
+			<h3><a href="{:mac_url_vod_detail($vo)}" target="_self">{$vo.vod_name|nochaoscode}</a></h3>
+			<p><i>导演：</i>{$vo.vod_director}</p>
+			<p><i>主演：</i>{$vo.vod_actor}</p>
+			<p><i>类型：</i>{$vo.vod_class}</p>
+			<p><i>状态：</i>{include file="public/serial1"}</p>
+		</div>
+		</li>{/maccms:vod}
+{maccms:vod num="5" type="'.$vo2['type_id'].'" start="2" order="desc" by="hits_week"}
+		<li><span {in name="$key" value="1,2"}class="{$maccms.cache_flag} cut"{/in}>{$key+1}</span><a href="{:mac_url_vod_detail($vo)}" target="_self">{$vo.vod_name|nochaoscode}</a><em class="{$maccms.cache_flag} cut">{$vo.vod_score}</em></li>{/maccms:vod}
+	</ul>
+</div>
+</div>
+{/maccms:type}

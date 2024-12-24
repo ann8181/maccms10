@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		{include file="public/include"}	
+<title>专题首页 - 精品专题 - 推荐专题 - {$maccms.site_name|nochaoscode}</title>
+    <meta name="keywords" content="电影专题,电视剧专题,综艺专题,动漫专题,推荐专题,专题收录" />
+    <meta name="description" content="本站提供最新最全精品专题数据" />	</head>
+	<body>
+		{include file="public/head"}
+		<!--main-->
+		<div class="{$maccms.cache_flag} container">
+			<div class="{$maccms.cache_flag} row">
+				<div class="{$maccms.cache_flag} hy-layout clearfix">						
+					<div class="{$maccms.cache_flag} hy-topic-list clearfix">
+						<div class="{$maccms.cache_flag} item">							
+							{maccms:topic num="24" paging="yes" order="desc" by="time"}
+						    <div class="{$maccms.cache_flag} col-md-4 col-sm-6 col-xs-12">					    		
+					    		<a class="{$maccms.cache_flag} videopic lazy" href="{:mac_url_topic_detail($vo)}" title="{$vo.topic_name}" data-original="{$vo.topic_pic|mac_url_img}" style="padding-top: 50%; background: url({$vo.topic_pic|mac_url_img}) no-repeat; background-position:50% 50%; background-size: cover;" >
+					    			<div class="{$maccms.cache_flag} details textbg">
+					    				<span class="{$maccms.cache_flag} text"> <i class="{$maccms.cache_flag} icon iconfont icon-icon_special"></i> 专题</span>
+					    				<span class="{$maccms.cache_flag} name">{$vo.topic_name}</span>
+					    				<span class="{$maccms.cache_flag} count">—— ({$vo.topic_rel_vod|explode=',',###|count})——</span>
+					    			</div>
+								</a>														
+							</div>
+							 {/maccms:topic}	
+						</div>												
+					</div>
+					<div class="{$maccms.cache_flag} hy-page clearfix">
+						<ul class="{$maccms.cache_flag} cleafix">
+							{include file="public/paging"}					
+						</ul>					
+					</div>	
+				
+				</div>
+			</div>
+		</div>
+		{include file="public/foot"}
+	</body>
+</html>

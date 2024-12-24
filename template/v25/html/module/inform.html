@@ -1,0 +1,11 @@
+<dl class="{$maccms.cache_flag} fed-list-arti fed-list-deta fed-deta-padding fed-line-top fed-margin fed-part-rows fed-part-over">
+	<dt class="{$maccms.cache_flag} fed-deta-images fed-list-info fed-col-xs3">
+		<a class="{$maccms.cache_flag} videopic3 lazy" href="{:mac_url_art_detail($vo)}" title="{$vo.vod_name|nochaoscode}" data-original="{$vo.art_pic|mac_url_img}" style="background: url({$vo.art_pic|mac_url_img}) no-repeat; background-size: cover;" >
+</a>
+	</dt>
+	<dd class="{$maccms.cache_flag} fed-deta-content fed-col-xs7 fed-col-sm8">
+		<a class="{$maccms.cache_flag} fed-part-etwo fed-visible" href="{:mac_url_art_detail($vo)}">{$vo.art_name|nochaoscode}</a>
+		<p class="{$maccms.cache_flag} fed-hide-xs fed-text-muted">{$vo.art_content|mac_filter_html|mac_substring=60}</p>
+		<span class="{$maccms.cache_flag} fed-visible fed-text-muted">{$vo.art_time|mac_friend_date}　{$vo.art_hits}阅读</span>
+	</dd>
+</dl>

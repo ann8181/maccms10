@@ -1,0 +1,26 @@
+<div class="hy-head-menu">
+	<div class="container">
+	    <div class="row">
+		  	<div class="item">
+			    <div class="logo hidden-xs">
+					<a class="hidden-sm hidden-xs" href="{$maccms.path}"><img src="{$maccms.path_tpl}images/logo.png" /></a>
+		  			<a class="visible-sm visible-xs" href="{$maccms.path}"><img src="{$maccms.path_tpl}images/logo_min.png" /></a>											  
+				</div>	
+				<div class="search"> 
+			        <form name="formsearch" id="formsearch" action="{:mac_url('vod/search')}" method="post" autocomplete="off">																			
+						<input class="form-control" placeholder="输入影片关键词..."  type="text"  name="wd" required="">
+						<input type="submit" id="searchbutton" value="" class="hide">
+						<a href="javascript:" class="btns" title="" onClick="$('#formsearch').submit();"><i class="icon iconfont icon-search"></i></a>
+					</form>
+			   </div>			   
+			   <ul class="menulist hidden-xs">
+					<li {if condition="$maccms.aid eq 1"}class="active"{/if}><a href="{$maccms.path}">首页</a></li>
+					 {maccms:type ids="1,2,4,3" order="asc" by="sort"}					
+					<li  {$vo.type_id}={$vo.type_pid} {if condition="($vo.type_id eq MAC_TYPE_ID || $vo.type_id eq MAC_TYPE_PID)"}class="active"{/if}><a href="{:mac_url_type($vo)}"> {$vo.type_name|nochaoscode}</a></li>						  
+					{/maccms:type}	
+					<li {if condition="$maccms.aid eq 30"}class="active"{/if}><a href="{:mac_url_topic_index()}">专题</a></li>
+				</ul>													 
+		  	</div>							
+	    </div>
+	</div>
+</div>

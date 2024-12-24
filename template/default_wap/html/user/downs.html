@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width = device-width ,initial-scale = 1,minimum-scale = 1,maximum-scale = 1,user-scalable =no,"/>
+	<title>我的下载 - {$maccms.site_name}</title>
+	{include file="user/include" /}
+</head>
+
+<body style="background: #fff;">
+<!--子页顶部-->
+<div class="{$maccms.cache_flag} zy-search zy-tit">
+	<div class="{$maccms.cache_flag} sch-w clearfix">
+		<a class="{$maccms.cache_flag} go-back" href="#"><img src="{$maccms.path_tpl}images/user/go-back.png"></a>
+		<div class="{$maccms.cache_flag} tit">
+			我的下载
+		</div>
+	</div>
+</div>
+
+<div class="{$maccms.cache_flag} wrap list-top" style="border-top: 1px solid #ececec;"><span class="{$maccms.cache_flag} ml10">最近下载</span></div>
+<div class="{$maccms.cache_flag} wrap" id="list">
+	<!--我的收藏-->
+	<div class="{$maccms.cache_flag} order-list often-odr">
+		{volist name="list" id="vo"}
+
+		<div class="{$maccms.cache_flag} item clearfix">
+			<a href="{:mac_url_vod_detail($vo)}"><img class="{$maccms.cache_flag} lazy" src="{$maccms.path_tpl}images/nopic.jpg" data-original="{$vo.data.vod_pic}"></a>
+			<div class="{$maccms.cache_flag} info">
+				<p class="{$maccms.cache_flag} tit"><a href="{$vo.data.link}" title="{$vo.data.name}">[{$vo.data.type.type_name}] {$vo.data.name} {$vo.ulog_rid}-{$vo.ulog_sid}-{$vo.ulog_nid}</a></p>
+				<div class="{$maccms.cache_flag} p-bottom">
+					<p>{$vo.data.remarks}</p>
+				</div>
+			</div>
+			<div class="{$maccms.cache_flag} odr-price">
+				<p class="{$maccms.cache_flag} price">{$vo.ulog_time|mac_day}</p>
+			</div>
+			<div class="{$maccms.cache_flag} often-del clearfix">
+				<a class="{$maccms.cache_flag} btn-brand btn-del" href="javascript:void(0)" data-id="{$vo.ulog_id}" style="width:60px;" >删除</a>
+			</div>
+		</div>
+
+		{/volist}
+
+	</div>
+</div>
+
+
+<!--loading start-->
+<div class="{$maccms.cache_flag} loading_box"></div>
+<!--loading end-->
+
+<script>
+
+	$(".go-back").click(function () {
+		var ref = document.referrer;
+		location.href=ref;
+	});
+
+	$('.btn-del').click(function(){
+		var that=$(this);
+		if(confirm('确定要删除吗')) {
+			$.ajax({
+				url: "{:url('user/ulog_del')}",
+				type: "post",
+				dataType: "json",
+				data: {ids: that.attr('data-id'), 'type': 2},
+				beforeSend: function () {
+				},
+				success: function (r) {
+					alert(r.msg);
+					if (r.code == 1) {
+						that.parent().parent().remove();
+					}
+				},
+				complete: function () {
+
+				}
+			});
+		}
+	});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>	
+    <title>{$maccms.site_name|nochaoscode}</title>
+    <meta name="keywords" content="{$maccms.site_keywords|nochaoscode}" />
+    <meta name="description" content="{$maccms.site_description|nochaoscode}" />
+ {include file="public/include"}
+	</head>
+	<body>		
+		{include file="public/head"}
+		
+		<!--main-->
+		<div class="container">
+			<div class="row">																					
+				<div class="hy-layout clearfix">
+					<div class="col-lg-7 col-md-6 col-sm-12">
+						<div class="swiper-container hy-slide">
+					        <div class="swiper-wrapper">				            			
+	            				{maccms:vod num="3"  type="all" order="desc" by="time" level="9"}
+	            				{include file="public/block_slide"}
+	            				{/maccms:vod}						            		
+					        </div>
+					        <div class="swiper-button-next hidden-xs"><i class="icon iconfont icon-right"></i></div>
+                    		<div class="swiper-button-prev hidden-xs"><i class="icon iconfont icon-back"></i></div>
+					        <div class="swiper-pagination"></div>
+					    </div>					    					    						    
+					</div>
+					<div class="col-lg-5 col-md-6 col-sm-12 padding-0">
+						<div class="hy-index-menu clearfix">
+							<div class="item">
+								<ul class="clearfix">
+									<li class="hidden-sm hidden-xs">
+										<a href="{maccms:type ids="1" order="asc" by="sort"}{:mac_url_type($vo,[],'show')}{/maccms:type}" title="全部影片"><i class="icon iconfont icon-menu1 text-color"></i><span>全部影片</span></a>
+									</li>
+									<li>
+										<a href="{:mac_url('label/top')}" title="影片排行"><i class="icon iconfont icon-ic_mymatch_ranking text-color"></i><span>影片排行</span></a>
+									</li>
+									<li>
+										<a href="{:mac_url('label/new')}" title="最近更新"><i class="icon iconfont icon-update text-color"></i><span>最近更新</span></a>
+									</li>									
+									<li>
+										<a href="{:mac_url_topic_index()}" title="专题合集"><i class="icon iconfont icon-icon_special text-color"></i><span>专题合集</span></a>
+									</li>
+									<li class="visible-sm visible-xs">
+										<a href="{$maccms.path}index.php?m=user-index.html" title="个人中心"><i class="icon iconfont icon-member1 text-color"></i><span>个人中心</span></a>
+									</li>
+								</ul>
+							</div>						
+						</div>						
+						<div class="hy-index-tags hidden-md clearfix">
+							<div class="item">
+								<ul class="clearfix">{maccms:type ids="5,6,7,8,9,10,11,12" order="asc" by="sort"}															
+									<li><a class="text-overflow" href="{:mac_url_type($vo)}">{$vo.type_name|nochaoscode}</a></li>{/maccms:type}				
+								</ul>
+							</div>									
+						</div>
+						<div class="hy-right-qrcode hidden-sm hidden-xs">
+							<div class="item">
+								<dl class="clearfix">
+									<dt>
+										<img class="pic-responsive" src="http://www.xxysvip.com/template/xingxin/images/2wm.png" alt="扫描二维码" />
+									</dt>
+									<dd>
+										<h4>扫描二维码“手机看大片”</h4>
+										<p class="text-muted">也可以分享到朋友圈哦！</p>
+										<p class="margin-0 text-muted">www.m1938.com</p>
+									</dd>
+								</dl>
+							</div>							
+						</div>																												
+					</div>
+				</div>
+				
+										   
+			    <!--最近更新-->
+			    <div class="hy-layout clearfix">				    	
+		    		<div class="hy-video-head">
+						<h3 class="margin-0"><i class="icon iconfont icon-update text-color"></i> 最近更新</h3>
+						<ul class="pull-right">							
+							<li class="active"><a href="{:mac_url('label/new')}" class="text-muted" title="更多">更多 <i class="icon iconfont icon-right"></i></a></li>
+						</ul>
+					</div>
+					<div class="clearfix">
+						<div class="hy-video-list cleafix">
+						    <div class="item">																			
+								{maccms:vod num="8" type="all" order="desc" by="time"}
+							    <div class="col-md-2 col-sm-3 col-xs-4 {if-A:[vod:num] > 6}visible-sm{endif-A}">						    	
+						    		{include file="public/block_video"}							    				    						
+								</div>
+								{/maccms:vod}	
+							</div>
+						</div>					
+						<div class="hy-video-text-list hidden-xs clearfix">
+							<div class="item">
+								<ul class="clearfix">
+									{maccms:vod num="12" type="all" order="desc" by="time" start="7"}
+									<li>	
+										{include file="public/block_videotext"}																										
+									</li>
+									{/maccms:vod}		
+								</ul>
+							</div>							
+						</div>
+					</div>				
+					<div class="hy-video-footer visible-xs clearfix">
+						<a href="{:mac_url('label/new')}" class="text-muted" title="查看更多">查看更多 <i class="icon iconfont icon-right pull-right"></i></a>
+					</div>		    																									
+				</div>
+				<!--end 最近更新-->
+  
+	</body>
+</html>

@@ -1,0 +1,39 @@
+
+<script src="{$maccms.path_tpl}datll.10.2/js/datll.1.2.js"></script>
+
+<div class="mac_pop" id="share">
+	<div class="pop_top"><h2>分享</h2><span class="pop_close">Ｘ</span></div>
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tqf" data-cmd="tqf" title="分享到腾讯朋友"></a><a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a><a href="#" class="bds_kaixin001" data-cmd="kaixin001" title="分享到开心网"></a><a href="#" class="bds_copy" data-cmd="copy" title="分享到复制网址"></a><a href="#" class="bds_print" data-cmd="print" title="分享到打印"></a></div>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+<footer>
+	<div class="layui-main">
+		<div class=" foot-nav">
+			{maccms:type order="asc" by="sort" parent="all"}
+                <a class="color" href="{:mac_url_type($vo2,[],'show')}" title="{$vo.type_name|nochaoscode}">{$vo.type_name|nochaoscode}</a>-
+			 {/maccms:type}
+        
+        <a href="{:mac_url('label/new')}" title="最近更新">最近更新</a>-
+        <a href="{:mac_url('gbook/index')}" title="反馈留言">反馈留言</a>-
+        <a href="{:mac_url('rss/index')}" title="rss">RSS</a>-
+        <a href="{:mac_url('rss/baidu')}" target="_blank" title="网站地图">Sitemap</a>
+    </div>
+<p><a href="http://{$maccms.site_url}">{$maccms.site_keywords|nochaoscode}</a></p>
+	<p class="p1">免责声明:本网站所有视频内容均系收集于各大网站，本站只提供WEB页面服务，并不提供影片资源储存也不参与录制与上传{$maccms.site_keywords|nochaoscode}，若本站收录内容无意侵犯了贵公司版权，请给网页底部邮箱地址来信，我们会及时处理和回复，谢谢合作。<br></p>
+		<p class="p2">
+		站长QQ：{$maccms.site_qq} 站长邮箱：{$maccms.site_email}网站备案：{$maccms.site_icp}	
+			
+		{$maccms.site_tj}
+		
+		
+		</p>
+
+	</div>
+</footer>
+<script type="text/javascript">
+    jQuery(".box").slide({ titCell:".title dd",mainCell:".box_con",delayTime:0 });
+</script>
+<span style="display: none;" class="mac_timming" data-file="" ></span>

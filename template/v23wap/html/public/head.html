@@ -1,0 +1,28 @@
+
+<a href="javascript:void(0);" target="_self" class="aHeaderSearch top_search_btn"><i class="globalIcon searchIcon"></i><em>全网搜索</em></a>
+{in name="maccms.aid" value="7,12,13,20,21,22,23,24,30,33,34,80,83,84,90,93,94"}
+<a href="http://{$maccms.site_wapurl}" target="_self" class="aHeaderFun"><i class="globalIcon indexIcon"></i><span>首页</span></a>
+{else/}
+<a href="{:mac_url('label/top')}" target="_self" class="aHeaderFun"><i class="globalIcon userIcon"></i><span>榜单</span></a>
+{/in}
+<p class="headerChannelList">
+<a {if condition="$maccms.aid eq 1"}class="current"{/if} target="_self" href="http://{$maccms.site_wapurl}">首页</a>
+{maccms:type ids="parent" order="asc" by="sort"}
+<a {if condition="$obj.type_id eq $vo.type_id"}class="current"{/if} target="_self" href="{:mac_url_type($vo)}">{$vo.type_name|nochaoscode}</a>
+{/maccms:type}
+<a {if condition="$maccms.aid eq 30 or $maccms.aid eq 31"}class="current"{/if} target="_self" href="{:mac_url_topic_index()}">专题</a>
+<a {if condition="$maccms.aid eq 30 or $maccms.aid eq 31"}class="current"{/if} target="_self" href="{:mac_url('user/index')}">会员</a>
+<a target="_self" href="{$vo|mac_url_actor_index}">明星</a>
+<a target="_self" href="{$vo|mac_url_role_index}">角色</a>
+<a target="_self" href="{:mac_url('label/top')}">榜单</a>
+<a target="_self" href="{:mac_url('label/new')}">最新</a>
+<a target="_self" href="{:mac_url('label/sitemap')}">网站地图</a>
+</p>
+<section class="searchPop popShow"><section class="searchCon"><span class="sSearchInput"><form id="ffsearch" name="ffsearch"  action="{:mac_url('vod/search')}"><input autocomplete="off" autovalue="请输入片名或主演名" class="searchInput" placeholder="请输入片名或主演名" type="search" id="wd" name="wd"></form><i class="iDelete" style="display: none;"></i></span><input class="cancelInput" value="取消" type="button"></section>
+<p class="pLinks">
+{maccms:vod num="10" type="all" order="desc" by="hits_day" id="vo2" key="key2"}
+<a href="{:mac_url_vod_detail($vo2)}" target="_self" title="{$vo2.vod_name|nochaoscode}"><span class="sName">{$vo2.vod_name|nochaoscode}</span><span class="sStyle">{$vo2.type.type_name|nochaoscode}</span></a>
+{/maccms:vod}
+</p>
+</section>
+</header>

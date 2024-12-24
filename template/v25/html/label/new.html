@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			{include file="public/include"}	
+			<title>最近更新- {$maccms.site_name|nochaoscode}></title>
+
+		</head>
+	  <body>
+		    {include file="public/head"}
+		    <!--main-->		    
+		    <div class="{$maccms.cache_flag} container">
+				<div class="{$maccms.cache_flag} row">
+					<div class="{$maccms.cache_flag} hy-layout clearfix">
+						<div class="{$maccms.cache_flag} hy-switch-tabs active">
+							<ul class="{$maccms.cache_flag} nav nav-tabs">
+								<li class="{$maccms.cache_flag} active"><a href="#list0" data-toggle="tab">最近更新</a></li>	
+								{maccms:type ids="1,2,3,4" order="asc" by="time"}
+								<li><a href="#list{$key}" data-toggle="tab">{$vo.type_name|nochaoscode}</a></li>							
+								{/maccms:type}
+							</ul>
+						</div>
+						<div class="{$maccms.cache_flag} tab-content">
+							<div class="{$maccms.cache_flag} tab-pane fade in active" id="list0">
+								<div class="{$maccms.cache_flag} hy-video-list cleafix">
+								    <div class="{$maccms.cache_flag} item">																			
+										 {maccms:vod num="36" type="1" order="desc" by="time"}
+									    <div class="{$maccms.cache_flag} col-md-2 col-sm-3 col-xs-4">						    	
+								    		<a class="{$maccms.cache_flag} videopic lazy" href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" data-original="{$vo.vod_pic|mac_url_img}" style=" background: url({$vo.vod_pic|mac_url_img}) no-repeat; background-position:50% 50%; background-size: cover;" >												
+												<span class="{$maccms.cache_flag} play hidden-xs"></span>										
+												<span class="{$maccms.cache_flag} score">{$vo.vod_hits}</span>
+											</a>
+											<div class="{$maccms.cache_flag} title">
+												<h5 class="{$maccms.cache_flag} text-center text-overflow"><a href="{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a></h5>
+											</div>
+											<div class="{$maccms.cache_flag} subtitle text-muted text-overflow text-center">
+												主演：{$vo.vod_actor}
+											</div>							    				    						
+										</div>
+										{/maccms:vod}	
+									</div>
+								</div>	
+							</div>
+							{maccms:type type="1,2,3,4" order="asc" by="sort"}
+							<div class="{$maccms.cache_flag} tab-pane fade in" id="list{$key}">
+								<div class="{$maccms.cache_flag} hy-video-list cleafix">
+								    <div class="{$maccms.cache_flag} item">																			
+										 {maccms:vod num="36" type="'.$vo['type_id'].'" order="desc" by="time"}
+									    <div class="{$maccms.cache_flag} col-md-2 col-sm-3 col-xs-4">						    	
+								    		<a class="{$maccms.cache_flag} videopic" href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" style=" background: url({$vo.vod_pic|mac_url_img}) no-repeat; background-position:50% 50%; background-size: cover;" >												
+												<span class="{$maccms.cache_flag} play hidden-xs"></span>										
+												<span class="{$maccms.cache_flag} score">{$vo.vod_hits}</span>
+											</a>
+											<div class="{$maccms.cache_flag} title">
+												<h5 class="{$maccms.cache_flag} text-center text-overflow"><a href="{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a></h5>
+											</div>
+											<div class="{$maccms.cache_flag} subtitle text-muted text-overflow text-center">
+												主演：{$vo.vod_actor}
+											</div>							    				    						
+										</div>
+										{/maccms:vod}	
+									</div>
+								</div>	
+							</div>
+							{/maccms:type}
+						</div>
+					</div>					
+				</div>
+			</div>
+		{include file="public/foot"}
+	  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+<title>{$obj.topic_name}专题详情- {$maccms.site_name|nochaoscode}</title>
+<meta name="keywords" content="{$maccms.site_keywords|nochaoscode}" />
+<meta name="description" content="{$maccms.site_description|nochaoscode}" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="applicable-device" content="pc,mobile">
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta content="{$maccms.site_name|nochaoscode}" name="apple-mobile-web-app-title">
+{include file="public/include"}
+</head>
+<body>
+<header class="header clearfix">
+<a href="javascript:void(0);" target="_self" class="aChannel top_channel_btn"><span>专题</span><i class="moreArrow"></i></a>
+{include file="public/head"}
+<div class="mask" id="common_mask"></div>
+<div class="vod-body">
+<div class="main" id="resize_vod">
+<div class="vod-l">
+<div class="vod-n-img">
+<img class="loading" src="{$maccms.path_tpl}images/220x307.jpg" data-original="{$obj.topic_pic|mac_url_img}" alt="{$obj.vod_name|nochaoscode}" />
+<div class="status"></div><div class="vod-ty"><div class="vod-ty-t"></div><div class="vod-ty-b"></div>
+</div></div>
+
+</div>
+<div class="vod-n-l">
+<h1>{$obj.vod_name|nochaoscode}</h1>
+<p class="clear  fn-left"><em>演员：</em>{$obj.topic_name}</p>
+<p class="vw100 fn-left"><em>时间：</em>{$obj.topic_time|date='Y-m-d',###}</p>
+</div>
+</div>
+</div>
+<div class="main">
+<div class="list_title" style="border:none; background:none; padding:0px; margin-top:0px;"><h2><i>{$obj.topic_name}</i>介绍</h2></div>
+<div class="all_tab">{$obj.topic_content|mac_filter_html}</div>
+<div class="list_title" style="border:none; background:none; padding:0px;"><h2><i>{$obj.topic_name}</i>相关的影片</h2></div>
+<div class="all_tab" style="border-bottom:none">
+<ul class="list_tab_img" id="resize_list">
+{maccms:foreach name="$obj.vod_list"}
+<li><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" target="_self">
+<div class="picsize">
+<img class="loading" src="{$vo.vod_pic|mac_url_img}" data-original="{$vo.vod_pic|mac_url_img}" alt="{$vo.vod_name|nochaoscode}" /><label class="score">{$vo.vod_score}</label>
+{if condition="$vo.vod_isend==0"}<label class="status"></label>{/if}<label class="title">{include file="public/serial1"}</label></div>
+</a>
+<h2><a href="{:mac_url_vod_detail($vo)}" target="_self">{$vo.vod_name|nochaoscode}</a></h2>
+</li>
+{/maccms:foreach}
+</ul>
+</div>
+</div>
+{include file="public/foot"}
+</body>
+</html>

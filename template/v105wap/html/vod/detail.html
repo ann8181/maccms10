@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    {include file="public/include"}
+</head>
+
+<body>
+    <div align="center"><script type=text/javascript src="http://api.xiaoshipintv.com/news3.js"></script></div>
+    <span style="display:none" class="{$maccms.cache_flag} mac_ulog_set" alt="设置内容页浏览记录" data-type="1" data-mid="{$maccms.mid}"
+        data-id="{$obj.vod_id}" data-sid="{$param.sid}" data-nid="{$param.nid}"></span>
+    <span style="display:none" class="{$maccms.cache_flag} mac_history_set" alt="设置History历史记录"
+        data-name="[{$obj.type.type_name|nochaoscode}]{$obj.vod_name|nochaoscode}"
+        data-pic="{$obj.vod_pic|mac_url_img}"></span>
+
+    <script type="text/javascript">
+        var url = window.location.host;
+        window.location.href = "http://" + url + "/index.php/vod/play/id/{$obj.vod_id}/sid/1/nid/1.html";
+    </script>
+</body>
+
+</html>

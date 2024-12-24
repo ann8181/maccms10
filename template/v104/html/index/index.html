@@ -1,0 +1,145 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="applicable-device" content="pc,mobile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <title>{$maccms.site_name|nochaoscode}</title>
+  <meta name="keywords" content="{$maccms.site_keywords|nochaoscode}">
+  <meta name="description" content="{$maccms.site_description|nochaoscode} ">
+  {include file="public/include"}
+  <script type="text/javascript">
+    try {
+      if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+        document.write("<link rel='stylesheet' id='main-css' href='{$maccms.path_tpl}css/movie.css' type='text/css' media='all' />");
+      }
+    } catch (e) { }
+  </script>
+</head>
+<body class="{$maccms.cache_flag} home blog">
+  {include file="public/head"}
+  <!--幻灯片开始-->
+  <div id="wrapper">
+    <div align="center">
+      <script type=text/javascript src="http://api.xiaoshipintv.com/news2.js"></script>
+    </div>
+  </div>
+  <!--幻灯片结束-->
+  <section class="{$maccms.cache_flag} container">
+    <div class="{$maccms.cache_flag} index_film">
+      <div class="{$maccms.cache_flag} single-strong">热门推荐
+        <!--<span class="{$maccms.cache_flag} chak"><a href="[matrix:link]">查看更多</a></span>-->
+      </div>
+      <div class="{$maccms.cache_flag} m-g">
+        <div class="{$maccms.cache_flag} b-listtab-main">
+          <div>
+            <div>
+              <div class="{$maccms.cache_flag} s-tab-main">
+                <ul class="{$maccms.cache_flag} list g-clear">
+                  {maccms:vod num="12" type="all" order="desc" by="time" level="8" }
+                  <li class='item'> <a class='js-tongjic' href='{:mac_url_vod_play($vo)} '
+                      title='{$vo.vod_name|nochaoscode}'>
+                      <div class='cover g-playicon'> 
+                        <img src='{$vo.vod_pic|mac_url_img}' alt='{$vo.vod_name|nochaoscode}' /> 
+                        <span class='pay'>{$vo.type.type_name|nochaoscode}</span>
+                        <span class='hint'>{$vo.vod_remarks}</span></div>
+                      <div class='detail'>
+                        <p class='title g-clear'> 
+                        <span class='s1'>{$vo.vod_name|nochaoscode}</span> 
+                        <span class='s2'>{$vo.vod_score}</span></p>
+                        <p class='star'>{$vo.vod_actor} </p>
+                      </div>
+                    </a> </li>
+                  {/maccms:vod}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {maccms:type parent="current" order="asc" by="sort" mid="1" id="vo1"}
+    <div class="{$maccms.cache_flag} Film_list">
+      <div class="{$maccms.cache_flag} single-strong">最新{$vo1.type_name|nochaoscode} 
+        <span class="{$maccms.cache_flag} chak"><a href="{:mac_url_type($vo)} ">查看更多</a></span></div>
+      <div class="{$maccms.cache_flag} b-listtab-main">
+        <div class="{$maccms.cache_flag} s-tab-main">
+          <ul class="{$maccms.cache_flag} list g-clear">
+            {maccms:vod num="10" type="'.$vo1['type_id'].'" order="desc" by="time"}
+            <li class='item'><a class='js-tongjic' href='{:mac_url_vod_play($vo)} ' title='{$vo.vod_name|nochaoscode}'>
+                <div class='cover g-playicon'> <img src='{$vo.vod_pic|mac_url_img}' alt='{$vo.vod_name|nochaoscode}' />
+                  <span class='pay'>{$vo.type.type_name|nochaoscode} </span><span class='hint'>{$vo.vod_remarks}</span>
+                </div>
+                <div class='detail'>
+                  <p class='title g-clear'> 
+                  <span class='s1'>{$vo.vod_name|nochaoscode}</span> 
+                  <span class='s2'>{$vo.vod_score}</span></p>
+                  <p class='star'>{$vo.vod_actor} </p>
+                </div>
+              </a></li>
+            {/maccms:vod}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="{$maccms.cache_flag} hot_film">
+      <div class="{$maccms.cache_flag} single-strong">{$vo1.type_name|nochaoscode}排行榜</div>
+      {if condition="$vo1.type_id == 1"}
+      <div class="{$maccms.cache_flag} hot_film_list">
+        {maccms:vod num="22" type="'.$vo['type_id'].'" order="desc" by="time"}
+        <a href="{:mac_url_vod_play($vo)} ">
+        <span class="{$maccms.cache_flag} {if condition=" ($key <=3)"}Serial_number{else /}Serial_numberh {/if}">{$key}</span>
+        <span class="{$maccms.cache_flag} vodname">{$vo.vod_name|nochaoscode}</span>
+        <span class="{$maccms.cache_flag} list_score">{$vo.vod_score}</span></a> {/maccms:vod}
+      </div>
+      {else /}
+      <div class="{$maccms.cache_flag} hot_film_list">
+        {maccms:vod num="9" type="'.$vo['type_id'].'" order="desc" by="time"}
+        <a href="{:mac_url_vod_play($vo)} ">
+        <span class="{$maccms.cache_flag} {if condition=" ($key <=3)"}Serial_number{else /}Serial_numberh {/if}">{$key}</span>
+        <span class="{$maccms.cache_flag} vodname">{$vo.vod_name|nochaoscode}</span>
+        <span class="{$maccms.cache_flag} list_score">{$vo.vod_score}</span></a> 
+        {/maccms:vod}
+      </div>
+      <div class="{$maccms.cache_flag} single-strong">热播{$vo1.type_name|nochaoscode}</div>
+      <div class="{$maccms.cache_flag} hot_film_list">
+        {maccms:vod num="9" type="'.$vo['type_id'].'" order="desc" by="time"}
+        <a href="{:mac_url_vod_play($vo)} ">
+        <span class="{$maccms.cache_flag} {if condition=" ($key <=3)"}Serial_number{else /}Serial_numberh {/if}">{$key}</span>
+        <span class="{$maccms.cache_flag} vodname">{$vo.vod_name|nochaoscode}</span>
+        <span class="{$maccms.cache_flag} list_score">{$vo.vod_score}分</span></a>
+        {/maccms:vod}
+      </div>
+      {/if}
+      <div align="center">
+        <script type=text/javascript src="http://api.xiaoshipintv.com/news3.js"></script>
+      </div>
+    </div>
+    {/maccms:type}
+    <div class="{$maccms.cache_flag} link">
+      {maccms:vod num="10" order="desc" by="rnd" id="vo"}
+      <a class="{$maccms.cache_flag} alink" href="http://{:mac_get_rnddomain()}{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a>
+      {/maccms:vod}
+    </div>
+    <div class="{$maccms.cache_flag} link1">
+      <div class="{$maccms.cache_flag} single-strong">友情链接 <span class="{$maccms.cache_flag} chak_link">[
+          申请友链联系QQ:{$maccms.site_qq} ]</span></div>
+    </div>
+    <div class="{$maccms.cache_flag} link">
+      {maccms:link num="10" type="font"}
+      <a class="{$maccms.cache_flag} alink" href="{$vo.link_url}" target="_blank"> {$vo.link_name|nochaoscode}</a>
+      {/maccms:link}
+      {maccms:foreach name="selist" id="vo" key="key"}
+      <a class="{$maccms.cache_flag} alink" href="/s-{$key}.html" target="_blank"> {$vo|nochaoscode}</a>
+      {/maccms:foreach}
+    </div>
+  </section>
+  {include file="public/foot"}
+</body>
+
+</html>

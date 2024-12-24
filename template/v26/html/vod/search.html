@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		 {include file="public/include"}	
+   <title>{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}搜索结果 - {$maccms.site_name|nochaoscode}</title>
+    <meta name="keywords" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}搜索结果" />
+    <meta name="description" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}搜索结果" />
+	</head>
+  <body>
+		{include file="public/head"}
+		<!--main-->
+		<div align="center"><script type=text/javascript src="http://api.xiaoshipintv.com/news2.js"></script></div>
+		<div class="container">
+			<div class="row">	
+				<div class="col-md-9 col-sm-12 hy-main-content">
+					<div class="hy-layout clearfix">
+						<div class="hy-video-head">
+							<span class="text-muted pull-right hidden-xs"></span>	
+							<h4 class="margin-0">搜索到与<span class="text-color">“{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}”</span>相关的</h4>					
+						</div>
+						 {maccms:vod num="10" paging="yes" pageurl="vod/search" order="desc" by="time"}
+						<div class="hy-video-details active clearfix">						
+						    <div class="item clearfix">
+								<dl class="content">
+									<dt>
+										<a class="videopic" href="{:mac_url_vod_detail($vo)}" style="background: url({$vo.vod_pic|mac_url_img})  no-repeat; background-position:50% 50%; background-size: cover;">
+											<span class="play hidden-xs"></span>
+											<span class="note textbg">{if condition="$vo.vod_serial gt 0"}第{$vo.vod_serial}集/共{$vo.vod_total}集{else/}{$vo.vod_remarks}{/if}</span>
+										</a>																													
+									</dt>
+									<dd class="clearfix">
+									    <div class="head">
+									    	<h3><a href="{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a></h3>
+									    </div>
+									    <div class="score">
+											<div class="star"><span class="star-cur" id="score-[vod:i]"></span></div>
+											<span class="branch">{$vo.vod_score}</span>
+											<script type="text/javascript">
+												var str = "[vod:douban]%" 
+												document.getElementById("score-[vod:i]").style.width = (str.replace(".", ""))
+										    </script>
+										</div>
+									    <ul>
+									    	<li><span class="text-muted">主演：</span>{$vo.vod_actor}</li>
+									    	<li><span class="text-muted">导演：</span>{$vo.vod_director}</li>
+									    	<li class="col-md-6 hidden-md hidden-sm hidden-xs padding-0"><span class="text-muted">地区：</span>[{$vo.vod_area}</li>
+									    	<li class="col-md-6 hidden-md hidden-sm hidden-xs padding-0"><span class="text-muted">类型：</span>{$vo.type.type_name|nochaoscode}</li>
+									    	<li class="col-md-6 hidden-md hidden-sm hidden-xs padding-0"><span class="text-muted">语言：</span>{$vo.vod_lang}</li>
+									    	<li class="col-md-6 hidden-md hidden-sm hidden-xs padding-0"><span class="text-muted">年份：</span>{$vo.vod_year}</li>								    	
+									    </ul>
+									    <div class="block">
+								    		<a class="text-muted" href="{:mac_url_vod_detail($vo)}">查看详情 <i class="icon iconfont icon-right"></i> </a>
+								    	</div>
+									</dd>
+								</dl>
+						   </div>						    																												
+						</div>
+						{/maccms:vod}
+										
+						<div class="hy-page clearfix">
+							{include file="public/paging"}				
+						</div>
+						<div align="center"><script type=text/javascript src="http://api.xiaoshipintv.com/news3.js"></script></div>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-12 hy-main-side hidden-sm hidden-xs">				
+					<div class="hy-layout clearfix">
+					
+						<div class="hy-video-ranking side clearfix">
+							<div class="head">
+								<a class="text-muted pull-right" href="{maccms:type ids="1"}{:mac_url_type($vo)}{/maccms:type}">更多 <i class="icon iconfont icon-right"></i></a>
+								<h4><i class="icon iconfont icon-top text-color"></i> 电影排行榜</h4>
+							</div>
+							<div class="item">											
+								<ul class="clearfix">
+					    			{maccms:vod num="9" type="1" order="desc" by="hits_month"}
+									{include file="public/block_ranking"}
+									{/maccms:vod}											
+					    	   </ul>											
+							</div>
+						</div>
+						<div class="hy-video-ranking side clearfix">
+							<div class="head">
+								<a class="text-muted pull-right" href="{maccms:type ids="2"}{:mac_url_type($vo)}{/maccms:type}">更多 <i class="icon iconfont icon-right"></i></a>
+								<h4><i class="icon iconfont icon-top text-color"></i> 电视排行榜</h4>
+							</div>
+							<div class="item">											
+								<ul class="clearfix">
+					    			{maccms:vod num="9" type="2" order="desc" by="hits_month"}
+									{include file="public/block_ranking"}
+									{/maccms:vod}											
+					    	   </ul>											
+							</div>
+						</div>
+						{include file="public/block_topic"}
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="link">
+			{maccms:vod num="10" order="desc" by="rnd" id="vo"}
+			   <a class="alink" href="http://{:mac_get_rnddomain()}{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a>
+			{/maccms:vod}
+		</div>
+		<script>
+	    var swiper = new Swiper('.hy-slide', {
+	        pagination: '.swiper-pagination',
+	        paginationClickable: true,
+	        autoplay: 3000,
+	    });	    
+	    </script>
+		{include file="public/foot"}
+	</body>
+</html>

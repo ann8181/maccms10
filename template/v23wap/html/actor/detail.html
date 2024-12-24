@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+<title>{$obj.actor_name}个人资料_{$obj.actor_name}演过的电视剧_{$obj.actor_name}电影全集-{$maccms.site_name|nochaoscode}</title>
+<meta name="keywords" content="{$obj.actor_name}个人资料,{$obj.actor_name}演过的电视剧,{$obj.actor_name}电影全集,{$obj.actor_name}最新电影,{$obj.actor_name}最新电视剧" />
+<meta name="description" content="{$maccms.site_name|nochaoscode}演示站为你收集了{$obj.actor_name}个人资料包括了{$obj.actor_name}最新演过的电视剧,{$obj.actor_name}电影全集,以及{$obj.actor_name}图片剧照最近动态等信息希望你能喜欢。" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="applicable-device" content="pc,mobile">
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta content="{$maccms.site_name|nochaoscode}" name="apple-mobile-web-app-title">
+{include file="public/include"}
+</head>
+<body>
+<header class="header clearfix">
+<a href="javascript:void(0);" target="_self" class="aChannel top_channel_btn"><span>明星</span><i class="moreArrow"></i></a>
+{include file="public/head"}
+<div class="mask" id="common_mask"></div>
+<div class="list_nav" style="border:none">
+<div class="main fn-left"><span>您所在的位置：</span>
+<a href="http://{$maccms.site_wapurl}" title="{$maccms.site_name|nochaoscode}" target="_self">首页</a><em><i class="iconfont">&#xe621;</i></em>
+<a href="{$vo|mac_url_actor_index}" target="_self">明星列表</a><em><i class="iconfont">&#xe621;</i></em>
+<a href="javascript:;" target="_self">明星介绍</a></div></div>
+<div class="vod-body">
+<div class="main" id="resize_vod">
+<div class="vod-r_t">
+<ul>
+<a class="cur" href="javascript:;" title="详细" target="_self">详细</a>
+</ul>
+</div>
+<div class="vod-l">
+<div class="vod-n-img">
+<img class="loading" src="{$maccms.path_tpl}images/220x307.jpg" data-original="{$obj.actor_pic|mac_url_img}" alt="{$obj.actor_name}" />
+<div class="vod-ty"><div class="vod-ty-t"></div><div class="vod-ty-b"></div>
+</div>
+</div>
+</div>
+<div class="star-n-l">
+<h1>{$obj.actor_name}<span>个人资料</span></h1>
+<ul>
+<li class="c"><p class="vw50 fn-left">性别：{$obj.actor_sex}</p> <p class="vw50 fn-right">出生地：{$obj.actor_birtharea}</p></li>
+<li><p class="vw50 fn-left">职业：{$obj.actor_remarks|mac_default='演员'}</p> <p class="vw50 fn-right">地区：{$obj.actor_area}</p></li>
+<li class="c"><p class="vw50 fn-left">血型：{$obj.actor_blood}</p><p class="vw50 fn-right">星座：{$obj.actor_starsign}</p></li>
+<li><p class="vw50 fn-left">身高：{$obj.actor_height}</p><p class="vw50 fn-right">出生日期：{$obj.actor_birthday}</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="main">
+<div class="list_title"><h2><i class="icol iconfont">&#xe624;</i><i>{$obj.actor_name}</i>资料</h2><span id="star-infozk" class="iconfont">展开更多资料<em>&#xe623;</em></span></div>
+<div class="star-data" id="resize_newsdata">{$obj.actor_content}</div>
+{maccms:role paging="yes" actor="'.$obj['actor_name'].'" order="desc" by="time"}{/maccms:role}
+<div class="list_title" style="border:none; background:none; padding:0px;"><h2><i class="icol iconfont">&#xe624;</i><a href="javascript:;" title="{$obj.actor_name}演过的角色" target="_self"><i>{$obj.actor_name}</i>饰演<em>{$__PAGING__.record_total}</em>个角色</a></h2>
+<div class="more iconfont"><i class="icor iconfont"><a href="{$obj|mac_url_actor_detail}" title="{$obj.actor_name}演过的角色" target="_self">更多&#xe621;</a></i></div></div>
+<ul class="star-role" id="resize_vod">
+{maccms:role num="4" paging="no" actor="'.$obj['actor_name'].'" order="desc" by="time"}
+<li>
+<a class="star-role-img" href="{$vo|mac_url_role_detail}" title="{$vo.role_name}" target="_self"><img class="loading" src="{$maccms.path_tpl}images/220x307.jpg" data-original="{$vo.role_pic|mac_url_img}" alt="{$vo.role_name}" /><p><span>&gt;</span>饰演</p></a>
+<div class="role-c-txt">
+<div class="actor-title">
+<em class="a-pm">片名：</em><a href="{$vo.data|mac_url_vod_detail}" title="{$vo.data.vod_name|nochaoscode}" target="_self">{$vo.data.vod_name|nochaoscode}</a>
+</div>
+<div class="actor-title">
+<em class="a-sy">饰演：</em><a href="{$vo|mac_url_role_detail}" title="{$vo.role_name}" target="_self">{$vo.role_name}</a>
+</div>
+<div class="role-hzyy"><em class="a-yy">演员：</em>{$vo.data.vod_actor|mac_url_create='actor'}</div>
+<div class="star-role-connet">介绍：{$vo.role_content|mac_filter_html}</div>
+</div>
+</li>
+{/maccms:role}
+</ul>
+<div class="list_title"><h2><i class="icol iconfont">&#xe624;</i><a href="javascript:;" title="{$obj.actor_name}" target="_self"><i>{$obj.actor_name}</i>参演的电影电视剧</a></h2><div class="more"><i class="icor iconfont"><a href="{:mac_url_type($obj,['actor'=>$obj.actor_name],'search')}" title="{$obj.actor_name}演过的电影电视剧" target="_self">更多&#xe621;</a></i></div></div>
+<div class="all_tab" style="display:block" id="resize_list">
+<ul class="list_tab_img">
+{maccms:vod num="3" actor="'.$obj['actor_name'].'" type="all" order="desc" by="time" id="vo2" key="key2"}
+<li><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name|nochaoscode}" target="_self">
+<div class="picsize">
+<img class="loading" src="{$maccms.path_tpl}images/220x307.jpg" data-original="{$vo2.vod_pic|mac_url_img}" alt="{$vo2.vod_name|nochaoscode}" /><label class="score">{$vo2.vod_score}</label>
+{if condition="$vo2.vod_isend==0"}<label class="status"></label>{/if}<label class="title">{include file="public/serial"}</label></div>
+</a>
+<h2><a href="{:mac_url_vod_detail($vo2)}" target="_self">{$vo2.vod_name|nochaoscode}</a></h2>
+</li>
+{/maccms:vod}
+</ul>
+</div>
+<div class="list_title"><h2><i class="icol iconfont">&#xe624;</i><i>{$obj.actor_name}</i>最近角色：</h2></div>
+<div class="news-tab" style="padding:0px;">
+<ul class="role-star-film" style="clear:both">
+<li class="biaoti">
+<div class="b w25">剧名</div>
+<div class="b w25">扮演角色</div>
+<div class="b w45">合作演员</div>
+</li>
+{maccms:role num="6" paging="no" actor="'.$obj['actor_name'].'" order="desc" by="time"}
+<li>
+<div class="b w25"><a href="{$vo.data|mac_url_vod_detail}" title="{$vo.data.vod_name|nochaoscode}" target="_self">《{$vo.data.vod_name|nochaoscode}》</a></div>
+<div class="b w25"><a href="{$vo|mac_url_role_detail}" title="{$vo.role_name}" target="_self">{$vo.role_name}</a></div>
+<div class="b w45">{$vo.data.vod_actor}</div>
+</li>
+{/maccms:role}
+</ul>
+</div>
+</div>
+{include file="public/foot"}
+</body>
+</html>

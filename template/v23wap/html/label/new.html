@@ -1,0 +1,48 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+<title>最近更新100部影片 - {$maccms.site_name|nochaoscode} - 最新最全最好看的电影网站 - 免费在线观看</title>
+<meta name="keywords" content="{$maccms.site_keywords|nochaoscode}" />
+<meta name="description" content="{$maccms.site_description|nochaoscode}" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="applicable-device" content="pc,mobile">
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta content="{$maccms.site_name|nochaoscode}" name="apple-mobile-web-app-title">
+{include file="public/include"}
+</head>
+<body>
+<header class="header clearfix">
+<a href="javascript:void(0);" target="_self" class="aChannel top_channel_btn"><span>导航</span><i class="moreArrow"></i></a>
+{include file="public/head"}
+<div class="mask" id="common_mask"></div>
+<div class="main">
+<div class="all_tab top">
+<ul class="new_tab_img" id="resize_list">
+{maccms:vod num="50" type="all" order="desc" by="time"}
+<li><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" target="_self">
+<div class="picsize">
+<img class="loading" src="{$maccms.path_tpl}images/220x307.jpg" data-original="{$vo.vod_pic|mac_url_img}" />
+<label class="iRankNum"><em>{$key}</em></label>
+<label class="name">{$vo.vod_name|nochaoscode}</label>
+</div>
+</a>
+<div class="list_info">
+<h2><a href="{:mac_url_vod_detail($vo)}" target="_self">{$vo.vod_name|nochaoscode}</a></h2>
+<p>分类：<a href="{:mac_url_type($vo.type,[],'show')}" title="{$vo.type.type_name|nochaoscode}" target="_self">{$vo.type.type_name|nochaoscode}</a></p>
+<p>类型：{$vo.vod_class|mac_url_create='class'}</p>
+<p>演员：{$vo.vod_actor|mac_default='未知'}</p>
+<p>状态：{include file="public/serial1"}</p>
+<p>时间：<i><font color="red">{$vo2.vod_time|date='Y-m-d H:i:s',###}</font></i><img src="{$maccms.path_tpl}images/new.gif"></p>
+</div>
+</li>
+{/maccms:vod}
+</ul>
+</div>
+</div>
+﻿{include file="public/foot"}
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+<meta name="applicable-device" content="pc,mobile">
+<title>{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}搜索结果 - {$maccms.site_name|nochaoscode}</title>
+<meta name="keywords" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}BT下载,{$maccms.site_keywords|nochaoscode}">
+<meta name="description" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class},{$maccms.site_description|nochaoscode}">
+{include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div align="center"><script type=text/javascript src="http://api.xiaoshipintv.com/news2.js"></script></div>
+<section class="main-container">
+	<div class="row-five">
+		<div class="box-title"><b>搜索 {$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class} 共有<strong style="color:#4c8fe8" class="mac_total"></strong>条</b></div>
+		<div class="box-body">
+			{maccms:vod num="15" paging="yes" pageurl="vod/search" order="desc" by="time"}
+			<div class="box-item">
+				<a class="item-link" href="{:mac_url_vod_detail($vo)}" target="_blank" title="{$vo.vod_name|nochaoscode}">
+					<img class="lazy" src="{$vo.vod_pic|mac_url_img}" alt="{$vo.vod_name|nochaoscode}">
+					{if condition="$vo.vod_serial gt 0"}<button class="hdtag">第{$vo.vod_serial}集/共{$vo.vod_total}集</button>{else/}{$vo.vod_remarks}{/if}
+				</a>
+				<div class="meta">
+					<div class="item-name"><a class="movie-name" target="_blank" title="[searchlist:name]" href="{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a></div>
+					<em>添加时间：<strong><span>{$vo.vod_time|date='Y-m-d',###}</span></strong></em>
+				</div>
+			</div>
+			{/maccms:vod}
+		</div>
+	</div>
+	<div class="pagenav">
+	{include file="public/paging"}
+    <script>
+        $('.mac_total').html('{$__PAGING__.record_total}');
+    </script>
+	</div>
+</section>
+<div align="center"><script type=text/javascript src="http://api.xiaoshipintv.com/news3.js"></script></div>
+<div class="link">
+    {maccms:vod num="10" order="desc" by="rnd" id="vo"}
+       <a class="alink" href="http://{:mac_get_rnddomain()}{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a>
+    {/maccms:vod}
+</div>
+{include file="public/foot"}
+</body>
+</html>

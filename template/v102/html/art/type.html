@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{$obj.type_title}_{$maccms.site_name|nochaoscode}_国内领先的在线视频网站·免VIP在线观看无广告高清视频</title>
+    <meta name="keywords" content="{$obj.type_key}" />
+    <meta name="description" content="{$obj.type_des}" />
+    {include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+    <div class="{$maccms.cache_flag} icon">
+        <div class="{$maccms.cache_flag} container">
+            <section class="{$maccms.cache_flag} art-top clearfix">
+                <div class="{$maccms.cache_flag} art-l">
+                    <div class="{$maccms.cache_flag} tv-hd">
+                        <h2>头条资讯</h2></div>
+                    <div class="{$maccms.cache_flag} tv-bd">{maccms:art num="1" type="current" order="desc" by="time"}
+                        <div class="{$maccms.cache_flag} tv-l imglist_hot">
+                            <a class="{$maccms.cache_flag} pic" href="{:mac_url_art_detail($vo)}" title="{$vo.art_name|nochaoscode}"><img class="{$maccms.cache_flag} thumb" data-src="{$vo.art_pic|mac_url_img}" alt="{$vo.art_name|nochaoscode}"></a>
+                            <div class="{$maccms.cache_flag} tabbox">
+                                <a class="{$maccms.cache_flag} tit" href="{:mac_url_art_detail($vo)}" title="{$vo.art_name|nochaoscode}">{$vo.art_name|nochaoscode}</a>
+                            </div>
+                        </div>{/maccms:art}
+                        <div class="{$maccms.cache_flag} tv-r">
+                            <ul class="{$maccms.cache_flag} txtlist clearfix">
+                                <li>{maccms:art num="1" type="current" start="2" order="desc" by="time"}
+                                    <h3><a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name|nochaoscode}">{$vo.art_name|nochaoscode}</a></h3>{/maccms:art}
+{maccms:art num="2" type="current" start="3" order="desc" by="time"}<p><a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name|nochaoscode}">{$vo.art_name|mac_substring=10}</a></p>{/maccms:art}
+                                </li>
+                                <li>{maccms:art num="1" type="current" start="5" order="desc" by="time"}
+                                    <h3><a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name|nochaoscode}">{$vo.art_name|nochaoscode}</a></h3>{/maccms:art}
+{maccms:art num="2" type="current" start="6" order="desc" by="time"}<p><a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name|nochaoscode}">{$vo.art_name|mac_substring=10}</a></p>{/maccms:art}
+                                </li>
+                                <li>{maccms:art num="1" type="current" start="8" order="desc" by="time"}
+                                    <h3><a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name|nochaoscode}">{$vo.art_name|nochaoscode}</a></h3>{/maccms:art}
+{maccms:art num="2" type="current" start="9" order="desc" by="time"}<p><a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name|nochaoscode}">{$vo.art_name|mac_substring=10}</a></p>{/maccms:art}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="{$maccms.cache_flag} art-r">
+                    <div class="{$maccms.cache_flag} tv-hd">
+                        <h2>热门资讯</h2></div>
+                    <div class="{$maccms.cache_flag} tv-bd">
+                        <ul class="{$maccms.cache_flag} imglist clearfix">{maccms:art num="4" type="current" start="11" order="desc" by="time"}
+                            <li>
+                                <a class="{$maccms.cache_flag} pic" href="{:mac_url_art_detail($vo)}" title="{$vo.art_name|nochaoscode}"><img class="{$maccms.cache_flag} thumb" data-src="{$vo.art_pic|mac_url_img}" alt="{$vo.art_name|nochaoscode}"></a>
+                                <div class="{$maccms.cache_flag} tc"><a href="{:mac_url_art_detail($vo)}">{$vo.art_name|nochaoscode}</a></div>
+                            </li>{/maccms:art}
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section class="{$maccms.cache_flag} imain clearfix">
+                <div class="{$maccms.cache_flag} tv-hd">
+                    <h2>热映影片</h2></div>
+                <div class="{$maccms.cache_flag} tv-bd js-tab-con-list">
+                    <div class="{$maccms.cache_flag} js-tab-con show">
+                        <ul class="{$maccms.cache_flag} tv-list">{maccms:vod num="8" type="1,2" order="desc" by="hits"}
+						<li><div class="{$maccms.cache_flag} v-pic"><img data-src="{$vo.vod_pic|mac_url_img}" class="{$maccms.cache_flag} thumb" alt="{$vo.vod_name|nochaoscode}"><div class="{$maccms.cache_flag} v-tips">{include file="public/serial1"}</div><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" class="{$maccms.cache_flag} v-playBtn"><i></i></a></div><div class="{$maccms.cache_flag} v-txt"><span class="{$maccms.cache_flag} v-tit"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}">{$vo.vod_name|nochaoscode}</a></span></div></li>{/maccms:vod}
+						</ul>
+                    </div>
+                </div>
+            </section>
+            
+            
+           
+            {maccms:type num="10" ids="child" flag="art" by="sort" order="asc"}
+            <section class="{$maccms.cache_flag} iart clearfix">
+                <div class="{$maccms.cache_flag} tv-hd">
+                    <h2>{$vo.type_name|nochaoscode}</h2></div>
+                <div class="{$maccms.cache_flag} tv-bd">
+                    <div class="{$maccms.cache_flag} tv-l imglist_hot">{maccms:art num="1" paging="no" type="'.$vo['type_id'].'" order="asc" by="sort"}
+                        <a class="{$maccms.cache_flag} pic" href="{:mac_url_art_detail($vo)}" title="{$vo.art_name|nochaoscode}"><img class="{$maccms.cache_flag} thumb" data-src="{$vo.art_pic|mac_url_img}" alt="{$vo.art_name|nochaoscode}"></a>{/maccms:art}
+                        <div class="{$maccms.cache_flag} tabbox">{maccms:art num="1" paging="no" type="'.$vo['type_id'].'" order="asc" by="sort"}
+                            <a class="{$maccms.cache_flag} tit" href="{:mac_url_art_detail($vo)}" title="{$vo.art_name|nochaoscode}">{$vo.art_name|nochaoscode}</a>{/maccms:art}
+                        </div>
+                    </div>
+                    <div class="{$maccms.cache_flag} tv-r">
+                        <ul class="{$maccms.cache_flag} imglist clearfix">{maccms:art num="8" paging="no" type="'.$vo['type_id'].'" start="2" order="asc" by="sort"}
+                            <li>
+                                <a class="{$maccms.cache_flag} pic" href="{:mac_url_art_detail($vo)}" title="{$vo.art_name|nochaoscode}"><img class="{$maccms.cache_flag} thumb" data-src="{$vo.art_pic|mac_url_img}" alt="{$vo.art_name|nochaoscode}"></a>
+                                <div class="{$maccms.cache_flag} tc"><a href="{:mac_url_art_detail($vo)}">{$vo.art_name|nochaoscode}</a></div>
+                            </li>{/maccms:art}
+                        </ul>
+                    </div>
+                </div>
+            </section>
+			{/maccms:type}
+        </div>
+    </div>
+{include file="public/foot"}
+    <script src="{$maccms.path_tpl}js/lazyload.min.js"></script>
+    <script src="{$maccms.path_tpl}js/app.js"></script>
+</body>
+</html>

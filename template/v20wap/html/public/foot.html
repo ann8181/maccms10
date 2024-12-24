@@ -1,0 +1,17 @@
+<div id="_js_goTop" class="goTop"><i class="iconfont icon-fold"></i></div>
+<footer class="footer">
+	<div class="footerText">
+		<p>{$maccms.site_name|nochaoscode} © 2015-2018</p><p>{$maccms.site_tj}</p>
+	</div>
+</footer>
+<nav class="mnav">
+<a href="{$maccms.path}" {if condition="$maccms.aid eq 1"}class="active"{/if}><span class="iconfont icon-home" tapmode onclick="showDefault('loading')"></span><p>首页</p></a>
+<!-- <a href="#" ><span class="iconfont icon-copy" tapmode onclick="showDefault('loading')"></span><p>商城</p></a> -->
+<!-- <a href="{:mac_url('label/live')}" {if condition="$maccms.aid eq 7"}class="active"{/if}><span class="iconfont icon-discover" tapmode onclick="showDefault('loading')"></span><p>直播</p></a>
+<a href="{:mac_url('map/index')}" {if condition="$maccms.aid eq 7"}class="active"{/if}><span class="iconfont icon-musicfill leo-fs-icon-m" tapmode onclick="showDefault('loading')"></span><p>音乐</p></a> -->
+<a href="{:mac_url('gbook/index')}" {if condition="$maccms.aid eq 7"}class="active"{/if}><span class="iconfont icon-search" tapmode onclick="showDefault('loading')"></span><p>求片</p></a>
+<a href="{:mac_url('user/login')}"><span class="iconfont icon-people" tapmode onclick="showDefault('loading')"></span><p>会员</p></a></nav>
+<script type="text/javascript">
+    jQuery(".box").slide({ titCell:".title dd",mainCell:".box_con",delayTime:0 });
+</script>
+<span style="display: none;" class="mac_timming" data-file="" ></span>

@@ -1,0 +1,33 @@
+<header class="{$maccms.cache_flag} header">
+  <div class="{$maccms.cache_flag} container">
+    <h1 class="{$maccms.cache_flag} logo"><a href="/"
+        title="{$maccms.site_name|nochaoscode}"><span>{$maccms.site_name|nochaoscode}</span></a></h1>
+    <div class="{$maccms.cache_flag} sitenav">
+      <ul>
+        <li id="menu-item-18" class="{$maccms.cache_flag} menu-item">
+        <a {if condition="($maccms.aid==1) " } class="{$maccms.cache_flag} menu-itema-two" {else /}{/if} href="/">首页</a> </li>
+        {maccms:type ids="parent" order="asc" by="sort"}
+        <li id="menu-item-{$vo.type_id}" class="{$maccms.cache_flag} menu-item">
+        <a {if condition="($obj.type_name==$vo.type_name) " } class="{$maccms.cache_flag} menu-itema-two" {else /}{/if} href="{:mac_url_type($vo)}">{$vo.type_name|nochaoscode}</a></li>
+        {/maccms:type}
+      </ul>
+    </div>
+    <span class="{$maccms.cache_flag} sitenav-on"><i class="{$maccms.cache_flag} icon-list"></i></span> 
+    <span class="{$maccms.cache_flag} sitenav-mask"></span>
+    <div class="{$maccms.cache_flag} accounts">  </div>
+    <span class="{$maccms.cache_flag} searchstart-on"><i class="{$maccms.cache_flag} icon-search"></i></span> 
+    <span class="{$maccms.cache_flag} searchstart-off"><i class="{$maccms.cache_flag} icon-search"></i></span>
+    <form class="{$maccms.cache_flag} searchform" name="search" method="POST" action="{:mac_url('vod/search')}"  method="post" id="search">
+      <button tabindex="3" class="{$maccms.cache_flag} sbtn" type="submit"><i class="{$maccms.cache_flag} fa"></i></button>
+      <input tabindex="2" class="{$maccms.cache_flag} sinput" name="wd" type="text" placeholder="输入关键字" value="">
+    </form>
+  </div>
+</header>
+<div class="{$maccms.cache_flag} header_end"></div>
+<div id="homeso">
+  <form method="post" id="soform" style="text-align: center;float: none" name="search" action="{:mac_url('vod/search')}">
+    <br>
+    <input tabindex="2" class="{$maccms.cache_flag} homesoin" id="sos" name="wd" type="text" placeholder="输入你要观看的视频" value="">
+    <button id="button" tabindex="3" class="{$maccms.cache_flag} homesobtn" type="submit"><i class="{$maccms.cache_flag} fa">搜索</i></button>
+  </form>
+</div>

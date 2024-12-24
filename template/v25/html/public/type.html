@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		{include file="public/include"}	
+<title>{$obj.type_title} - {$maccms.site_name|nochaoscode}</title>
+    <meta name="keywords" content="{$obj.type_key}" />
+    <meta name="description" content="{$obj.type_des}" />
+	</head>
+    <body class="{$maccms.cache_flag} apptop">
+		{include file="public/head"}
+		<!--main-->
+		<div class="{$maccms.cache_flag} container">
+			<div class="{$maccms.cache_flag} row">												
+				<div class="{$maccms.cache_flag} hy-cascade clearfix">
+					<div class="{$maccms.cache_flag} left-head hidden-sm hidden-xs">
+						<ul class="{$maccms.cache_flag} clearfix">						
+							<li class="{$maccms.cache_flag} text"><span class="{$maccms.cache_flag} text-muted">选择频道</span></li>
+							{maccms:type ids="1,2,3,4" order="asc" by="sort"}
+							<li><a {if condition="($vo.type_id eq MAC_TYPE_ID || $vo.type_id eq MAC_TYPE_PID)"}class="{$maccms.cache_flag} active"{/if} href="{:mac_url_type($vo)}" title="{$vo.type_name|nochaoscode}">{$vo.type_name|nochaoscode}</a></li> 
+							 {/maccms:type}						
+						</ul>
+					</div>									
+					<div class="{$maccms.cache_flag} content-meun clearfix">
+						<a class="{$maccms.cache_flag} head" href="javascript:;" data-toggle="collapse" data-target="#collapse">	
+							<span class="{$maccms.cache_flag} text">
+							</span>												
+							<!--<span class="{$maccms.cache_flag} option hidden-xs"><a class="{$maccms.cache_flag} btn btn-sm btn-default reset" target="_self" href="/{maccms:sitepath}search.php?searchtype=5">重置条件 <i class="{$maccms.cache_flag} icon iconfont icon-setting font-size-12"></i></a></span>	-->							
+						</a>
+						<div class="{$maccms.cache_flag} item collapse" id="collapse">	
+							<ul class="{$maccms.cache_flag} visible-sm visible-xs clearfix">						
+								<li class="{$maccms.cache_flag} text"><span class="{$maccms.cache_flag} text-muted">按分类</span></li>
+								<li><a  class="{$maccms.cache_flag} active"  href="#" title="全部">全部</a></li> 
+								 {empty name="$obj.type_extend.class"}
+                    {maccms:foreach name=":explode(',',$obj.parent.type_extend.class)"}
+                    <li><a href="{:mac_url_type($obj,['class'=>$vo],'show')}">{$vo}</a></li>
+                    {/maccms:foreach}
+                {else /}
+                    {maccms:foreach name=":explode(',',$obj.type_extend.class)"}
+                    <li><a href="{:mac_url_type($obj,['class'=>$vo],'show')}">{$vo}</a></li>
+                    {/maccms:foreach}
+                {/empty}				
+							</ul>											
+							<ul class="{$maccms.cache_flag} clearfix">
+								<li class="{$maccms.cache_flag} text"><span class="{$maccms.cache_flag} text-muted">按地区</span></li>
+								 <li><a href="#" class="{$maccms.cache_flag} active"  data="area-0">全部</a></li>
+		 {empty name="$obj.type_extend.area"}
+                    {maccms:foreach name=":explode(',',$obj.parent.type_extend.area)"}
+                    <li><a href="{:mac_url_type($obj,['class'=>$vo],'show')}">{$vo}</a></li>
+                    {/maccms:foreach}
+                {else /}
+                    {maccms:foreach name=":explode(',',$obj.type_extend.area)"}
+                    <li><a href="{:mac_url_type($obj,['area'=>$vo],'show')}">{$vo}</a></li>
+                    {/maccms:foreach}
+                {/empty}
+							</ul>						
+							<ul class="{$maccms.cache_flag} clearfix">
+								<li class="{$maccms.cache_flag} text"><span class="{$maccms.cache_flag} text-muted">按年份</span></li>
+								<li><a href="{page:linkyear}" {if-A:"{page:year}"=""} class="{$maccms.cache_flag} active" {endif-A} data="year-0">全部</a></li>
+		 {empty name="$obj.type_extend.year"}
+                    {maccms:foreach name=":explode(',',$obj.parent.type_extend.year)"}
+                    <li><a href="{:mac_url_type($obj,['class'=>$vo],'show')}">{$vo}</a></li>
+                    {/maccms:foreach}
+                {else /}
+                    {maccms:foreach name=":explode(',',$obj.type_extend.year)"}
+                    <li><a href="{:mac_url_type($obj,['year'=>$vo],'show')}">{$vo}</a></li>
+                    {/maccms:foreach}
+                {/empty}
+							</ul>										
+						</div>					
+					</div>
+				</div>																		
+				<div class="{$maccms.cache_flag} hy-layout clearfix" style="margin-top: 0;">	
+					<div class="{$maccms.cache_flag} hy-switch-tabs active clearfix">
+						<span class="{$maccms.cache_flag} text-muted pull-right hidden-xs">共有<span class="{$maccms.cache_flag} text-color">“{:mac_data_count(1,'all')}”</span>个影片</span>							
+						<ul class="{$maccms.cache_flag} nav nav-tabs">
+							<li><a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'time' ],'show')}" class="{$maccms.cache_flag} order {if condition="$param.by eq '' || $param.by eq 'time'"}current{/if}">按时间</a></li>
+							<li><a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'hits' ],'show')}" class="{$maccms.cache_flag} order {if condition="$param.by eq 'hits'"}current{/if}">按人气</a></li>
+							<li> <a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'score' ],'show')}" class="{$maccms.cache_flag} order {if condition="$param.by eq 'score'"}current{/if}">按评分</a></li>
+							<!--<li class="{$maccms.cache_flag} {if-A:{searchpage:ordername}==score}active{endif-A}"><a href="{searchpage:order-score-link}" title="按评分">按评分</a></li>	
+							<li class="{$maccms.cache_flag} {if-A:{searchpage:ordername}==random}active{endif-A}"><a href="{searchpage:order-random-link}" title="按随机">按随机</a></li>-->
+						</ul>						
+					</div>													
+					<div class="{$maccms.cache_flag} hy-video-list">
+						<div class="{$maccms.cache_flag} item">
+							<ul class="{$maccms.cache_flag} clearfix">	
+								{maccms:vod num="36" paging="yes" type="current" order="desc" by="time"}
+								<li class="{$maccms.cache_flag} col-md-2 col-sm-3 col-xs-4">
+									<a class="{$maccms.cache_flag} videopic lazy" href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" data-original="{$vo.vod_pic|mac_url_img}" style="background: url({$vo.vod_pic|mac_url_img}) no-repeat; background-position:50% 50%; background-size: cover;" >								
+										<span class="{$maccms.cache_flag} play hidden-xs"></span>										
+										<span class="{$maccms.cache_flag} score">{$vo.vod_hits}</span>
+									</a>
+									<div class="{$maccms.cache_flag} title">
+										<h5 class="{$maccms.cache_flag} text-overflow" title="{$vo.vod_name|nochaoscode}"><a href="{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a></h5>
+									</div>
+									<div class="{$maccms.cache_flag} subtitle text-muted text-overflow hidden-xs">
+										{$vo.vod_actor}
+									</div>	
+								</li>																		
+								{/maccms:vod}																												    
+							</ul>
+						</div>
+					</div>	
+					<div class="{$maccms.cache_flag} hy-page clearfix">
+						<ul class="{$maccms.cache_flag} cleafix">
+							{include file="public/paging"}					
+						</ul>					
+					</div>					
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var w = document.documentElement ? document.documentElement.clientWidth : document.body.clientWidth;
+			if (w > 640) {			
+	            $(".collapse").addClass("in");
+	        }				
+		</script>
+		{include file="public/foot"}
+		
+	</body>
+</html>

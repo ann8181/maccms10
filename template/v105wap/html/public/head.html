@@ -1,0 +1,20 @@
+    <header class="{$maccms.cache_flag} itopbar">
+        <div class="{$maccms.cache_flag} container">
+            <h1 class="{$maccms.cache_flag} ilogo"><a href="{$maccms.path}" title="logo"><span>{$maccms.site_name|nochaoscode}</span></a></h1>
+			
+			<nav class="{$maccms.cache_flag} sitenav"><a href="{$maccms.path}" {if condition="$maccms.aid eq 1"}class="{$maccms.cache_flag} cur"{/if}>首页</a>{maccms:type ids="parent" order="asc" by="sort"}<a href="{:mac_url_type($vo)}" {if condition="$obj.type_id eq $vo.type_id"}class="{$maccms.cache_flag} cur"{/if}>{$vo.type_name|nochaoscode}</a>{/maccms:type}<a href="{:mac_url('user/login')}" >会员</a><a href="{:mac_url('gbook/index')}" {if condition="$maccms.aid eq 4"}class="{$maccms.cache_flag} cur"{/if}>留言</a><a href="{:mac_url_topic_index()}" {if condition="$maccms.aid eq 7"}class="{$maccms.cache_flag} cur"{/if}>专题</a></nav>
+    
+            
+            <div class="{$maccms.cache_flag} itr">
+                <div class="{$maccms.cache_flag} mod">
+                    <a href="javascript:;" class="{$maccms.cache_flag} mac_history"><i class="{$maccms.cache_flag} iconfont">&#xe62b;</i>看过<span class="{$maccms.cache_flag} caret"></span></a>
+                </div>
+                <div class="{$maccms.cache_flag} mod"><a href="javascript:;" class="{$maccms.cache_flag} mac_user"><i class="{$maccms.cache_flag} iconfont">&#xe62c;</i>会员</a></div>
+            </div>
+            <span class="{$maccms.cache_flag} searchstart-on"><i class="{$maccms.cache_flag} iconfont">&#xe61e;</i></span><span class="{$maccms.cache_flag} searchstart-off"><i class="{$maccms.cache_flag} iconfont">&#xe622;</i></span>
+            <form name="formsearch" class="{$maccms.cache_flag} searchform" action="{:mac_url('vod/search')}" method="post" autocomplete="off">
+                <input class="{$maccms.cache_flag} ipt" placeholder="输入影片片名或演员名称。" name="wd" type="text" id="wd" required="">
+                <input type="submit" id="searchbutton" value="" class="{$maccms.cache_flag} hide"><a href="javascript:" class="{$maccms.cache_flag} ibtn" title="搜索" onClick="$('.searchform').submit();"><i class="{$maccms.cache_flag} iconfont">&#xe61e;</i> 搜索</a>
+            </form>
+        </div>
+    </header>

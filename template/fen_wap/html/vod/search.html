@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="renderer" content="webkit">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimal-ui">
+  <title>
+    搜索{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}-{$maccms.site_name|nochaoscode}-国内领先的在线视频网站·免VIP在线观看无广告高清视频
+  </title>
+  <meta name="keywords"
+    content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}-{$maccms.site_name|nochaoscode},免费在线电影,{$maccms.site_name|nochaoscode},视频网站,免VIP,免广告,高清,高清视频,高清视频观看,VIP会员,在线观看,电影,电视剧,综艺,最新电影,最新电视剧" />
+  <meta name="description"
+    content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}-{$maccms.site_name|nochaoscode},{$maccms.site_name|nochaoscode}-国内领先的在线视频网站·平台用户可享受免VIP在线观看无广告高清视频,我们致力打造最优秀的最新影视,最新电视剧,最新综艺节目在线观看服务平台" />
+
+  <link rel="shortcut icon" href="{$maccms.path}favicon.ico">
+  {include file="public/include"}
+</head>
+
+<body>
+  <div class="{$maccms.cache_flag} h-channel">
+    <section class="{$maccms.cache_flag} searchPop" style="display: block;position: relative;">
+      <div class="{$maccms.cache_flag} searchCon">
+        <a class="{$maccms.cache_flag} pull-left btn" href="javascript:;" onclick="back();">
+          <span class="{$maccms.cache_flag} iconfont icon-back"
+            style="font-size: .4rem;color: #fff;top: 0;margin-left: .3rem;line-height:.88rem;"></span>
+        </a>
+        <div class="{$maccms.cache_flag} sSearchInput" style="margin-left: .8rem;">
+          <form class="{$maccms.cache_flag} search-form" target="_self" action="{:mac_url('vod/search')}">
+            <input name="wd" type="search" class="{$maccms.cache_flag} searchInput" placeholder="{$param.wd}">
+          </form>
+        </div>
+        <input type="submit" value="" style="display: none!important;">
+        <a href="javascript:" title="搜索" onClick="$('.search-form').submit();"><span
+            class="{$maccms.cache_flag} cancelInput">搜索</span></a>
+      </div>
+    </section>
+    <section>
+      <div align="center">
+        <script type=text/javascript src="http://api.xiaoshipintv.com/news2.js"></script>
+      </div>
+      <div class="{$maccms.cache_flag} mod margin-t-15">
+        <div class="{$maccms.cache_flag} detail detail-search">
+          {maccms:vod num="20" paging="yes" pageurl="vod/search" order="desc" by="time"}
+          <div class="{$maccms.cache_flag} detail-wrap"> <a href="{:mac_url_vod_detail($vo)}"
+              title="{$vo.vod_name|nochaoscode}">
+              <div class="{$maccms.cache_flag} detail-img _item-lazy _item-pic" data-echo="{$vo.vod_pic|mac_url_img}">
+              </div>
+            </a>
+            <div class="{$maccms.cache_flag} detail-media"> <a href="{:mac_url_vod_detail($vo)}"
+                title="{$vo.vod_name|nochaoscode}" tapmode onclick="showDefault('loading')">
+                <h1 class="{$maccms.cache_flag} media-title ellipsis-2">{$vo.vod_name|nochaoscode}</h1>
+              </a>
+              <ul class="{$maccms.cache_flag} desc">
+                <li>{$vo.vod_year}</li>
+                <li class="{$maccms.cache_flag} ellipsis-1">主演：{$vo.vod_actor}</li>
+                <li class="{$maccms.cache_flag} ellipsis-2">简介：{$vo.vod_content|mac_filter_html}</li>
+              </ul>
+              <div class="{$maccms.cache_flag} media-btn"> <a href="{:mac_url_vod_play($vo)}"
+                  class="{$maccms.cache_flag} btn" tapmode onclick="showDefault('loading')">立刻观看</a> </div>
+            </div>
+          </div>
+          {/maccms:vod}
+        </div>
+      </div>
+      <div align="center">
+        <script type=text/javascript src="http://api.xiaoshipintv.com/news3.js"></script>
+      </div>
+    </section>
+    <section class="{$maccms.cache_flag} pag-warp clearfix" tapmode onclick="showDefault('loading')">
+      {include file="public/paging"}
+    </section>
+  </div>
+  {include file="public/foot"}
+</body>
+
+</html>

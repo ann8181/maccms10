@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width = device-width ,initial-scale = 1,minimum-scale = 1,maximum-scale = 1,user-scalable =no,"/>
+	<title>我的充值记录 - {$maccms.site_name}</title>
+	{include file="user/include" /}
+</head>
+
+<body style="background: #fff;">
+<!--子页顶部-->
+<div class="{$maccms.cache_flag} zy-search zy-tit">
+	<div class="{$maccms.cache_flag} sch-w clearfix">
+		<a class="{$maccms.cache_flag} go-back" href="#"><img src="{$maccms.path_tpl}images/user/go-back.png"></a>
+		<div class="{$maccms.cache_flag} tit">
+			充值记录
+		</div>
+	</div>
+</div>
+
+<div class="{$maccms.cache_flag} wrap list-top" style="border-top: 1px solid #ececec;"><span class="{$maccms.cache_flag} ml10"><a href="{:url('user/orders')}">在线充值记录</a></span><span class="{$maccms.cache_flag} ml10 "><a href="{:url('user/cards')}">充值卡记录</a></span></div>
+<div class="{$maccms.cache_flag} wrap" id="list">
+	<!--我的收藏-->
+	<div class="{$maccms.cache_flag} order-list often-odr">
+		{volist name="list" id="vo"}
+
+		<div class="{$maccms.cache_flag} item clearfix">
+			<div class="{$maccms.cache_flag} info">
+				<p class="{$maccms.cache_flag} tit">{$vo.card_id}、卡号：{$vo.card_no}</p>
+				<div class="{$maccms.cache_flag} p-bottom">
+					<p> 金额：{$vo.card_money}  积分：{$vo.card_points} </p>
+				</div>
+			</div>
+			<div class="{$maccms.cache_flag} odr-price">
+				<p class="{$maccms.cache_flag} price">{$vo.card_use_time|mac_day}</p>
+			</div>
+			<div class="{$maccms.cache_flag} often-del clearfix">
+
+			</div>
+		</div>
+		{/volist}
+	</div>
+</div>
+
+
+<!--loading start-->
+<div class="{$maccms.cache_flag} loading_box"></div>
+<!--loading end-->
+
+<script>
+
+	$(".go-back").click(function () {
+		var ref = document.referrer;
+		location.href=ref;
+	});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+﻿
+<div id="main">
+  <div class="{$maccms.cache_flag} trailers">
+    <div class="{$maccms.cache_flag} title"><b><a style="color: #06a6e2" href="#" target="_blank">为您推荐</a></b> 全部<i>
+{:mac_data_count(0,'all','vod')}</i>部>></div>
+    
+       <ul class="{$maccms.cache_flag} img-list">
+ {maccms:vod num="8" type="current" order="desc" by="time"}
+ <li><a class="{$maccms.cache_flag} play-img" title="{$vo.vod_name|nochaoscode} " href="{:mac_url_vod_detail($vo)}" target="_blank">
+		<img alt="{$vo.vod_name|nochaoscode}" src="{$vo.vod_pic|mac_url_img}"><em>{$vo.type.type_name|nochaoscode}</em></a>
+<b><a title="{$vo.vod_name|nochaoscode} " href="{:mac_url_vod_detail($vo)}" target="_blank">{$vo.vod_name|nochaoscode}</a></b> </li>
+{/maccms:vod}
+
+        </ul>
+
+<div class="{$maccms.cache_flag} cr"></div>
+  </div>
+  
+{maccms:type parent="current" order="asc" by="sort" id="vo2" key="key2"}
+<div class="{$maccms.cache_flag} cr"></div>
+  <div class="{$maccms.cache_flag} channel">
+    <div class="{$maccms.cache_flag} box">
+      <div class="{$maccms.cache_flag} content">
+        <div class="{$maccms.cache_flag} title">
+              
+              <h2><a href="{:mac_url_type($vo2,[],'show')}" target="_self">{$vo2.type_name|nochaoscode}</a></h2>
+        <span><a href="{:mac_url_type($vo2,[],'show')}">共<i>{$vo2.type_id|mac_data_count=all}</i>部影片>></a></span></div>
+                 
+
+   <ul class="{$maccms.cache_flag} img-list dis clearfix">
+ {maccms:vod num="12" type="'.$vo2['type_id'].'" order="desc" by="time"}
+ <li><a class="{$maccms.cache_flag} play-img" href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" target="_blank"><img src="{$vo.vod_pic|mac_url_img}" alt="{$vo.vod_name|nochaoscode}" /><em>{$vo.vod_time|date='m-d',###}</em></a><b><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}" target="_blank">{$vo.vod_name|nochaoscode}</a></b>
+            <p>已有
+{$vo.vod_hits}撸量</p>
+          </li>
+		  {/maccms:vod}
+   </ul>
+</div>
+   <div class="{$maccms.cache_flag} side">
+        <div class="{$maccms.cache_flag} shot">
+            <h3><a href="{:mac_url_type($vo2,[],'show')}" target="_blank">{$vo2.type_name|nochaoscode}推荐榜</a></h3>
+           <ul>
+ {maccms:vod num="14" type="'.$vo2['type_id'].'" order="desc" by="hits_week"}
+ <li><i {in name="$key" value="1,2,3,4"}class='n'{/in}>{$key}</i><a href="{:mac_url_vod_detail($vo)}" target="_blank">{$vo.vod_name|nochaoscode}</a><span class='new'>{$vo.vod_time|date='m-d',###}</span></li>{/maccms:vod}
+
+
+   </ul>
+
+ </div>
+        <!--/shot-->
+      </div>
+      <div class="{$maccms.cache_flag} cr"></div>
+    </div>
+	{/maccms:type}
+
+

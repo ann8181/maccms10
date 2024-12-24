@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>影片推荐 - {$maccms.site_name|nochaoscode}</title>
+    <meta name="keywords" content="{$obj.type_key} - {$maccms.site_keywords|nochaoscode}" />
+	<meta name="description" content="{$obj.type_des} - {$maccms.site_description|nochaoscode}" />
+{include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+    <div class="icon">
+        <div class="container">
+		
+		<!--广告位1开始下方广告代码可以替换成自己的广告代码。如不需要请直接删除-->
+			<a href="https://shop112536920.taobao.com/" target="_blank"><img src="http://kk.qin52.com/50.gif" width="100%" height="100"></a>
+			<!--广告位1结束-->
+		
+            <section class="select_con">
+                <div class="v-hd clearfix">
+                    <p class="p_tab"><a href="#" title="全部影片" {if condition="$param.by eq '' || $param.by eq 'time'"}class="cur"{/if}>全部影片</a>
+                    <div class="p_btn">
+                    </div>
+                </div>
+                <div class="v-bd clearfix">
+                    <div class="v_con_box">
+                        <ul class="tv-list clearfix">
+						{maccms:vod num="100" order="desc" by="time" type="all"  level="1,2,3,5,6,7,8,9"}
+                            <li>
+                                <div class="v-pic">
+                                    <img data-src="{$vo.vod_pic|mac_url_img}" class="thumb" alt="{$vo.vod_name|nochaoscode}"> <span class="v-tips">{include file="public/serial1"}</span> <a class="v-playBtn" href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}"><i></i></a>
+                                </div>
+                                <div class="v-txt">
+                                    <p class="v-tit"><a title="{$vo.vod_name|nochaoscode}" href="{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a></p>
+                                    <p class="s-des">演员：{$vo.vod_actor|mac_url_create='actor'}</p>
+                                    <p class="s-des">导演：{$vo.vod_director|mac_url_create='director'}</p>
+                                </div>
+                            </li>
+						{/maccms:vod}
+                        </ul>
+						
+						<!--广告位1开始下方广告代码可以替换成自己的广告代码。如不需要请直接删除-->
+			<a href="https://shop112536920.taobao.com/" target="_blank"><img src="http://kk.qin52.com/50.gif" width="100%" height="100"></a>
+			<!--广告位1结束-->
+						
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script>
+        $('.mac_total').html('{$__PAGING__.record_total}');
+    </script>
+{include file="public/foot"}
+    <script src="{$maccms.path_tpl}js/lazyload.min.js"></script>
+    <script src="{$maccms.path_tpl}js/app.js"></script>
+</body>
+
+</html>

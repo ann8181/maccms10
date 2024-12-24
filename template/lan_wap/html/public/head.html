@@ -1,0 +1,61 @@
+    <header>
+		<div class="{$maccms.cache_flag} head">
+			<div class="{$maccms.cache_flag} logo">
+				<font style="float:left;margin-left:5px;font-size:.42rem;margin-top:3px;">{$maccms.site_keywords|nochaoscode}</font>
+			</div>
+			<a class="{$maccms.cache_flag} pull-right btn"  tapmode onclick="openDialog('text')">
+		        <span class="{$maccms.cache_flag} iconfont icon-creative"></span>
+		    </a>
+			<a class="{$maccms.cache_flag} pull-right btn" href="{:mac_url('label/top')}" tapmode onclick="showDefault('loading')">
+		        <span class="{$maccms.cache_flag} iconfont icon-hot"></span>
+		   	</a>
+		    <a class="{$maccms.cache_flag} pull-right btn" href="javascript:;" onclick="openSearch()">
+		        <span class="{$maccms.cache_flag} iconfont icon-search"></span>
+		    </a>
+		</div>
+	</header>
+	<div class="{$maccms.cache_flag} headernav">
+		<div class="{$maccms.cache_flag} nav-wrap">
+			<div class="{$maccms.cache_flag} shadow-l"></div>
+			<div class="{$maccms.cache_flag} shadow-r"></div>
+			<div id="header-nav" class="{$maccms.cache_flag} wrap">
+				<ul class="{$maccms.cache_flag} swiper-wrapper clearfix">
+					<li class="{$maccms.cache_flag} swiper-slide {if condition="$maccms.aid eq 1"}active{/if}"><a href="{$maccms.path}" tapmode onclick="showDefault('loading')">首页</a></li>
+{maccms:type ids="parent" order="asc" by="sort"}
+                    <li class="{$maccms.cache_flag} swiper-slide {if condition="$obj.type_id eq $vo.type_id"}active{/if}" tapmode onclick="showDefault('loading')"><a href="{:mac_url_type($vo)}">{$vo.type_name|nochaoscode}</a></li>
+{/maccms:type}
+				</ul>
+			</div>
+		</div>
+	</div>
+<!--搜索布局-->
+<section class="{$maccms.cache_flag} searchPop">
+		<div class="{$maccms.cache_flag} searchCon">
+		    <a class="{$maccms.cache_flag} pull-left btn" href="javascript:;" onclick="cancelSearch()">
+			<span class="{$maccms.cache_flag} iconfont icon-back" style="font-size: .4rem;color: #fff;top: 0;margin-left: .3rem;line-height: .88rem;"></span>
+		</a>
+			<div class="{$maccms.cache_flag} sSearchInput" style="margin-left: .8rem;">
+				<form class="{$maccms.cache_flag} search-form"  target="_self" action="{:mac_url('vod/search')}">
+			   		<input class="{$maccms.cache_flag} searchInput" name="wd" type="search" autocomplete="off" placeholder="输入影片片名或演员名称。" >  
+		      	</form>
+			</div>
+			<input type="submit"  value="" style="display: none!important;"><a href="javascript:" title="搜索" onClick="$('.search-form').submit();"><span class="{$maccms.cache_flag} cancelInput">搜索</span></a>
+		</div>
+<!--搜索标签-->
+    <section class="{$maccms.cache_flag} mod margin-t-15">
+		<div class="{$maccms.cache_flag} mod-head clearfix">
+			<div class="{$maccms.cache_flag} mod-head-title">
+				<span class="{$maccms.cache_flag} mod-head-name">热门搜索</span>
+			</div>
+		</div>
+		<div class="{$maccms.cache_flag} mod-main clearfix">
+			<div class="{$maccms.cache_flag} mod-tags">
+				<div class="{$maccms.cache_flag} search-tags">
+{maccms:foreach name=":explode(',',$maccms.search_hot)" id="vo2" key="key2"}
+						<a href="{:mac_url('vod/search',['wd'=>$vo2])}" title="{$vo2}"><span class="{$maccms.cache_flag} badge ">{$vo2}</span></a>
+{/maccms:foreach}
+				</div>
+			</div>
+		</div>
+	</section>
+</section>
