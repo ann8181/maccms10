@@ -1667,6 +1667,12 @@ function mac_url_img($url)
     $url = mac_filter_xss($url);
     $url = str_replace('&quot;&gt;', '', $url);
     $url = str_replace('&amp;', '&', $url);
+    // add by ann 2024-12-24
+    // url本地化伪造
+    if(substr($url,0,4) == 'http'){
+        $url = '/pic/'. base64_encode($url);
+    }
+    // add end
     return $url;
 }
 
@@ -3013,4 +3019,57 @@ if (!function_exists('copydirs')) {
     }
 }
 
-
+// add by ann 2024-12-24
+// 获取随机域名,方便环链使用
+function mac_get_rnddomain()
+{
+    $domains = config('domain');
+    shuffle($domains);
+    $domain = $domains[rand(0, count($domains) - 1)];
+    return $domain['site_url'];
+}
+// 中文字符编码输出,SEO优化
+function nochaoscode($str, $encode = "utf-8") {
+	$str = iconv($encode, "UTF-16BE", $str);
+	for ($i = 0; $i < strlen($str); $i++,$i++) {
+		$code = ord($str{$i}) * 256 + ord($str{$i + 1});
+		if ($code < 128) {
+			$output .= chr($code);
+		} else if ($code != 65279) {
+			$output .= "&#".$code.";";
+		}
+	}
+	return $output;
+}
+// URL唯一化
+//转化为字符串
+function Toabc($num,$salt){
+    $n =array('1','2','3','4','5','6','7','8','9','0');
+	return str_replace($n,$salt,$num);
+}
+//转化回数字
+function To123($str,$salt){
+    $n =array('1','2','3','4','5','6','7','8','9','0');
+	return str_replace($salt,$n,$str);
+}
+/**
+ * 获得随机字符串
+ * @param $len             需要的长度
+ * @return string       返回随机字符串
+ */
+function getRandomStr($len){
+    $chars = array(
+        "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
+        "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v",
+        "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G",
+        "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
+        "S", "T", "U", "V", "W", "X", "Y", "Z"
+    );
+    $charsLen = count($chars) - 1;
+    shuffle($chars);                            //打乱数组顺序
+    $str = '';
+    for($i=0; $i<$len; $i++){
+        $str .= $chars[mt_rand(0, $charsLen)];    //随机取出一位
+    }
+    return $str;
+}

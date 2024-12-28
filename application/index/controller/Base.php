@@ -15,6 +15,10 @@ class Base extends All
         $this->label_maccms();
         $this->check_browser_jump();
         $this->label_user();
+        // add by ann 2024-12-24
+        // 添加标签
+        $this->label_taglist();
+        // add end
     }
 
     public function _empty()
