@@ -2,8 +2,10 @@
 ini_set('User-Agent','Mozilla/5.0 (iPhone; CPU iPhone OS 12_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/12.0 Mobile/15A372 Safari/604.1');
 error_reporting(0);
 $p = $_GET['p'];
+$p = str_replace('.jpg', '', $p);
 $file =base64_decode($p);
 header('HTTP/1.1 200 OK');
+header('Content-type: image/jpeg');
 header("Location: $file");
 exit();
 function curl($url){

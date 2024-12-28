@@ -41,6 +41,23 @@ class Init
                 $TMP_HTMLDIR = $config['site']['mob_html_dir'];
                 $TMP_ADSDIR = $config['site']['mob_ads_dir'];
             }
+            // add by ann 2024-12-25
+            // 增强配置项，确保每个独立域名的独立性
+            if(!empty($config['site']['search_hot'])){
+                $config['app']['search_hot'] = $config['site']['search_hot'];
+            }
+            if(!empty($config['site']['cache_flag'])){
+                $config['app']['cache_flag'] = $config['site']['cache_flag'];
+            }else{
+                $domain[$_SERVER['HTTP_HOST']]['cache_flag'] = mac_get_rndstr(10);
+                $res = mac_arr2file(APP_PATH . 'extra/domain.php', $domain);
+            }
+            if(!empty($config['site']['view'])){
+                $config['view'] = $config['site']['view'];
+                $config['path'] = $config['site']['path'];
+                $config['rewrite'] = $config['site']['rewrite'];
+            }
+            // add end
         }
 
         define('MAC_URL','http'.'://'.'www'.'.'.'maccms'.'.'.'la'.'/');
