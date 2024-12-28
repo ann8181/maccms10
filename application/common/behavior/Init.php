@@ -57,6 +57,9 @@ class Init
                 $config['path'] = $config['site']['path'];
                 $config['rewrite'] = $config['site']['rewrite'];
             }
+            if(!empty($config['site']['seo'])){
+                $config['seo'] = $config['site']['seo'];
+            }
             // add end
         }
 

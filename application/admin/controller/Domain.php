@@ -117,4 +117,88 @@ class Domain extends Base
             return $this->error($file->getError());
         }
     }
+    // add start by ann 2024-12-24
+    public function add(){
+        $param = input();
+        // print_r($param);
+        $config = config('domain');
+        if (Request()->isPost()) {
+        	$param = input();
+        	$param['domain']['site_url'] = trim($param['domain']['site_url']);
+            $tmp[$param['domain']['site_url']] = $param['domain'];
+            $domain = array_merge($config,$tmp);
+            $res = mac_arr2file(APP_PATH . 'extra/domain.php', $domain);
+            if ($res === false) {
+                return $this->error(lang('save_err'));
+            }
+            return $this->success(lang('save_ok'));            
+        }
+        if(!empty($param['id'])){
+        	$info = $config[$param['id']];
+        	$this->assign('info', $info);
+        }
+        $templates = glob('./template' . '/*', GLOB_ONLYDIR);
+        foreach ($templates as $k => &$v) {
+            $v = str_replace('./template/', '', $v);
+        }
+        $this->assign('templates', $templates);
+        return $this->fetch('admin@domain/add');
+    }
+    public function configurl(){
+        $param = input('','','htmlentities');
+        $config = config('domain');
+        if (Request()->isPost()) {
+            $validate = \think\Loader::validate('Token');
+            if(!$validate->check($param)){
+                return $this->error($validate->getError());
+            }
+            unset($param['__token__']);
+        	$domain = $param['domain'];
+            $config[$domain]['view'] = $param['view'];
+            $config[$domain]['path'] = $param['path'];
+            $config[$domain]['rewrite'] = $param['rewrite'];
+            $res = mac_arr2file(APP_PATH . 'extra/domain.php', $config);
+            if ($res === false) {
+                return $this->error(lang('save_err'));
+            }
+            return $this->success(lang('save_ok'));            
+        }
+        $domain = $config[$param['id']];
+        if(empty($domain['view'])){
+        	$cnf = config('maccms');
+            $domain['view'] = $cnf['view'];
+            $domain['path'] = $cnf['path'];
+            $domain['rewrite'] = $cnf['rewrite'];
+        }    
+        $this->assign('config', $domain);
+        return $this->fetch('admin@domain/configurl');
+    }
+    public function configseo()
+    {
+        $config = config('domain');
+        $param = input('','','htmlentities');
+        if (Request()->isPost()) {
+            $validate = \think\Loader::validate('Token');
+            if(!$validate->check($param)){
+                return $this->error($validate->getError());
+            }
+            unset($param['__token__']);
+            $domain = $param['domain'];
+            $config[$domain]['seo'] = $param['seo'];
+            $res = mac_arr2file(APP_PATH . 'extra/domain.php', $config);
+            if ($res === false) {
+                return $this->error(lang('save_err'));
+            }
+            return $this->success(lang('save_ok'));
+        }
+        $domain = $config[$param['id']];
+        if(empty($domain['view'])){
+        	$cnf = config('maccms');
+            $domain['seo'] = $cnf['seo'];
+        }            
+        $this->assign('config', $domain);
+        return $this->fetch('admin@domain/configseo');
+    }    
+    // add end    
+
 }
