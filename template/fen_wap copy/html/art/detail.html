@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="applicable-device" content="mobile">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimal-ui">
+<title>{$obj.art_name|nochaoscode}  - {$maccms.site_name|nochaoscode}</title>
+<meta name="keywords" content="{$obj.art_name|nochaoscode}" />
+<meta name="description" content="{$obj.art_blurb}" />
+
+<link rel="shortcut icon" href="{$maccms.path}favicon.ico">
+{include file="public/include"}
+</head>
+<body>
+<div class="{$maccms.cache_flag} channel">
+    <header>
+		<div class="{$maccms.cache_flag} head">
+		<a class="{$maccms.cache_flag} pull-left btn" onclick="back();">
+			<span class="{$maccms.cache_flag} iconfont icon-back"></span>
+		</a>
+		<font style="float: left;margin-left:5px;font-size:.38rem;line-height:.85rem;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;width:3rem;">{$obj.art_name|nochaoscode}</font>
+		    <a class="{$maccms.cache_flag} pull-right btn"  tapmode onclick="openDialog('text')">
+		        <span class="{$maccms.cache_flag} iconfont icon-creative"></span>
+		    </a>
+			<a class="{$maccms.cache_flag} pull-right btn" href="{:mac_url('label/top')}" tapmode onclick="showDefault('loading')">
+		        <span class="{$maccms.cache_flag} iconfont icon-hot"></span>
+		   	</a>
+			<a class="{$maccms.cache_flag} pull-right btn" href="{:mac_url('label/news')}">
+		        <span class="{$maccms.cache_flag} iconfont icon-time"></span>
+		    </a>
+		</div>
+	</header>
+	<section class="{$maccms.cache_flag} mod margin-t-15">
+		<div class="{$maccms.cache_flag} article-box">
+			<div class="{$maccms.cache_flag} article-head">
+				<h1 class="{$maccms.cache_flag} article-title-h1">{$obj.art_name|nochaoscode}</h1>
+				<time class="{$maccms.cache_flag} article-time">{$obj.art_author}<cite class="{$maccms.cache_flag} article-cite">{$obj.art_time|date='Y-m-d H:i:s',###}</cite><cite class="{$maccms.cache_flag} article-cite"><em id="dr_show_hits_1">{$obj.art_hits}</em>次阅读</cite></time>
+			</div>
+			<section class="{$maccms.cache_flag} article-content">
+				<article class="{$maccms.cache_flag} article">
+				<img src="{$obj.art_pic|mac_url_img}" alt="{$obj.art_name|nochaoscode}" />
+				{$obj.art_page_list[$param['page']]['content']}
+				<section class="{$maccms.cache_flag} artpag-warp clearfix" tapmode onclick="showDefault('loading')">
+		         </section>
+				</article>
+				  <!--div class="{$maccms.cache_flag} article-tags">
+					<a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_prev}" title="上一篇" style="float:left;margin-left:;">上一篇</a>
+					<a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_next}" title="下一篇" style="float:right;margin-right:;">下一篇</a>
+               	</div-->
+			</section>		
+		</div>
+	</section>
+	<!--热门-->
+	<section class="{$maccms.cache_flag} mod margin-t-15">
+	    <div class="{$maccms.cache_flag} mod-head clearfix">
+			<div class="{$maccms.cache_flag} mod-head-title">
+				<span class="{$maccms.cache_flag} mod-head-name">热门{$obj.type.type_name|nochaoscode}</span>
+			</div>
+		</div>
+		<div class="{$maccms.cache_flag} mod-main clearfix">
+			<div class="{$maccms.cache_flag} mod-row">
+				<div class="{$maccms.cache_flag} article-list-box article-list-mt">
+					<ul class="{$maccms.cache_flag} clearfix">{maccms:art num="6" type="current" order="desc" by="hits_week"}
+						<li>
+							<a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name|nochaoscode}">
+								<div class="{$maccms.cache_flag} article-list-pic _item-lazy" data-echo="{$vo.art_pic|mac_url_img}"></div>
+								<div class="{$maccms.cache_flag} article-list-con">
+									<h2 class="{$maccms.cache_flag} article-list-title">{$vo.art_name|nochaoscode}</h2>
+									<div class="{$maccms.cache_flag} article-list-info">
+				           			<span>{$vo.art_author}</span><span>{$vo.art_time|date='Y-m-d H:i:s',###}</span><span>阅读({$vo.art_hits})</span>
+				           				
+									</div>
+								</div>
+							</a>
+						</li>{/maccms:art}
+                    </ul>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<!-- 尾部  -->
+{include file="public/foot"}
+</body>
+</html>

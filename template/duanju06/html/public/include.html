@@ -1,0 +1,27 @@
+
+<link rel="shortcut icon" href="{$maccms.path_tpl}images/favicon.ico" />
+<link rel='stylesheet' id='swiper-style-css' href='{$maccms.path_tpl}css/swiper-bundle.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css' href='{$maccms.path_tpl}css/style.css' type='text/css' media='all' />
+<script src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js"></script>
+<script>
+var system = { win: false, mac: false, x11: false }; var p = navigator.platform.toLowerCase(); system.win = p.includes("win"); system.mac = p.includes("mac"); 
+var observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) { if (mutation.attributeName === 'style') { var targetElement = mutation.target; var newStyle = targetElement.getAttribute('style'); var tagName = targetElement.tagName; if (['body', 'html'].includes(targetElement.tagName.toLowerCase()) && newStyle?.includes('--sj-')) { console.log('阻止了', tagName, '的style属性变化: 包含--sj-'); observer.disconnect(); mutation.target.setAttribute('style', mutation.oldValue || ''); observer.observe(document.documentElement, config); } else { if (['body', 'html'].includes(targetElement.tagName.toLowerCase())) { console.log('元素发生了style属性变化:', { tagName: targetElement.tagName, id: targetElement.id, className: targetElement.className, newStyle: newStyle }); } } } });
+});
+var config = { attributes: true, attributeFilter: ['style'], attributeOldValue: true, subtree: true };
+observer.observe(document.documentElement, config); 
+var maccms = {"path":"__ROOT__","mid":"{$maccms['mid']}","aid":"{$maccms['aid']}","url":"{$maccms['site_url']}","wapurl":"{$maccms['site_wapurl']}","mob_status":"{$maccms['mob_status']}"};
+</script>
+<script src="{$maccms.path}static/js/home.js"></script>
+<style type="text/css">
+    * {
+        --sj-reader-screen-height: 0 !important;
+    }
+
+    [id^="__sj_"],
+    [class^="__sj_"],
+    main.sj-play,
+    [class^="sj-"] {
+        display: none !important;
+    }
+</style>

@@ -1,0 +1,18 @@
+{if condition="$__PAGING__.record_total gt 0"}
+<ul>
+    {if $__PAGING__.page_current gt 1}
+    <li class="page-item"><a class="page-link" href="{$__PAGING__.page_url|mac_url_page=1}">« 首页</a></li>
+    <li class="page-item"><a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_prev}" class="page-link">上一页</a></li>
+    {/if}
+    {maccms:foreach name="$__PAGING__.page_num" id="num"}
+    {if condition="$__PAGING__['page_current'] eq $num"}
+    <li class="page-item"><span class="page-link active disabled">{$num}</span></li>
+    {else}
+    <a class="page_link" href="{$__PAGING__.page_url|mac_url_page=$num}" title="第{$num}页" style="display: none;">{$num}</a>
+    {/if}
+    {/maccms:foreach}
+    <li class="page-item"><a href="{$__PAGING__.page_url|mac_url_page=$num}" class="page-link">下一页</a></li>
+    <li class="page-item"><a class="page-link" href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_total}">尾页 »</a></li>
+</ul>
+{/if} 
+

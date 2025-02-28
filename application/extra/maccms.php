@@ -536,6 +536,7 @@ artshow/<id>-<by?>-<class?>-<level?>-<letter?>-<order?>-<page?>-<tag?>   => art/
 artsearch/<wd?>-<by?>-<class?>-<level?>-<letter?>-<order?>-<page?>-<tag?>   => art/search
 
 label-<file> => label/index
+s-<file> => index/taglist
 
 plotdetail/<id>-<page?>   => plot/plot
 plotdetail/<id>   => plot/detail',

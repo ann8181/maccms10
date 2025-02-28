@@ -1,0 +1,20 @@
+<header class="app app-header">
+    <div class="container">
+        <h1 class="nav-logo">
+            <a href="/">
+                <img src="{$maccms.site_logo|mac_url_img}" alt="{$maccms.site_name}">
+            </a>
+        </h1>
+        <div class="nav-icon search-form">
+            <form id="search" action="{:mac_url('vod/search')}" method="get" onSubmit="return qrsearch();">
+                <input class="search-input" name="wd" placeholder="短剧..." type="text" value="{$param.wd}">
+                <a class="search-help" href="{:mac_url('label/rank')}" title="全部短剧" aria-label="全部短剧">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 12H7V21H3V12ZM17 8H21V21H17V8ZM10 2H14V21H10V2Z"></path>
+                    </svg>
+                </a>
+                <input class="search-submit" type="submit" value="搜索">
+            </form>
+        </div>
+    </div>
+</header>

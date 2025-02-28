@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>最新{$obj.type_name}-推荐{$obj.type_name}-第{$param.page}页筛选 - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.type_key}" />
+    <meta name="description" content="{$obj.type_des}" />
+{include file="public/include"}
+</head>
+<body class="ui ui-category">
+{include file="public/header"}
+<main class="app app-main">
+    <section class="swiper-container" data-name="tagsec" data-space="10" data-breakpoints="0:6|480:10" data-position="0">
+        <div class="container swiper tagsec-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"> <a href="{:mac_url('label/rank')}">全部</a> </div>
+                {empty name="$obj.type_extend.class"}
+                {maccms:foreach name=":explode(',',$obj.parent.type_extend.class)" id="vo2" key="key2"}
+                <div class="swiper-slide">
+                    <a {if condition="$param['class'] eq $vo2"}class="active"{/if} href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$vo2,'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+                </div>
+                {/maccms:foreach}
+                {else /}
+                {maccms:foreach name=":explode(',',$obj.type_extend.class)" id="vo2" key="key2"}
+                <div class="swiper-slide">
+                    <a {if condition="$param['class'] eq $vo2"}class="active"{/if} href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$vo2,'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+                </div>
+                {/maccms:foreach}
+                {/empty}
+            </div>
+        </div>
+    </section>
+    <section class="container items"> <h1 class="items-title">{$param['class']}</h1>
+        <ul>
+            {maccms:vod num="18" paging="yes" pageurl="vod/show" type="current" order="desc" by="time"}
+            {include file="public/item"}
+            {/maccms:vod}
+        </ul>
+    </section>
+    <section class="container pagination">
+        {include file="public/paging"}
+    </section>
+</main>
+<script>
+    $('.mac_total').html('{$__PAGING__.record_total}');
+</script>
+{include file="public/footer"}
+</body>
+</html>

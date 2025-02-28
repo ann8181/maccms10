@@ -112,7 +112,21 @@ location / {
 	}
 }
 ```
-
+> 完整配置
+```conf
+location / {
+ if (!-e $request_filename) {
+        rewrite ^/index.php(.*)$ /index.php?s=$1 last;
+        rewrite ^/admin818.php(.*)$ /admin818.php?s=$1 last;
+        rewrite ^/api.php(.*)$ /api.php?s=$1 last;
+        # RewriteRule ^pic/(.+)$ /img.php?p=$1 [T=image/jpg,L]
+        rewrite ^/pic/(.+)$ /img.php?p=$1 last;
+        rewrite ^(.*)$ /index.php?s=$1 last;
+        
+        break;
+   }
+}
+```
 # 文本编码
 ```php
 	{$str|nochaoscode}
@@ -574,6 +588,9 @@ application\index\controller\Index.php
     }
     // add end
 ```
+在每个模板目录下增加taglist.html 文件
+/template/{模板名称}/html/index/taglist.html
+
 # 站群域名管理
 application\admin\common\auth.php
 - > 菜单入口 无修改
@@ -643,3 +660,6 @@ application\admin\view\domain\index.html
 
 # 安装初始化分类
 application\install\sql\initdata.sql
+
+
+

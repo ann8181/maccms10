@@ -94,8 +94,7 @@
 					<div class="{$maccms.cache_flag} filmSources" id="playPathlist-1">
 						<ul class="{$maccms.cache_flag} swiper-wrapper clearfix">{maccms:foreach
 							name="obj.vod_play_list" id="vo" by="num"}
-							<li class="{$maccms.cache_flag} swiper-slide {if condition=" $param.sid eq
-								$key"}active{/if}" href="javascript:void(0);">{$vo.player_info.show}</li>
+							<li class="{$maccms.cache_flag} swiper-slide {if condition=" $param.sid eq $key"}active{/if}" href="javascript:void(0);">{$vo.player_info.show}</li>
 							{/maccms:foreach}
 						</ul>
 					</div>
@@ -136,38 +135,6 @@
 				</div>
 			</div>
 		</section>
-		<!--留言评论-->
-		<section class="{$maccms.cache_flag} mod margin-t-15">
-			<div class="{$maccms.cache_flag} mod-head clearfix">
-				<div class="{$maccms.cache_flag} mod-head-title">
-					<span class="{$maccms.cache_flag} mod-head-name">
-						<svg class="{$maccms.cache_flag} icon" aria-hidden="true" style="font-size: 1.4rem;">
-							<use xlink:href="#icon-dong"></use>
-						</svg>留言评论</span>
-				</div>
-			</div>
-			<div class="{$maccms.cache_flag} mod-main clearfix">
-				<div class="{$maccms.cache_flag} mac_comment" id="mac_comment" data-id="{$obj.vod_id}"
-					data-mid="{$maccms.mid}"></div>
-				<script>
-					$(function () {
-						MAC.Comment.Login = { $comment.login };
-						MAC.Comment.Verify = { $comment.verify };
-						MAC.Comment.Init();
-						MAC.Comment.Show(1);
-					});
-				</script>
-			</div>
-		</section>
-		<div class="{$maccms.cache_flag} bdsharebuttonbox">
-			<a href="#" class="{$maccms.cache_flag} bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
-			<a href="#" class="{$maccms.cache_flag} bds_weixin" data-cmd="weixin" title="分享到微信"></a>
-			<a href="#" class="{$maccms.cache_flag} bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
-			<a href="#" class="{$maccms.cache_flag} bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-			<a href="#" class="{$maccms.cache_flag} bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
-		</div>
-		<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
-		</br>
 		<div align="center">
 			<script type=text/javascript src="http://api.xiaoshipintv.com/news3.js"></script>
 		</div>

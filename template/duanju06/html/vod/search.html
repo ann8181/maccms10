@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}搜索结果 - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}搜索结果" />
+    <meta name="description" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}搜索结果" />
+{include file="public/include"}
+</head>
+<body class="ui ui-home">
+{include file="public/header"}
+<main class="app app-main">
+    <section class="container items"> <h1 class="items-title">搜索“{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}”(<strong class="mac_total">0</strong>条) </h1>
+        <ul>
+            {maccms:vod num="18" paging="yes" pageurl="vod/search" order="desc" by="time"}
+            {include file="public/item"}
+            {/maccms:vod}
+        </ul>
+    </section>
+    <section class="container pagination">
+        {include file="public/paging"}
+    </section>
+</main>
+<script>
+    $('.mac_total').html('{$__PAGING__.record_total}');
+</script>
+{include file="public/footer"}
+</body>
+</html>

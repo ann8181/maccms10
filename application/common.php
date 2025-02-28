@@ -3032,7 +3032,7 @@ function mac_get_rnddomain()
 function nochaoscode($str, $encode = "utf-8") {
 	$str = iconv($encode, "UTF-16BE", $str);
 	for ($i = 0; $i < strlen($str); $i++,$i++) {
-		$code = ord($str{$i}) * 256 + ord($str{$i + 1});
+        $code = ord($str[$i]) * 256 + ord($str[$i + 1]);
 		if ($code < 128) {
 			$output .= chr($code);
 		} else if ($code != 65279) {

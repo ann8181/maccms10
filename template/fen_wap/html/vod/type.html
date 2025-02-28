@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
 	<meta charset="utf-8" />
 	<meta name="applicable-device" content="mobile">
@@ -12,7 +11,6 @@
 	<title>{$obj.type_title} - {$maccms.site_name|nochaoscode}</title>
 	<meta name="keywords" content="{$obj.type_key}" />
 	<meta name="description" content="{$obj.type_des}" />
-
 	<link rel="shortcut icon" href="{$maccms.path}favicon.ico">
 	{include file="public/include"}
 </head>
@@ -24,33 +22,34 @@
 		<section class="{$maccms.cache_flag} mod margin-t-15" style="margin-top:.8rem;">
 			<div class="{$maccms.cache_flag} mod-head clearfix">
 				<div class="{$maccms.cache_flag} mod-head-title">
-					<span class="{$maccms.cache_flag} mod-head-name"><svg class="{$maccms.cache_flag} icon"
-							aria-hidden="true" style="font-size: 1.6rem;margin:0 0 0 -.1rem">
+					<span class="{$maccms.cache_flag} mod-head-name">
+						<svg class="{$maccms.cache_flag} icon" aria-hidden="true" style="font-size: 1.6rem;margin:0 0 0 -.1rem">
 							<use xlink:href="#icon-fanjutuijian"></use>
 						</svg>随机推荐</span>
 				</div>
-				<a class="{$maccms.cache_flag} change"><span
-						class="{$maccms.cache_flag} iconfont icon-location"></span>&nbsp可以左右滑动哦</a>
+				<a class="{$maccms.cache_flag} change">
+					<span class="{$maccms.cache_flag} iconfont icon-location"></span>&nbsp可以左右滑动哦
+				</a>
 			</div>
 			<div class="{$maccms.cache_flag} mod-main clearfix">
 				<div class="{$maccms.cache_flag} mod-row">
 					<div class="{$maccms.cache_flag} videoSelectWrap" style="overflow: hidden;">
 						<ul class="{$maccms.cache_flag} video-list swiper-wrapper video-sScroll-list clearfix">
 							{maccms:vod num="9" type="current" order="desc" by="rnd"}
-							<li class="{$maccms.cache_flag} swiper-slide video-item" tapmode
-								onclick="showDefault('loading')">
+							<li class="{$maccms.cache_flag} swiper-slide video-item" tapmode onclick="showDefault('loading')">
 								<a class="{$maccms.cache_flag} video-link" href="{:mac_url_vod_detail($vo)}"
 									title="{$vo.vod_name|nochaoscode}">
 									<div class="{$maccms.cache_flag} _item-pic swiper-lazy"
 										data-background="{$vo.vod_pic|mac_url_img}">
 										<div class="{$maccms.cache_flag} video-tips red">
-											{$vo.vod_version|mac_default='HD'}</div>
-										<div class="{$maccms.cache_flag} video-duration">{include file="public/serial1"}
+											{$vo.vod_version|mac_default='HD'}
+										</div>
+										<div class="{$maccms.cache_flag} video-duration">
+											{include file="public/serial1"}
 										</div>
 									</div>
 									<div class="{$maccms.cache_flag} video-con">
-										<h2 class="{$maccms.cache_flag} video-con-tit ellipsis-1">
-											{$vo.vod_name|nochaoscode}</h2>
+										<h2 class="{$maccms.cache_flag} video-con-tit ellipsis-1">{$vo.vod_name|nochaoscode}</h2>
 									</div>
 								</a>
 							</li>
@@ -63,96 +62,45 @@
 		<!--筛选部件-->
 		<section class="{$maccms.cache_flag} mod margin-t-15">
 			<div align="center">
-				<script type=text/javascript src="http://api.xiaoshipintv.com/news2.js"></script>
+				<script type=text/javascript src="/ads/news2.js"></script>
 			</div>
 			<div class="{$maccms.cache_flag} screenList">
-				<div class="{$maccms.cache_flag} box">{if condition="($obj['type_id']==1) OR
-					($obj['parent']['type_id']==1)"}
+				<div class="{$maccms.cache_flag} box">
+					{volist name="[1,2,3,4]" id="type_id"}
+					{if condition="($obj['type_id']==$type_id) OR ($obj['parent']['type_id']==$type_id)"} 
 					<div class="{$maccms.cache_flag} nav-wrap">
 						<div id="screenList1" class="{$maccms.cache_flag} wrap">
 							<ul class="{$maccms.cache_flag} swiper-wrapper clearfix">
-								<li class="{$maccms.cache_flag} swiper-slide {if condition="
-									$obj['type_id']==1"}active{/if}" tapmode onclick="showDefault('loading')"><a {if
-										condition="$obj['type_id']!=1" }
-										href="{:mac_url_type($obj['parent'],['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}"
-										{/if}>分类</a></li>
-								{maccms:type ids="child" parent="1" by="sort" order="asc"}
-								<li class="{$maccms.cache_flag} swiper-slide {if condition="
-									$vo['type_id']==$obj['type_id']"}active{/if}" tapmode
-									onclick="showDefault('loading')"><a
-										href="{:mac_url_type($vo,[],'show')}">{$vo.type_name|nochaoscode}</a></li>
+								<li class="{$maccms.cache_flag} swiper-slide {if condition="$obj['type_id']==$type_id"}active{/if}" tapmode onclick="showDefault('loading')"></li>
+									<a {if condition="$obj['type_id']!=$type_id"} href="{:mac_url_type($obj['parent'],['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}" {/if}>分类</a>
+								</li>
+								{maccms:type ids="child" parent="$type_id" by="sort" order="asc"}
+								<li class="{$maccms.cache_flag} swiper-slide {if condition="$vo['type_id']==$obj['type_id']"}active{/if}" tapmode onclick="showDefault('loading')">
+									<a href="{:mac_url_type($vo,[],'show')}">{$vo.type_name|nochaoscode}</a>
+								</li>
 								{/maccms:type}
 							</ul>
 						</div>
-					</div>{elseif condition="($obj['type_id']==2) OR ($obj['parent']['type_id']==2)"}
-					<div class="{$maccms.cache_flag} nav-wrap">
-						<div id="screenList1" class="{$maccms.cache_flag} wrap">
-							<ul class="{$maccms.cache_flag} swiper-wrapper clearfix">
-								<li class="{$maccms.cache_flag} swiper-slide {if condition="
-									$obj['type_id']==2"}active{/if}" tapmode onclick="showDefault('loading')"><a {if
-										condition="$obj['type_id']!=2" }
-										href="{:mac_url_type($obj['parent'],['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}"
-										{/if}>分类</a></li>
-								{maccms:type ids="child" parent="2" by="sort" order="asc"}
-								<li class="{$maccms.cache_flag} swiper-slide {if condition="
-									$vo['type_id']==$obj['type_id']"}active{/if}" tapmode
-									onclick="showDefault('loading')"><a
-										href="{:mac_url_type($vo,[],'show')}">{$vo.type_name|nochaoscode}</a></li>
-								{/maccms:type}
-							</ul>
-						</div>
-					</div>{/if}
-					{if condition="($obj['type_id']==3) OR ($obj['parent']['type_id']==3)"}
-					<div class="{$maccms.cache_flag} nav-wrap">
-						<div id="screenList1" class="{$maccms.cache_flag} wrap">
-							<ul class="{$maccms.cache_flag} swiper-wrapper clearfix">
-								<li class="{$maccms.cache_flag} swiper-slide {if condition="
-									$obj['type_id']==3"}active{/if}" tapmode onclick="showDefault('loading')"><a {if
-										condition="$obj['type_id']!=3" }
-										href="{:mac_url_type($obj['parent'],['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}"
-										{/if}>分类</a></li>
-								{maccms:type ids="child" parent="3" by="sort" order="asc"}
-								<li class="{$maccms.cache_flag} swiper-slide {if condition="
-									$vo['type_id']==$obj['type_id']"}active{/if}" tapmode
-									onclick="showDefault('loading')"><a
-										href="{:mac_url_type($vo,[],'show')}">{$vo.type_name|nochaoscode}</a></li>
-								{/maccms:type}
-							</ul>
-						</div>
-					</div>{elseif condition="($obj['type_id']==4) OR ($obj['parent']['type_id']==4)"}
-					<div class="{$maccms.cache_flag} nav-wrap">
-						<div id="screenList1" class="{$maccms.cache_flag} wrap">
-							<ul class="{$maccms.cache_flag} swiper-wrapper clearfix">
-								<li class="{$maccms.cache_flag} swiper-slide {if condition="
-									$obj['type_id']==4"}active{/if}" tapmode onclick="showDefault('loading')"><a {if
-										condition="$obj['type_id']!=4" }
-										href="{:mac_url_type($obj['parent'],['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}"
-										{/if}>分类</a></li>
-								{maccms:type ids="child" parent="4" by="sort" order="asc"}
-								<li class="{$maccms.cache_flag} swiper-slide {if condition="
-									$vo['type_id']==$obj['type_id']"}active{/if}" tapmode
-									onclick="showDefault('loading')"><a
-										href="{:mac_url_type($vo,[],'show')}">{$vo.type_name|nochaoscode}</a></li>
-								{/maccms:type}
-							</ul>
-						</div>
-					</div>{/if}
+					</div>
+					{/if}
+					{/volist}
 					<div class="{$maccms.cache_flag} nav-wrap">
 						<div id="screenList2" class="{$maccms.cache_flag} wrap">
 							<ul class="{$maccms.cache_flag} swiper-wrapper clearfix">
-								<li class="{$maccms.cache_flag} swiper-slide {if condition=" $param['class']
-									eq ''"}active{/if}" tapmode onclick="showDefault('loading')"><a
-										href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>'','order'=>$param['order'],'by'=>$param['by'] ],'show')}">类型</a>
+								<li class="{$maccms.cache_flag} swiper-slide {if condition=" $param['class'] eq ''"}active{/if}" tapmode onclick="showDefault('loading')">
+									<a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>'','order'=>$param['order'],'by'=>$param['by'] ],'show')}">类型</a>
 								</li>
 								{empty name="$obj.type_extend.class"}
 								{maccms:foreach name=":explode(',',$obj.parent.type_extend.class)"}
 								<li class="{$maccms.cache_flag} swiper-slide" tapmode onclick="showDefault('loading')">
-									<a href="{:mac_url_type($obj,['class'=>$vo],'show')}">{$vo}</a></li>
+									<a href="{:mac_url_type($obj,['class'=>$vo],'show')}">{$vo}</a>
+								</li>
 								{/maccms:foreach}
 								{else /}
 								{maccms:foreach name=":explode(',',$obj.type_extend.class)"}
 								<li class="{$maccms.cache_flag} swiper-slide" tapmode onclick="showDefault('loading')">
-									<a href="{:mac_url_type($obj,['class'=>$vo],'show')}">{$vo}</a></li>
+									<a href="{:mac_url_type($obj,['class'=>$vo],'show')}">{$vo}</a>
+								</li>
 								{/maccms:foreach}
 								{/empty}
 							</ul>
@@ -161,19 +109,20 @@
 					<div class="{$maccms.cache_flag} nav-wrap">
 						<div id="screenList3" class="{$maccms.cache_flag} wrap">
 							<ul class="{$maccms.cache_flag} swiper-wrapper clearfix">
-								<li class="{$maccms.cache_flag} swiper-slide {if condition=" $param['area']
-									eq ''"}active{/if}" tapmode onclick="showDefault('loading')"><a
-										href="{:mac_url_type($obj,['area'=>'','lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">地区</a>
+								<li class="{$maccms.cache_flag} swiper-slide {if condition=" $param['area'] eq ''"}active{/if}" tapmode onclick="showDefault('loading')">
+									<a href="{:mac_url_type($obj,['area'=>'','lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">地区</a>
 								</li>
 								{empty name="$obj.type_extend.area"}
 								{maccms:foreach name=":explode(',',$obj.parent.type_extend.area)"}
 								<li class="{$maccms.cache_flag} swiper-slide" tapmode onclick="showDefault('loading')">
-									<a href="{:mac_url_type($obj,['area'=>$vo],'show')}">{$vo}</a></li>
+									<a href="{:mac_url_type($obj,['area'=>$vo],'show')}">{$vo}</a>
+								</li>
 								{/maccms:foreach}
 								{else /}
 								{maccms:foreach name=":explode(',',$obj.type_extend.area)"}
 								<li class="{$maccms.cache_flag} swiper-slide" tapmode onclick="showDefault('loading')">
-									<a href="{:mac_url_type($obj,['area'=>$vo],'show')}">{$vo}</a></li>
+									<a href="{:mac_url_type($obj,['area'=>$vo],'show')}">{$vo}</a>
+								</li>
 								{/maccms:foreach}
 								{/empty}
 							</ul>
@@ -182,19 +131,20 @@
 					<div class="{$maccms.cache_flag} nav-wrap">
 						<div id="screenList4" class="{$maccms.cache_flag} wrap">
 							<ul class="{$maccms.cache_flag} swiper-wrapper clearfix">
-								<li class="{$maccms.cache_flag} swiper-slide {if condition=" $param['year']
-									eq ''"}active{/if}" tapmode onclick="showDefault('loading')"><a
-										href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>'','level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">年代</a>
+								<li class="{$maccms.cache_flag} swiper-slide {if condition=" $param['year'] eq ''"}active{/if}" tapmode onclick="showDefault('loading')">
+									<a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>'','level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">年代</a>
 								</li>
 								{empty name="$obj.type_extend.year"}
 								{maccms:foreach name=":explode(',',$obj.parent.type_extend.year)"}
 								<li class="{$maccms.cache_flag} swiper-slide" tapmode onclick="showDefault('loading')">
-									<a href="{:mac_url_type($obj,['year'=>$vo],'show')}">{$vo}</a></li>
+									<a href="{:mac_url_type($obj,['year'=>$vo],'show')}">{$vo}</a>
+								</li>
 								{/maccms:foreach}
 								{else /}
 								{maccms:foreach name=":explode(',',$obj.type_extend.year)"}
 								<li class="{$maccms.cache_flag} swiper-slide" tapmode onclick="showDefault('loading')">
-									<a href="{:mac_url_type($obj,['year'=>$vo],'show')}">{$vo}</a></li>
+									<a href="{:mac_url_type($obj,['year'=>$vo],'show')}">{$vo}</a>
+								</li>
 								{/maccms:foreach}
 								{/empty}
 							</ul>
@@ -203,7 +153,7 @@
 				</div>
 			</div>
 			<div align="center">
-				<script type=text/javascript src="http://api.xiaoshipintv.com/news3.js"></script>
+				<script type=text/javascript src="/ads/news3.js"></script>
 			</div>
 		</section>
 		<!--片库中心-->
@@ -229,21 +179,20 @@
 			<div class="{$maccms.cache_flag} mod-main">
 				<div class="{$maccms.cache_flag} mod-row">
 					<ul class="{$maccms.cache_flag} video-list video-film-list clearfix">
-						{maccms:vod num="30" type="current" paging="yes" pageurl="vod/type" half="1" order="desc"
-						by="time"}
+						{maccms:vod num="30" type="current" paging="yes" pageurl="vod/type" half="1" order="desc" by="time"}
 						<li class="{$maccms.cache_flag} video-item" tapmode onclick="showDefault('loading')">
 							<a class="{$maccms.cache_flag} video-link" href="{:mac_url_vod_detail($vo)}"
 								title="{$vo.vod_name|nochaoscode}">
-								<div class="{$maccms.cache_flag} _item-pic _item-lazy"
-									data-echo="{$vo.vod_pic|mac_url_img}">
-									<div class="{$maccms.cache_flag} video-tips red">{$vo.vod_version|mac_default='HD'}
+								<div class="{$maccms.cache_flag} _item-pic _item-lazy" data-echo="{$vo.vod_pic|mac_url_img}">
+									<div class="{$maccms.cache_flag} video-tips red">
+										{$vo.vod_version|mac_default='HD'}
 									</div>
-									<div class="{$maccms.cache_flag} video-duration">{include file="public/serial1"}
+									<div class="{$maccms.cache_flag} video-duration">
+										{include file="public/serial1"}
 									</div>
 								</div>
 								<div class="{$maccms.cache_flag} video-con">
-									<h2 class="{$maccms.cache_flag} video-con-tit ellipsis-1">{$vo.vod_name|nochaoscode}
-									</h2>
+									<h2 class="{$maccms.cache_flag} video-con-tit ellipsis-1">{$vo.vod_name|nochaoscode}</h2>
 								</div>
 							</a>
 						</li>
@@ -256,8 +205,7 @@
 	</div>
 	<div class="{$maccms.cache_flag} link">
 		{maccms:vod num="10" order="desc" by="rnd" id="vo"}
-		<a class="{$maccms.cache_flag} alink"
-			href="http://{:mac_get_rnddomain()}{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a>
+		<a class="{$maccms.cache_flag} alink" href="http://{:mac_get_rnddomain()}{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a>
 		{/maccms:vod}
 		{maccms:foreach name="selist" id="vo" key="key"}
 		<a class="{$maccms.cache_flag} swiper-slide" href="/s-{$key}.html" target="_blank"> {$vo|nochaoscode}</a>

@@ -1,0 +1,10 @@
+<li class="item">
+    <a class="image-line" href="{:mac_url_vod_play($vo,['sid'=>1,'nid'=>1])}">
+        <img class="thumb" src="{$vo.vod_pic|mac_url_img}" alt="{$vo.vod_name}">
+        <span class="remarks light">{$vo.vod_remarks}</span>
+    </a>
+    <a class="title-line" href="{:mac_url_vod_play($vo,['sid'=>1,'nid'=>1])}">
+        <h3>{$vo.vod_name}</h3>
+        <span class="tags">{$vo.vod_class}</span>
+    </a>
+</li>

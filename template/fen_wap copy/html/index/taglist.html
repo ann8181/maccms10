@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="applicable-device" content="mobile">
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<meta http-equiv="Cache-Control" content="no-transform" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="renderer" content="webkit">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,minimal-ui">
+	<title>{$maccms.site_name|nochaoscode}</title>
+	<meta name="keywords" content="{$maccms.site_keywords|nochaoscode}" />
+	<meta name="description" content="{$maccms.site_description|nochaoscode}" />
+	<link rel="shortcut icon" href="{$maccms.path}favicon.ico">
+	{include file="public/include"}
+	<link href="{$maccms.path_tpl}css/apppp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="{$maccms.cache_flag} channel">
+		{include file="public/head"}
+		<!--幻灯片 -->
+		<!-- <section>
+			<div id="slider" class="{$maccms.cache_flag} slider swiper-container">
+				<div class="{$maccms.cache_flag} swiper-wrapper">
+					{maccms:vod num="6" paging="no" type="all" level="9" order="desc" by="sort"}
+					<div class="{$maccms.cache_flag} swiper-slide ">
+						<a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name|nochaoscode}"
+							class="{$maccms.cache_flag} slider-link swiper-lazy"
+							data-background="{$vo.vod_pic_slide|mac_url_img}" tapmode onclick="showDefault('loading')">
+							<div class="{$maccms.cache_flag} bottom">
+								<div class="{$maccms.cache_flag} sub_title">《{$vo.vod_name|nochaoscode}》</div>
+							</div>
+						</a>
+					</div>
+					{/maccms:vod}
+				</div>
+				<div class="{$maccms.cache_flag} swiper-pagination"></div>
+			</div>
+		</section> -->
+		<!--热播推荐-->
+		<section class="{$maccms.cache_flag} mod">
+			<div align="center">
+				<script type=text/javascript src="http://api.xiaoshipintv.com/news2.js"></script>
+			</div>
+			<div class="{$maccms.cache_flag} mod-head clearfix">
+				<div class="{$maccms.cache_flag} mod-head-title">
+					<span class="{$maccms.cache_flag} mod-head-name"><svg class="{$maccms.cache_flag} icon"
+							aria-hidden="true" style="font-size: 1.6rem;margin:0 -.1rem 0 -.1rem">
+							<use xlink:href="#icon-fanjutuijian"></use>
+						</svg>热播推荐</span>
+				</div>
+				<a href="{:mac_url('label/top')}" class="{$maccms.cache_flag} change" tapmode
+					onclick="showDefault('loading')"><span
+						class="{$maccms.cache_flag} iconfont icon-location"></span>&nbsp排行榜&nbsp<span
+						class="{$maccms.cache_flag} iconfont icon-right"></span></a>
+			</div>
+			<div class="{$maccms.cache_flag} mod-main clearfix">
+				<div class="{$maccms.cache_flag} mod-row">
+					<ul class="{$maccms.cache_flag} video-list video-small-list clearfix">
+						{maccms:vod num="6" type="1,2,3,4" level="8" order="desc" by="time"}
+						<li class="{$maccms.cache_flag} video-item" tapmode onclick="showDefault('loading')"> <a
+								class="{$maccms.cache_flag} video-link" href="{:mac_url_vod_detail($vo)}"
+								title="{$vo.vod_name|nochaoscode}">
+								<div class="{$maccms.cache_flag} v-pic">
+									<img data-src="{$vo.vod_pic_slide|mac_url_img}"
+										class="{$maccms.cache_flag} _item-pic _item-lazy"
+										alt="{$vo2.vod_name|nochaoscode}" src="{$vo.vod_pic_slide|mac_url_img}">
+									<a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name|nochaoscode}"
+										class="{$maccms.cache_flag} v-playBtn"><i></i></a>
+								</div>
+								<div class="{$maccms.cache_flag} video-con">
+									<h2 class="{$maccms.cache_flag} video-con-tit ellipsis-1">{$vo.vod_name|nochaoscode}
+									</h2>
+									<p class="{$maccms.cache_flag} video-con-subtitle ellipsis-1"><span
+											style="color: rgb(153, 153, 153); font-family: Arial, microsoft yahei;font-size:14px;">{$vo.vod_content|mac_filter_html}</span><br />
+									</p>
+								</div>
+							</a>
+						</li>
+						{/maccms:vod}
+					</ul>
+				</div>
+			</div>
+		</section>
+		{maccms:type ids="1,2,3,4" order="asc" by="sort" id="vo5" key="key5"}
+		<section class="{$maccms.cache_flag} mod ">
+			<div class="{$maccms.cache_flag} mod-head clearfix">
+				<div class="{$maccms.cache_flag} mod-head-title">
+					<span class="{$maccms.cache_flag} mod-head-name"><svg class="{$maccms.cache_flag} icon"
+							aria-hidden="true">
+							<use xlink:href="{if condition=" $vo5.type_id==1"}#icon-zhibo{elseif
+								condition="$vo5.type_id==2" }#icon-dianshiju{elseif condition="$vo5.type_id==3"
+								}#icon-guixu{else /}#icon-guochandonghuatuijian{/if}"></use>
+						</svg>热播{$vo5.type_name|nochaoscode}</span>
+				</div>
+				<a href="{:mac_url_type($vo5)}" class="{$maccms.cache_flag} change" tapmode
+					onclick="showDefault('loading')"><span
+						class="{$maccms.cache_flag} iconfont icon-location"></span>&nbsp查看更多&nbsp<span
+						class="{$maccms.cache_flag} iconfont icon-right"></span></a>
+			</div>
+			<div class="{$maccms.cache_flag} mod-main clearfix">
+				<div class="{$maccms.cache_flag} mod-row">
+					<ul class="{$maccms.cache_flag} video-list video-film-list clearfix">
+						{maccms:vod num="6" type="'.$vo5['type_id'].'" order="desc" by="time" id="vo2" key="key2"}
+						<li class="{$maccms.cache_flag} video-item" tapmode onclick="showDefault('loading')">
+							<a class="{$maccms.cache_flag} video-link" href="{:mac_url_vod_detail($vo2)}"
+								title="{$vo2.vod_name|nochaoscode}">
+								<div class="{$maccms.cache_flag} v-pic">
+									<img data-src="{$vo2.vod_pic|mac_url_img}"
+										class="{$maccms.cache_flag} _item-pic _item-lazy"
+										alt="{$vo2.vod_name|nochaoscode}" src="{$vo2.vod_pic|mac_url_img}">
+									<div class="{$maccms.cache_flag} v-tips">{include file="public/serial"}</div>
+									<a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name|nochaoscode}"
+										class="{$maccms.cache_flag} v-playBtn"><i></i></a>
+								</div>
+								<div class="{$maccms.cache_flag} video-con">
+									<h2 class="{$maccms.cache_flag} video-con-tit ellipsis-1">
+										{$vo2.vod_name|nochaoscode}</h2>
+								</div>
+							</a>
+						</li>
+						{/maccms:vod}
+					</ul>
+				</div>
+			</div>
+		</section>
+		{/maccms:type}
+		<!-- 资讯列表 -->
+		<section class="{$maccms.cache_flag} mod">
+			<div class="{$maccms.cache_flag} mod-head clearfix">{maccms:type parent="5" order="asc" by="sort" id="vo4"
+				key="key4"}
+				<div class="{$maccms.cache_flag} mod-head-title" {if condition="$key4%2==0"
+					}style="float:right;margin-right:1.8rem;" {/if}>
+					<span class="{$maccms.cache_flag} mod-head-name">
+						<svg class="{$maccms.cache_flag} icon" aria-hidden="true" style="font-size: 1.4rem;">
+							<use xlink:href="#icon-dong"></use>
+						</svg>热门{$vo4.type_name|nochaoscode}</span>
+				</div>{/maccms:type}
+			</div>
+			<div class="{$maccms.cache_flag} mod-main clearfix">{maccms:type parent="5" order="asc" by="sort" id="vo5"
+				key="key5"}
+				<div class="{$maccms.cache_flag} art-{if condition=" $key%2==0"}l{else /}r{/if}">
+					<ul class="{$maccms.cache_flag} art-rank">
+						{maccms:art num="6" type="'.$vo5['type_id'].'" order="desc" by="time" id="vo2" key="key2"}
+						<li><span class="{$maccms.cache_flag} iconfont icon-evaluate"></span>
+							<span class="{$maccms.cache_flag} art-tit"><a href="{:mac_url_art_detail($vo2)}"
+									title="{$vo2.art_name|nochaoscode}" tapmode=""
+									onclick="showDefault('loading')">{$vo2.art_name|nochaoscode}</a></span>
+						</li>
+						{/maccms:art}
+					</ul>
+				</div>{/maccms:type}
+			</div>
+		</section>
+		<div align="center">
+			<script type=text/javascript src="http://api.xiaoshipintv.com/news3.js"></script>
+		</div>
+	</div>
+	<div class="{$maccms.cache_flag} link">
+		{maccms:vod num="10" order="desc" by="rnd" id="vo"}
+		<a class="{$maccms.cache_flag} alink"
+			href="http://{:mac_get_rnddomain()}{:mac_url_vod_detail($vo)}">{$vo.vod_name|nochaoscode}</a>
+		{/maccms:vod}
+	</div>
+	<section class="{$maccms.cache_flag} mod ">
+		<div class="{$maccms.cache_flag} mod-head clearfix">
+			<div class="{$maccms.cache_flag} mod-head-title"> <span class="{$maccms.cache_flag} mod-head-name">
+					<svg class="{$maccms.cache_flag} icon" aria-hidden="true">
+						<use xlink:href="#icon-wodezhuifan"></use>
+					</svg>
+					友情链接</span> </div>
+			<a class="{$maccms.cache_flag} change"><span
+					class="{$maccms.cache_flag} iconfont icon-location"></span>&nbsp;可以左右滑动</a>
+		</div>
+		<div class="{$maccms.cache_flag} mod-main clearfix">
+			<div class="{$maccms.cache_flag} mod-row link-list">
+				<ul class="{$maccms.cache_flag} swiper-wrapper clearfix">
+					{maccms:link type="font" order="asc" by="sort"}
+					<li class="{$maccms.cache_flag} swiper-slide"><a href="{$vo.link_url}"
+							target="_blank">{$vo.link_name|nochaoscode}</a></li>
+					{/maccms:link}
+					{maccms:foreach name="selist" id="vo" key="key"}
+					<a class="{$maccms.cache_flag} swiper-slide" href="/s-{$key}.html" target="_blank"> {$vo|nochaoscode}</a>
+					{/maccms:foreach}
+				</ul>
+			</div>
+		</div>
+	</section>
+	{include file="public/foot"}
+</body>
+
+</html>

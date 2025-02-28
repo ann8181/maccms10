@@ -1,0 +1,45 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name='robots' content='max-image-preview:large' />
+    <title>{if $maccms.seo.vod.name ==''}{$maccms.site_name}{else/}{$maccms.seo.vod.name}{/if}</title> 
+    <meta name="keywords" content="{if $maccms.seo.vod.key ==''}{$maccms.site_keywords}{else/}{$maccms.seo.vod.key}{/if}" />
+    <meta name="description" content="{if $maccms.seo.vod.des ==''}{$maccms.site_description}{else/}{$maccms.seo.vod.des}{/if}" />
+{include file="public/include"}
+</head>
+
+<body class="ui ui-category">
+{include file="public/header"}
+    <main class="app app-main">
+        <section class="swiper-container" data-name="tagsec" data-space="10" data-breakpoints="0:6|480:10" data-position="0">
+            <div class="container swiper tagsec-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"> <a class="active" href="{:mac_url('label/rank')}">全部</a> </div>
+                    {maccms:type order="asc" by="sort" num="1"}
+                    {maccms:foreach name=":explode(',',$vo.type_extend.class)" id="vo2" key="key2"}
+                    <div class="swiper-slide"><a href="{:mac_url_type($vo,[],'show')}">{$vo2}</a></div>
+                    {/maccms:foreach}
+                    {/maccms:type}
+                </div>
+            </div>
+        </section>
+        <section class="container items">
+            <h1 class="items-title"> 全部 </h1>
+            <ul>
+                {maccms:vod num="18"  order="desc" by="hits"  paging="yes" pageurl="label/rank"}
+{include file="public/item"}
+                {/maccms:vod}
+            </ul>
+        </section>
+        <section class="container pagination">
+            <ul>
+                {include file="public/paging"}
+            </ul>
+        </section>
+    </main>
+{include file="public/footer"}
+</body>
+
+</html>

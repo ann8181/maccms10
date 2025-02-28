@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{if $maccms.seo.vod.name ==''}{$maccms.site_name}{else/}{$maccms.seo.vod.name}{/if}</title> 
+    <meta name="keywords" content="{if $maccms.seo.vod.key ==''}{$maccms.site_keywords}{else/}{$maccms.seo.vod.key}{/if}" />
+    <meta name="description" content="{if $maccms.seo.vod.des ==''}{$maccms.site_description}{else/}{$maccms.seo.vod.des}{/if}" />
+{include file="public/include"}
+</head>
+<body class="ui ui-home">
+{include file="public/header"}
+    <main class="app app-main">
+        <section class="swiper-container" data-name="hot" data-loop="true" data-center="yes" data-space="15"
+            data-autoplay="5000" data-breakpoints="0:2">
+            <div class="swiper hot-swiper">
+                <div class="swiper-wrapper">
+                    {maccms:vod num="10" level="9" order="desc" by="time"}
+                    <div class="swiper-slide">
+                        <a href="{:mac_url_vod_play($vo,['sid'=>1,'nid'=>1])}" title="{$vo.vod_name}  {$vo.vod_remarks}">
+                            <img class="thumb" src="{$vo.vod_pic|mac_url_img}"  alt="{$vo.vod_name}"> <span class="remarks ellipsis">{$vo.vod_name}</span>
+                        </a>
+                    </div>
+                    {/maccms:vod}
+                </div>
+            </div>
+        </section>
+        <section class="swiper-container" data-name="tags" data-loop="true" data-space="15" data-autoplay="5000" data-breakpoints="0:4|480:8">
+            <div class="container swiper tags-swiper">
+                <div class="swiper-wrapper">
+                    {maccms:type order="asc" by="sort" num="1"}
+                        {maccms:foreach name=":explode(',',$vo.type_extend.class)" id="vo2" key="key2"}
+                        <div class="swiper-slide">
+                            <a class="swiper-tags ellipsis" href="{:mac_url_type($vo,['class'=>$vo2],'show')}">{$vo2}</a>
+                        </div>
+                        {/maccms:foreach}
+                    {/maccms:type}
+                </div>
+            </div>
+        </section>
+        <section class="items-container">
+            <div class="container items">
+                <h2 class="items-title">最新更新</h2>
+                <ul>
+                    {maccms:vod num="15" order="desc" by="time"}
+{include file="public/item"}
+                    {/maccms:vod}
+                </ul>
+            </div>
+        </section>
+    </main>
+{include file="public/footer"}
+</body>
+</html>

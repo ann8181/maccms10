@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name='robots' content='max-image-preview:large' />
+    <title>在线播放{$obj.vod_name} {$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']} - 高清资源 - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.vod_name}{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}免费在线观看,{$obj.vod_name}剧情介绍" />
+    <meta name="description" content="{$obj.vod_name}{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}免费在线观看,{$obj.vod_name}剧情介绍" />
+    {include file="public/include"}
+</head>
+
+<body class="ui ui-single">
+{include file="public/header"}
+    <article class="app app-main">
+        <section class="player-content">
+            <div class="player-box">
+                {$player_data}
+                {$player_js}
+            </div>
+        </section>
+        <section class="eps-content swiper-container" data-name="eps" data-space="5" data-breakpoints="0:6|480:12" data-position="0">
+            <a class="eps-prev" href="{$obj.player_info.link_next}" style="color: aliceblue;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"fill="currentColor">
+                    <path d="M17 6 17 18H15L15 6 17 6ZM13 12 7 18V6L13 12Z"></path>
+                </svg> 
+                下一集 
+            </a>
+            <!--在线播放地址-->
+            {maccms:foreach name="obj.vod_play_list" id="vo"}
+            <div class="swiper eps-swiper">
+                <div class="swiper-wrapper">
+                    {maccms:foreach name="vo.urls" id="vo2" key="key2"}
+                    <div class="swiper-slide">
+                        <a class="list-ep  {if condition="$param.sid eq $vo.sid && $param.nid eq $vo2.nid"} active {/if}" title="播放离婚后我回归歌坛天后第01集" href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>$vo2.nid])}">{$vo2.name}</a>
+                    </div>
+                    {/maccms:foreach}
+                </div>
+            </div>
+            {/maccms:foreach}
+        </section>
+        <section class="container detail-content">
+            <h1 class="items-title"> {$obj.vod_name}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    fill="currentColor">
+                    <path d="M15.6315 12L10.8838 3.03212L9.11622 3.9679L13.3685 12L9.11622 20.0321L10.8838 20.9679L15.6315 12Z"></path>
+                </svg>
+                <span class="items-epname">{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}</span> </h1>
+                <span class="items-tags">
+                    {maccms:foreach name=":explode(',',$obj.vod_class)" id="vo2" key="key2"}
+                    <a href="{:mac_url_type($obj.type,['class'=> $vo2],'show')}" rel="tag">{$vo2}</a><em class="separation"></em>
+                    {/maccms:foreach}
+                    <time datetime="{$obj.vod_time|date='Y-m-d',###}" class="excerpt-update">{$obj.vod_time|date='Y-m-d',###}</time>
+                </span>
+            <figure class="text-container">
+                <div class="text-content">
+                    <div class="detail">
+                        {$obj.vod_content|mac_url_content_img}
+                    </div>
+                    <img src="{:mac_url_img($obj.vod_pic)}" alt="{$obj.vod_name}">
+                    <figcaption>{$obj.vod_name}</figcaption>
+                </div>
+                <span class="toggle-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                        fill="currentColor">
+                        <path d="M12 16L6 10H18L12 16Z"></path>
+                    </svg>
+                </span>
+            </figure>
+        </section>
+        <section class="items-container">
+            <div class="container items">
+                <h2 class="items-title">最新发布</h2>
+                <ul>
+                    {maccms:vod num="12" type="current" order="desc" by="time"}
+{include file="public/item"}
+                    {/maccms:vod}
+                </ul>
+            </div>
+        </section> 
+    </article>
+<span style="display:none" class="mac_ulog_set" alt="设置播放页浏览记录" data-type="4" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-sid="{$param.sid}" data-nid="{$param.nid}"></span>
+{include file="public/footer"}
+</body>
+</html>
